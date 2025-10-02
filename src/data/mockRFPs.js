@@ -24,6 +24,168 @@ export const mockRFPs = [
       "Admin dashboard",
       "Documentation and training",
       "3 months post-launch support"
+    ],
+    // RFP Snapshot
+    replacing: "Legacy Magento Platform",
+    decisionTimeline: "60 Days",
+    maxResponses: "5 vendors",
+    userSeats: "12 admin users",
+    // Quick Stats
+    requiredLicenses: 12,
+    daysToDecision: 60,
+    maxVendors: 5,
+    billingFrequency: "Annual",
+    // Current Solution & Replacement Context
+    currentSolution: "Magento 1.x",
+    replacingReason: "Platform End-of-Life, Performance Issues",
+    replacementStatus: "Committed to replacement",
+    competitiveRisk: "Exploring multiple modern platforms. Must demonstrate superior performance, ease of use, and cost-effectiveness compared to Shopify Plus and BigCommerce Enterprise.",
+    // Core Requirements
+    coreRequirements: [
+      "Product Catalog Management",
+      "Shopping Cart & Checkout",
+      "Payment Processing",
+      "Order Management",
+      "Customer Account Management",
+      "Inventory Management"
+    ],
+    // Demo Requirements
+    demoRequirements: "Live demonstration of product catalog management, shopping cart flows, mobile responsiveness, and admin dashboard capabilities",
+    demoStrategy: [
+      "Showcase mobile-first responsive design with live device testing",
+      "Demonstrate checkout flow optimization (addressing slow performance issues)",
+      "Highlight advanced product filtering and search capabilities",
+      "Show real-time inventory management and order processing"
+    ],
+    // Contract & Payment Terms
+    contractTerm: "Multi-year",
+    contractTermDetails: "3-year commitment with option to extend",
+    billingInterval: "Annual",
+    billingIntervalDetails: "Upfront yearly payment with 10% discount",
+    paymentTerms: "Net 30",
+    paymentTermsDetails: "30 days from invoice",
+    userLicenses: "12 seats",
+    userLicensesDetails: "Admin and content manager access",
+    // Company Overview
+    industry: "Fashion & Apparel Retail",
+    headquarters: "Los Angeles, CA",
+    companySize: "250+ employees",
+    revenue: "$45M (2024)",
+    publicPrivate: "Private",
+    geographicPresence: "North America, UK",
+    // Department Profile
+    departmentStructure: "12 active system users across e-commerce operations, marketing, and customer service teams managing the online storefront.",
+    technologyNeeds: "Need modern, scalable e-commerce platform to support growing online sales and seasonal traffic spikes. Current platform struggles during Black Friday and holiday sales.",
+    painPoints: "Magento 1.x is end-of-life with security concerns. Platform performance degrades during high traffic, affecting conversion rates. Team struggles with outdated admin interface and limited mobile optimization.",
+    // Current Tech Stack
+    techStack: [
+      {
+        name: "Magento 1.x",
+        category: "E-commerce Platform",
+        year: "2016",
+        status: "Replacing"
+      },
+      {
+        name: "Stripe",
+        category: "Payment Processing",
+        status: "Active"
+      },
+      {
+        name: "Salesforce",
+        category: "CRM & Marketing",
+        status: "Active"
+      },
+      {
+        name: "Google Analytics",
+        category: "Analytics",
+        status: "Active"
+      }
+    ],
+    techStackIntegration: "Must integrate seamlessly with Stripe for payments, Salesforce for customer data sync, and Google Analytics for tracking.",
+    // Key Stakeholders
+    stakeholders: [
+      {
+        name: "Sarah Johnson",
+        title: "Chief Technology Officer",
+        role: "Decision Maker",
+        email: "sjohnson@techstyle.com",
+        linkedin: "linkedin.com/in/sarahjohnson"
+      },
+      {
+        name: "Michael Chen",
+        title: "Director of E-commerce",
+        role: "Primary Contact",
+        email: "mchen@techstyle.com",
+        phone: "(310) 555-0198"
+      },
+      {
+        name: "Emily Rodriguez",
+        title: "VP of Marketing",
+        role: "Influencer",
+        email: "erodriguez@techstyle.com"
+      },
+      {
+        name: "James Wilson",
+        title: "Head of IT Security",
+        role: "Gatekeeper",
+        email: "jwilson@techstyle.com"
+      }
+    ],
+    // Competitive Intelligence
+    incumbentRisk: [
+      "Magento 1.x is end-of-life (EOL since June 2020)",
+      "Status: Must replace due to security and compliance",
+      "No renewal option - committed to migration"
+    ],
+    expectedCompetitors: [
+      "Shopify Plus",
+      "BigCommerce Enterprise",
+      "Adobe Commerce (Magento 2)",
+      "Max 5 responses allowed"
+    ],
+    ourAdvantages: [
+      "Custom React-based solution vs templated platforms",
+      "Superior performance optimization",
+      "Flexible, headless architecture",
+      "Dedicated development support"
+    ],
+    // Budget Intelligence
+    estimatedAnnualValue: "$85K - $110K",
+    estimatedAnnualDetails: "12 seats × $7,000-$9,000/seat + hosting",
+    contractValue: "$255K - $330K",
+    contractValueDetails: "3-year term",
+    // Decision Timeline
+    decisionMilestones: [
+      {
+        name: "RFP Issued",
+        date: "Oct 1, 2024",
+        status: "completed"
+      },
+      {
+        name: "Demos & Presentations",
+        date: "Oct 20-30 (Est.)",
+        status: "upcoming"
+      },
+      {
+        name: "Final Decision",
+        date: "Nov 30, 2024 (Est.)",
+        status: "upcoming"
+      }
+    ],
+    // Relationship History
+    relationshipHistory: [
+      {
+        event: "Trade Show Meeting",
+        description: "Met at Shopify Unite 2024, discussed e-commerce challenges"
+      },
+      {
+        event: "Product Demo",
+        description: "Aug 2024 - General platform capabilities demo"
+      },
+      {
+        event: "Webinar Attendee",
+        description: "Sept 2024 - Headless commerce webinar"
+      }
     ]
   },
   {
