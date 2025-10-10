@@ -9,54 +9,237 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as MyAnswersRouteImport } from './routes/my-answers'
+import { Route as IntakeRouteImport } from './routes/intake'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as IntakeIndexRouteImport } from './routes/intake.index'
 import { Route as RfpRfpIdRouteImport } from './routes/rfp.$rfpId'
+import { Route as IntakeThankYouRouteImport } from './routes/intake.thank-you'
+import { Route as IntakeTechnologyRouteImport } from './routes/intake.technology'
+import { Route as IntakeTechNewRouteImport } from './routes/intake.tech-new'
+import { Route as IntakeLawfirmRouteImport } from './routes/intake.lawfirm'
+import { Route as IntakeAlspRouteImport } from './routes/intake.alsp'
+import { Route as RfpRfpIdIndexRouteImport } from './routes/rfp.$rfpId.index'
+import { Route as RfpRfpIdQuestionsRouteImport } from './routes/rfp.$rfpId.questions'
+import { Route as RfpRfpIdDocumentsRouteImport } from './routes/rfp.$rfpId.documents'
+import { Route as IntakeLegalServicesNeedRouteImport } from './routes/intake.legal-services.need'
+import { Route as IntakeLegalServicesDeliveryRouteImport } from './routes/intake.legal-services.delivery'
 
+const MyAnswersRoute = MyAnswersRouteImport.update({
+  id: '/my-answers',
+  path: '/my-answers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IntakeRoute = IntakeRouteImport.update({
+  id: '/intake',
+  path: '/intake',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const IntakeIndexRoute = IntakeIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => IntakeRoute,
 } as any)
 const RfpRfpIdRoute = RfpRfpIdRouteImport.update({
   id: '/rfp/$rfpId',
   path: '/rfp/$rfpId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IntakeThankYouRoute = IntakeThankYouRouteImport.update({
+  id: '/thank-you',
+  path: '/thank-you',
+  getParentRoute: () => IntakeRoute,
+} as any)
+const IntakeTechnologyRoute = IntakeTechnologyRouteImport.update({
+  id: '/technology',
+  path: '/technology',
+  getParentRoute: () => IntakeRoute,
+} as any)
+const IntakeTechNewRoute = IntakeTechNewRouteImport.update({
+  id: '/tech-new',
+  path: '/tech-new',
+  getParentRoute: () => IntakeRoute,
+} as any)
+const IntakeLawfirmRoute = IntakeLawfirmRouteImport.update({
+  id: '/lawfirm',
+  path: '/lawfirm',
+  getParentRoute: () => IntakeRoute,
+} as any)
+const IntakeAlspRoute = IntakeAlspRouteImport.update({
+  id: '/alsp',
+  path: '/alsp',
+  getParentRoute: () => IntakeRoute,
+} as any)
+const RfpRfpIdIndexRoute = RfpRfpIdIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => RfpRfpIdRoute,
+} as any)
+const RfpRfpIdQuestionsRoute = RfpRfpIdQuestionsRouteImport.update({
+  id: '/questions',
+  path: '/questions',
+  getParentRoute: () => RfpRfpIdRoute,
+} as any)
+const RfpRfpIdDocumentsRoute = RfpRfpIdDocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => RfpRfpIdRoute,
+} as any)
+const IntakeLegalServicesNeedRoute = IntakeLegalServicesNeedRouteImport.update({
+  id: '/legal-services/need',
+  path: '/legal-services/need',
+  getParentRoute: () => IntakeRoute,
+} as any)
+const IntakeLegalServicesDeliveryRoute =
+  IntakeLegalServicesDeliveryRouteImport.update({
+    id: '/legal-services/delivery',
+    path: '/legal-services/delivery',
+    getParentRoute: () => IntakeRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/rfp/$rfpId': typeof RfpRfpIdRoute
+  '/intake': typeof IntakeRouteWithChildren
+  '/my-answers': typeof MyAnswersRoute
+  '/intake/alsp': typeof IntakeAlspRoute
+  '/intake/lawfirm': typeof IntakeLawfirmRoute
+  '/intake/tech-new': typeof IntakeTechNewRoute
+  '/intake/technology': typeof IntakeTechnologyRoute
+  '/intake/thank-you': typeof IntakeThankYouRoute
+  '/rfp/$rfpId': typeof RfpRfpIdRouteWithChildren
+  '/intake/': typeof IntakeIndexRoute
+  '/intake/legal-services/delivery': typeof IntakeLegalServicesDeliveryRoute
+  '/intake/legal-services/need': typeof IntakeLegalServicesNeedRoute
+  '/rfp/$rfpId/documents': typeof RfpRfpIdDocumentsRoute
+  '/rfp/$rfpId/questions': typeof RfpRfpIdQuestionsRoute
+  '/rfp/$rfpId/': typeof RfpRfpIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/rfp/$rfpId': typeof RfpRfpIdRoute
+  '/my-answers': typeof MyAnswersRoute
+  '/intake/alsp': typeof IntakeAlspRoute
+  '/intake/lawfirm': typeof IntakeLawfirmRoute
+  '/intake/tech-new': typeof IntakeTechNewRoute
+  '/intake/technology': typeof IntakeTechnologyRoute
+  '/intake/thank-you': typeof IntakeThankYouRoute
+  '/intake': typeof IntakeIndexRoute
+  '/intake/legal-services/delivery': typeof IntakeLegalServicesDeliveryRoute
+  '/intake/legal-services/need': typeof IntakeLegalServicesNeedRoute
+  '/rfp/$rfpId/documents': typeof RfpRfpIdDocumentsRoute
+  '/rfp/$rfpId/questions': typeof RfpRfpIdQuestionsRoute
+  '/rfp/$rfpId': typeof RfpRfpIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/rfp/$rfpId': typeof RfpRfpIdRoute
+  '/intake': typeof IntakeRouteWithChildren
+  '/my-answers': typeof MyAnswersRoute
+  '/intake/alsp': typeof IntakeAlspRoute
+  '/intake/lawfirm': typeof IntakeLawfirmRoute
+  '/intake/tech-new': typeof IntakeTechNewRoute
+  '/intake/technology': typeof IntakeTechnologyRoute
+  '/intake/thank-you': typeof IntakeThankYouRoute
+  '/rfp/$rfpId': typeof RfpRfpIdRouteWithChildren
+  '/intake/': typeof IntakeIndexRoute
+  '/intake/legal-services/delivery': typeof IntakeLegalServicesDeliveryRoute
+  '/intake/legal-services/need': typeof IntakeLegalServicesNeedRoute
+  '/rfp/$rfpId/documents': typeof RfpRfpIdDocumentsRoute
+  '/rfp/$rfpId/questions': typeof RfpRfpIdQuestionsRoute
+  '/rfp/$rfpId/': typeof RfpRfpIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/rfp/$rfpId'
+  fullPaths:
+    | '/'
+    | '/intake'
+    | '/my-answers'
+    | '/intake/alsp'
+    | '/intake/lawfirm'
+    | '/intake/tech-new'
+    | '/intake/technology'
+    | '/intake/thank-you'
+    | '/rfp/$rfpId'
+    | '/intake/'
+    | '/intake/legal-services/delivery'
+    | '/intake/legal-services/need'
+    | '/rfp/$rfpId/documents'
+    | '/rfp/$rfpId/questions'
+    | '/rfp/$rfpId/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/rfp/$rfpId'
-  id: '__root__' | '/' | '/rfp/$rfpId'
+  to:
+    | '/'
+    | '/my-answers'
+    | '/intake/alsp'
+    | '/intake/lawfirm'
+    | '/intake/tech-new'
+    | '/intake/technology'
+    | '/intake/thank-you'
+    | '/intake'
+    | '/intake/legal-services/delivery'
+    | '/intake/legal-services/need'
+    | '/rfp/$rfpId/documents'
+    | '/rfp/$rfpId/questions'
+    | '/rfp/$rfpId'
+  id:
+    | '__root__'
+    | '/'
+    | '/intake'
+    | '/my-answers'
+    | '/intake/alsp'
+    | '/intake/lawfirm'
+    | '/intake/tech-new'
+    | '/intake/technology'
+    | '/intake/thank-you'
+    | '/rfp/$rfpId'
+    | '/intake/'
+    | '/intake/legal-services/delivery'
+    | '/intake/legal-services/need'
+    | '/rfp/$rfpId/documents'
+    | '/rfp/$rfpId/questions'
+    | '/rfp/$rfpId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  RfpRfpIdRoute: typeof RfpRfpIdRoute
+  IntakeRoute: typeof IntakeRouteWithChildren
+  MyAnswersRoute: typeof MyAnswersRoute
+  RfpRfpIdRoute: typeof RfpRfpIdRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/my-answers': {
+      id: '/my-answers'
+      path: '/my-answers'
+      fullPath: '/my-answers'
+      preLoaderRoute: typeof MyAnswersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/intake': {
+      id: '/intake'
+      path: '/intake'
+      fullPath: '/intake'
+      preLoaderRoute: typeof IntakeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/intake/': {
+      id: '/intake/'
+      path: '/'
+      fullPath: '/intake/'
+      preLoaderRoute: typeof IntakeIndexRouteImport
+      parentRoute: typeof IntakeRoute
     }
     '/rfp/$rfpId': {
       id: '/rfp/$rfpId'
@@ -65,12 +248,125 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RfpRfpIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/intake/thank-you': {
+      id: '/intake/thank-you'
+      path: '/thank-you'
+      fullPath: '/intake/thank-you'
+      preLoaderRoute: typeof IntakeThankYouRouteImport
+      parentRoute: typeof IntakeRoute
+    }
+    '/intake/technology': {
+      id: '/intake/technology'
+      path: '/technology'
+      fullPath: '/intake/technology'
+      preLoaderRoute: typeof IntakeTechnologyRouteImport
+      parentRoute: typeof IntakeRoute
+    }
+    '/intake/tech-new': {
+      id: '/intake/tech-new'
+      path: '/tech-new'
+      fullPath: '/intake/tech-new'
+      preLoaderRoute: typeof IntakeTechNewRouteImport
+      parentRoute: typeof IntakeRoute
+    }
+    '/intake/lawfirm': {
+      id: '/intake/lawfirm'
+      path: '/lawfirm'
+      fullPath: '/intake/lawfirm'
+      preLoaderRoute: typeof IntakeLawfirmRouteImport
+      parentRoute: typeof IntakeRoute
+    }
+    '/intake/alsp': {
+      id: '/intake/alsp'
+      path: '/alsp'
+      fullPath: '/intake/alsp'
+      preLoaderRoute: typeof IntakeAlspRouteImport
+      parentRoute: typeof IntakeRoute
+    }
+    '/rfp/$rfpId/': {
+      id: '/rfp/$rfpId/'
+      path: '/'
+      fullPath: '/rfp/$rfpId/'
+      preLoaderRoute: typeof RfpRfpIdIndexRouteImport
+      parentRoute: typeof RfpRfpIdRoute
+    }
+    '/rfp/$rfpId/questions': {
+      id: '/rfp/$rfpId/questions'
+      path: '/questions'
+      fullPath: '/rfp/$rfpId/questions'
+      preLoaderRoute: typeof RfpRfpIdQuestionsRouteImport
+      parentRoute: typeof RfpRfpIdRoute
+    }
+    '/rfp/$rfpId/documents': {
+      id: '/rfp/$rfpId/documents'
+      path: '/documents'
+      fullPath: '/rfp/$rfpId/documents'
+      preLoaderRoute: typeof RfpRfpIdDocumentsRouteImport
+      parentRoute: typeof RfpRfpIdRoute
+    }
+    '/intake/legal-services/need': {
+      id: '/intake/legal-services/need'
+      path: '/legal-services/need'
+      fullPath: '/intake/legal-services/need'
+      preLoaderRoute: typeof IntakeLegalServicesNeedRouteImport
+      parentRoute: typeof IntakeRoute
+    }
+    '/intake/legal-services/delivery': {
+      id: '/intake/legal-services/delivery'
+      path: '/legal-services/delivery'
+      fullPath: '/intake/legal-services/delivery'
+      preLoaderRoute: typeof IntakeLegalServicesDeliveryRouteImport
+      parentRoute: typeof IntakeRoute
+    }
   }
 }
 
+interface IntakeRouteChildren {
+  IntakeAlspRoute: typeof IntakeAlspRoute
+  IntakeLawfirmRoute: typeof IntakeLawfirmRoute
+  IntakeTechNewRoute: typeof IntakeTechNewRoute
+  IntakeTechnologyRoute: typeof IntakeTechnologyRoute
+  IntakeThankYouRoute: typeof IntakeThankYouRoute
+  IntakeIndexRoute: typeof IntakeIndexRoute
+  IntakeLegalServicesDeliveryRoute: typeof IntakeLegalServicesDeliveryRoute
+  IntakeLegalServicesNeedRoute: typeof IntakeLegalServicesNeedRoute
+}
+
+const IntakeRouteChildren: IntakeRouteChildren = {
+  IntakeAlspRoute: IntakeAlspRoute,
+  IntakeLawfirmRoute: IntakeLawfirmRoute,
+  IntakeTechNewRoute: IntakeTechNewRoute,
+  IntakeTechnologyRoute: IntakeTechnologyRoute,
+  IntakeThankYouRoute: IntakeThankYouRoute,
+  IntakeIndexRoute: IntakeIndexRoute,
+  IntakeLegalServicesDeliveryRoute: IntakeLegalServicesDeliveryRoute,
+  IntakeLegalServicesNeedRoute: IntakeLegalServicesNeedRoute,
+}
+
+const IntakeRouteWithChildren =
+  IntakeRoute._addFileChildren(IntakeRouteChildren)
+
+interface RfpRfpIdRouteChildren {
+  RfpRfpIdDocumentsRoute: typeof RfpRfpIdDocumentsRoute
+  RfpRfpIdQuestionsRoute: typeof RfpRfpIdQuestionsRoute
+  RfpRfpIdIndexRoute: typeof RfpRfpIdIndexRoute
+}
+
+const RfpRfpIdRouteChildren: RfpRfpIdRouteChildren = {
+  RfpRfpIdDocumentsRoute: RfpRfpIdDocumentsRoute,
+  RfpRfpIdQuestionsRoute: RfpRfpIdQuestionsRoute,
+  RfpRfpIdIndexRoute: RfpRfpIdIndexRoute,
+}
+
+const RfpRfpIdRouteWithChildren = RfpRfpIdRoute._addFileChildren(
+  RfpRfpIdRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  RfpRfpIdRoute: RfpRfpIdRoute,
+  IntakeRoute: IntakeRouteWithChildren,
+  MyAnswersRoute: MyAnswersRoute,
+  RfpRfpIdRoute: RfpRfpIdRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

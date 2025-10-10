@@ -1,4 +1,26 @@
-import { createFileRoute, useNavigate, notFound } from '@tanstack/react-router'
+import { createFileRoute, useNavigate, notFound, Outlet, Link, useMatchRoute } from '@tanstack/react-router'
+import { useEffect, useState } from 'react'
+import { notifications } from '@mantine/notifications'
+import {
+  Container,
+  Group,
+  Stack,
+  Title,
+  Text,
+  Badge,
+  Button,
+  Tabs,
+  Paper,
+  Card,
+  ThemeIcon,
+  ActionIcon,
+  Anchor,
+  Grid,
+  Box,
+  SimpleGrid,
+  Divider,
+  rem
+} from '@mantine/core'
 import {
   ChevronLeft,
   Calendar,
@@ -18,10 +40,23 @@ import {
   Mail,
   Phone,
   Linkedin,
-  ExternalLink
+  ExternalLink,
+  Heart,
+  X,
+  Send,
+  CheckCircle2,
+  XCircle as XCircleIcon,
+  LayoutDashboard,
+  MessageSquare,
+  Folder,
+  Scale
 } from 'lucide-react'
 import { mockRFPs } from '../data/mockRFPs'
 import ProposalForm from '../components/ProposalForm'
+import { markRFPAsViewed, getRFPInterest, markRFPInterest, removeRFPInterest } from '../utils/rfpStorage'
+import { getProgressStats } from '../utils/questionStorage'
+import QuestionsSection from '../components/QuestionsSection'
+import { generateBuyerSpecificQuestions } from '../data/questionTemplates'
 
 export const Route = createFileRoute('/rfp/$rfpId')({
   component: RFPDetail,
@@ -39,6 +74,43 @@ function RFPDetail() {
 
   const rfp = mockRFPs.find(r => r.id === parseInt(rfpId))
 
+  const [interestStatus, setInterestStatus] = useState(null)
+  const matchRoute = useMatchRoute()
+
+  // Mark RFP as viewed when component loads
+  useEffect(() => {
+    if (rfp) {
+      markRFPAsViewed(rfp.id)
+      // Load interest status
+      const interest = getRFPInterest(rfp.id)
+      setInterestStatus(interest)
+    }
+  }, [rfp])
+
+  const handleApplyClick = () => {
+    // Navigate to Questions route
+    navigate({
+      to: '/rfp/$rfpId/questions',
+      params: { rfpId: rfp.id.toString() }
+    })
+
+    // Show notification
+    notifications.show({
+      title: 'Complete Application',
+      message: 'Please complete the questions to submit your application',
+      color: 'blue',
+      icon: <FileText size={16} />,
+      autoClose: 5000,
+    })
+  }
+
+  const handleRemoveInterest = () => {
+    if (rfp) {
+      removeRFPInterest(rfp.id)
+      setInterestStatus(null)
+    }
+  }
+
   if (!rfp) {
     return <div>RFP not found</div>
   }
@@ -54,11 +126,27 @@ function RFPDetail() {
   const getStatusColor = (status) => {
     switch (status) {
       case 'new':
-        return 'bg-green-100 text-green-700'
+        return 'green'
       case 'reviewed':
-        return 'bg-blue-100 text-blue-700'
+        return 'blue'
       default:
-        return 'bg-gray-100 text-gray-700'
+        return 'gray'
+    }
+  }
+
+  const getRFPTypeInfo = (rfpType) => {
+    if (rfpType === 'legal-services') {
+      return {
+        label: 'Legal Services',
+        icon: <Scale size={16} />,
+        color: 'violet'
+      }
+    }
+    // Default to legal-tech
+    return {
+      label: 'Legal Tech',
+      icon: <Monitor size={16} />,
+      color: 'blue'
     }
   }
 
@@ -66,55 +154,191 @@ function RFPDetail() {
     navigate({ to: '/' })
   }
 
+  // Calculate question progress (global + buyer-specific questions)
+  const globalQuestionCount = rfp.questions?.length || 0
+  const buyerQuestionCount = generateBuyerSpecificQuestions(rfp).length
+  const totalQuestionCount = globalQuestionCount + buyerQuestionCount
+  const progressStats = totalQuestionCount > 0 ? getProgressStats(rfp.id, totalQuestionCount) : null
+  const typeInfo = getRFPTypeInfo(rfp.rfpType)
+
   return (
-    <div className="bg-gray-50 -mx-4 sm:-mx-6 lg:-mx-8 -mt-8">
+    <>
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-4 sm:px-6 lg:px-8 py-6">
-        <div className="mb-4">
-          <BackButton onClick={handleBack} />
-        </div>
-        <div className="flex items-center justify-between">
-          <div>
-            <div className="flex items-center gap-3 mb-2">
-              <Building2 className="w-8 h-8 text-indigo-600" />
-              <h1 className="text-2xl font-bold text-gray-900">{rfp.company}</h1>
-              <span className={`px-3 py-1 text-sm font-medium rounded-full ${getStatusColor(rfp.status)}`}>
-                Active RFP
-              </span>
-            </div>
-            <p className="text-gray-600">{rfp.title}</p>
-          </div>
-          <div className="flex gap-3">
-            <button className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 flex items-center gap-2">
-              <Mail className="w-4 h-4" />
-              Contact
-            </button>
-          </div>
-        </div>
-      </div>
+      <Paper
+        shadow="xs"
+        withBorder
+        p="xl"
+        radius={0}
+        style={{
+          marginLeft: 'calc(-50vw + 50%)',
+          marginRight: 'calc(-50vw + 50%)',
+          marginTop: '-1rem'
+        }}
+      >
+        <Container size="xl">
+          <Box mb="md">
+            <BackButton onClick={handleBack} />
+          </Box>
+          <Group justify="space-between" align="flex-start">
+            <Box>
+              <Group gap="md" mb="xs" align="center" wrap="wrap">
+                <Group gap="sm" align="center">
+                  <ThemeIcon size="xl" variant="light" color="indigo">
+                    <Building2 size={24} />
+                  </ThemeIcon>
+                  <Title order={2}>{rfp.company}</Title>
+                </Group>
+                <Badge
+                  size="md"
+                  variant="light"
+                  color={typeInfo.color}
+                  leftSection={typeInfo.icon}
+                  style={{ alignSelf: 'center' }}
+                >
+                  {typeInfo.label}
+                </Badge>
+                <Badge
+                  size="md"
+                  color={getStatusColor(rfp.status)}
+                  style={{ alignSelf: 'center' }}
+                >
+                  Active RFP
+                </Badge>
+              </Group>
+              <Text c="dimmed">{rfp.title}</Text>
+            </Box>
+            <Group gap="xs">
+              {!interestStatus ? (
+                // Not Applied - Click to go to Questions
+                <Button
+                  onClick={handleApplyClick}
+                  variant="outline"
+                  leftSection={<Send size={16} />}
+                >
+                  Apply to RFP
+                </Button>
+              ) : interestStatus.buyerResponse === 'accepted' ? (
+                // Accepted
+                <Button
+                  color="green"
+                  leftSection={<CheckCircle2 size={16} />}
+                  style={{ cursor: 'default' }}
+                >
+                  Accepted to Respond
+                </Button>
+              ) : interestStatus.buyerResponse === 'rejected' ? (
+                // Rejected - Allow Reapply
+                <Button
+                  onClick={handleRemoveInterest}
+                  color="gray"
+                  leftSection={<XCircleIcon size={16} />}
+                  rightSection={<X size={14} />}
+                >
+                  Application Declined
+                </Button>
+              ) : (
+                // Pending
+                <Button
+                  color="orange"
+                  leftSection={<Clock size={16} />}
+                  disabled
+                  style={{ cursor: 'default' }}
+                >
+                  Application Pending
+                </Button>
+              )}
+              <Button variant="default" leftSection={<Mail size={16} />}>
+                Contact
+              </Button>
+            </Group>
+          </Group>
+        </Container>
+      </Paper>
+
+      {/* Tab Navigation */}
+      <Paper
+        shadow="xs"
+        radius={0}
+        style={{
+          borderTop: 'none',
+          borderLeft: 'none',
+          borderRight: 'none',
+          borderBottom: '1px solid var(--mantine-color-gray-3)',
+          marginLeft: 'calc(-50vw + 50%)',
+          marginRight: 'calc(-50vw + 50%)'
+        }}
+      >
+        <Container size="xl">
+          <Tabs
+            value={
+              matchRoute({ to: '/rfp/$rfpId/questions', params: { rfpId: rfpId } })
+                ? 'questions'
+                : matchRoute({ to: '/rfp/$rfpId/documents', params: { rfpId: rfpId } })
+                ? 'documents'
+                : 'overview'
+            }
+            variant="default"
+          >
+            <Tabs.List>
+              <Tabs.Tab
+                value="overview"
+                leftSection={<LayoutDashboard size={16} />}
+                component={Link}
+                to="/rfp/$rfpId"
+                params={{ rfpId: rfpId }}
+              >
+                Overview
+              </Tabs.Tab>
+
+              <Tabs.Tab
+                value="questions"
+                leftSection={<MessageSquare size={16} />}
+                component={Link}
+                to="/rfp/$rfpId/questions"
+                params={{ rfpId: rfpId }}
+                rightSection={
+                  progressStats && (
+                    <Badge size="sm" variant="filled">
+                      {progressStats.completed}/{totalQuestionCount}
+                    </Badge>
+                  )
+                }
+              >
+                Questions
+              </Tabs.Tab>
+
+              <Tabs.Tab
+                value="documents"
+                leftSection={<Folder size={16} />}
+                component={Link}
+                to="/rfp/$rfpId/documents"
+                params={{ rfpId: rfpId }}
+              >
+                Documents
+              </Tabs.Tab>
+            </Tabs.List>
+          </Tabs>
+        </Container>
+      </Paper>
 
       {/* Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <RFPSnapshot rfp={rfp} />
-        <QuickStats rfp={rfp} />
-        <MainContent rfp={rfp} formatDate={formatDate} />
-        <div className="mt-8">
-          <ProposalForm />
-        </div>
-      </div>
-    </div>
+      <Box py="xl">
+        <Outlet />
+      </Box>
+    </>
   )
 }
 
 function BackButton({ onClick }) {
   return (
-    <button
+    <Button
       onClick={onClick}
-      className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
+      variant="subtle"
+      leftSection={<ChevronLeft size={16} />}
+      size="sm"
     >
-      <ChevronLeft className="h-4 w-4 mr-1" />
       Back to Inbox
-    </button>
+    </Button>
   )
 }
 
@@ -122,32 +346,34 @@ function RFPSnapshot({ rfp }) {
   if (!rfp.replacing) return null
 
   return (
-    <div className="mb-6 bg-indigo-50 border border-indigo-200 rounded-lg p-5">
-      <div className="flex items-start gap-4">
-        <Target className="w-6 h-6 text-indigo-600 mt-0.5 flex-shrink-0" />
-        <div className="flex-1">
-          <h3 className="font-semibold text-indigo-900 mb-2">RFP Snapshot</h3>
-          <div className="grid grid-cols-4 gap-4 text-sm">
-            <div>
-              <p className="text-indigo-600 font-medium">Replacing</p>
-              <p className="text-indigo-900">{rfp.replacing}</p>
-            </div>
-            <div>
-              <p className="text-indigo-600 font-medium">Decision Timeline</p>
-              <p className="text-indigo-900">{rfp.decisionTimeline}</p>
-            </div>
-            <div>
-              <p className="text-indigo-600 font-medium">Max Responses</p>
-              <p className="text-indigo-900">{rfp.maxResponses}</p>
-            </div>
-            <div>
-              <p className="text-indigo-600 font-medium">User Seats</p>
-              <p className="text-indigo-900">{rfp.userSeats}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Paper withBorder p="lg" mb="md" bg="indigo.0">
+      <Group align="flex-start" gap="md">
+        <ThemeIcon size="lg" color="indigo" variant="light">
+          <Target size={20} />
+        </ThemeIcon>
+        <Box style={{ flex: 1 }}>
+          <Title order={4} mb="sm">RFP Snapshot</Title>
+          <SimpleGrid cols={4} spacing="md">
+            <Box>
+              <Text size="sm" fw={500} c="indigo">Replacing</Text>
+              <Text size="sm">{rfp.replacing}</Text>
+            </Box>
+            <Box>
+              <Text size="sm" fw={500} c="indigo">Decision Timeline</Text>
+              <Text size="sm">{rfp.decisionTimeline}</Text>
+            </Box>
+            <Box>
+              <Text size="sm" fw={500} c="indigo">Max Responses</Text>
+              <Text size="sm">{rfp.maxResponses}</Text>
+            </Box>
+            <Box>
+              <Text size="sm" fw={500} c="indigo">User Seats</Text>
+              <Text size="sm">{rfp.userSeats}</Text>
+            </Box>
+          </SimpleGrid>
+        </Box>
+      </Group>
+    </Paper>
   )
 }
 
@@ -155,65 +381,69 @@ function QuickStats({ rfp }) {
   if (!rfp.requiredLicenses) return null
 
   return (
-    <div className="grid grid-cols-4 gap-6 mb-8">
-      <div className="bg-white p-6 rounded-lg border border-gray-200">
-        <div className="flex items-center justify-between mb-2">
-          <Users className="w-5 h-5 text-indigo-600" />
-        </div>
-        <p className="text-2xl font-bold text-gray-900">{rfp.requiredLicenses}</p>
-        <p className="text-sm text-gray-600">Required Licenses</p>
-      </div>
+    <SimpleGrid cols={4} spacing="md" mb="xl">
+      <Paper withBorder p="lg">
+        <ThemeIcon size="md" color="indigo" variant="light" mb="xs">
+          <Users size={20} />
+        </ThemeIcon>
+        <Text size="xl" fw={700}>{rfp.requiredLicenses}</Text>
+        <Text size="sm" c="dimmed">Required Licenses</Text>
+      </Paper>
 
-      <div className="bg-white p-6 rounded-lg border border-gray-200">
-        <div className="flex items-center justify-between mb-2">
-          <Clock className="w-5 h-5 text-amber-600" />
-        </div>
-        <p className="text-2xl font-bold text-gray-900">{rfp.daysToDecision}</p>
-        <p className="text-sm text-gray-600">Days to Decision</p>
-      </div>
+      <Paper withBorder p="lg">
+        <ThemeIcon size="md" color="orange" variant="light" mb="xs">
+          <Clock size={20} />
+        </ThemeIcon>
+        <Text size="xl" fw={700}>{rfp.daysToDecision}</Text>
+        <Text size="sm" c="dimmed">Days to Decision</Text>
+      </Paper>
 
-      <div className="bg-white p-6 rounded-lg border border-gray-200">
-        <div className="flex items-center justify-between mb-2">
-          <Users className="w-5 h-5 text-blue-600" />
-        </div>
-        <p className="text-2xl font-bold text-gray-900">{rfp.maxVendors}</p>
-        <p className="text-sm text-gray-600">Max Competing Vendors</p>
-      </div>
+      <Paper withBorder p="lg">
+        <ThemeIcon size="md" color="blue" variant="light" mb="xs">
+          <Users size={20} />
+        </ThemeIcon>
+        <Text size="xl" fw={700}>{rfp.maxVendors}</Text>
+        <Text size="sm" c="dimmed">Max Competing Vendors</Text>
+      </Paper>
 
-      <div className="bg-white p-6 rounded-lg border border-gray-200">
-        <div className="flex items-center justify-between mb-2">
-          <CreditCard className="w-5 h-5 text-green-600" />
-        </div>
-        <p className="text-2xl font-bold text-gray-900">{rfp.billingFrequency}</p>
-        <p className="text-sm text-gray-600">Billing Frequency</p>
-      </div>
-    </div>
+      <Paper withBorder p="lg">
+        <ThemeIcon size="md" color="green" variant="light" mb="xs">
+          <CreditCard size={20} />
+        </ThemeIcon>
+        <Text size="xl" fw={700}>{rfp.billingFrequency}</Text>
+        <Text size="sm" c="dimmed">Billing Frequency</Text>
+      </Paper>
+    </SimpleGrid>
   )
 }
 
 function MainContent({ rfp, formatDate }) {
   return (
-    <div className="grid grid-cols-3 gap-6">
+    <Grid gutter="md">
       {/* Left Column - 2/3 width */}
-      <div className="col-span-2 space-y-6">
-        <CurrentSolution rfp={rfp} />
-        <CoreRequirements rfp={rfp} />
-        <DemoRequirements rfp={rfp} />
-        <ContractTerms rfp={rfp} />
-        <CompanyOverview rfp={rfp} />
-        <DepartmentProfile rfp={rfp} />
-        <CurrentTechStack rfp={rfp} />
-      </div>
+      <Grid.Col span={8}>
+        <Stack gap="md">
+          <CurrentSolution rfp={rfp} />
+          <CoreRequirements rfp={rfp} />
+          <DemoRequirements rfp={rfp} />
+          <ContractTerms rfp={rfp} />
+          <CompanyOverview rfp={rfp} />
+          <DepartmentProfile rfp={rfp} />
+          <CurrentTechStack rfp={rfp} />
+        </Stack>
+      </Grid.Col>
 
       {/* Right Column - 1/3 width */}
-      <div className="space-y-6">
-        <DecisionTimeline rfp={rfp} />
-        <KeyStakeholders rfp={rfp} />
-        <CompetitiveIntelligence rfp={rfp} />
-        <BudgetIntelligence rfp={rfp} />
-        <RelationshipHistory rfp={rfp} />
-      </div>
-    </div>
+      <Grid.Col span={4}>
+        <Stack gap="md">
+          <DecisionTimeline rfp={rfp} />
+          <KeyStakeholders rfp={rfp} />
+          <CompetitiveIntelligence rfp={rfp} />
+          <BudgetIntelligence rfp={rfp} />
+          <RelationshipHistory rfp={rfp} />
+        </Stack>
+      </Grid.Col>
+    </Grid>
   )
 }
 
@@ -221,29 +451,33 @@ function CurrentSolution({ rfp }) {
   if (!rfp.currentSolution) return null
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6">
-      <h2 className="text-lg font-semibold text-gray-900 mb-4">Current Solution & Replacement Context</h2>
-      <div className="space-y-4">
-        <div className="flex items-start gap-4 p-4 bg-red-50 border border-red-200 rounded-lg">
-          <XCircle className="w-6 h-6 text-red-600 mt-0.5 flex-shrink-0" />
-          <div className="flex-1">
-            <p className="font-semibold text-red-900 mb-1">Replacing: {rfp.currentSolution}</p>
-            <p className="text-sm text-red-700 mb-2">Reason: {rfp.replacingReason}</p>
-            <div className="flex items-center gap-2">
-              <RefreshCw className="w-4 h-4 text-red-600" />
-              <span className="text-sm font-medium text-red-800">Status: {rfp.replacementStatus}</span>
-            </div>
-          </div>
-        </div>
+    <Paper withBorder p="lg">
+      <Title order={3} mb="md">Current Solution & Replacement Context</Title>
+      <Stack gap="md">
+        <Paper withBorder p="md" bg="red.0">
+          <Group align="flex-start" gap="md">
+            <ThemeIcon size="lg" color="red" variant="light">
+              <XCircle size={20} />
+            </ThemeIcon>
+            <Box style={{ flex: 1 }}>
+              <Text fw={600} c="red.9" mb="xs">Replacing: {rfp.currentSolution}</Text>
+              <Text size="sm" c="red.7" mb="sm">Reason: {rfp.replacingReason}</Text>
+              <Group gap="xs">
+                <RefreshCw size={16} color="var(--mantine-color-red-6)" />
+                <Text size="sm" fw={500} c="red.8">Status: {rfp.replacementStatus}</Text>
+              </Group>
+            </Box>
+          </Group>
+        </Paper>
 
         {rfp.competitiveRisk && (
-          <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
-            <p className="text-sm font-semibold text-amber-900 mb-2">⚠️ Competitive Risk</p>
-            <p className="text-sm text-amber-800">{rfp.competitiveRisk}</p>
-          </div>
+          <Paper withBorder p="md" bg="orange.0">
+            <Text size="sm" fw={600} c="orange.9" mb="xs">⚠️ Competitive Risk</Text>
+            <Text size="sm" c="orange.8">{rfp.competitiveRisk}</Text>
+          </Paper>
         )}
-      </div>
-    </div>
+      </Stack>
+    </Paper>
   )
 }
 
@@ -252,17 +486,21 @@ function CoreRequirements({ rfp }) {
   if (!requirements) return null
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6">
-      <h2 className="text-lg font-semibold text-gray-900 mb-4">Core Software Requirements (Must-Have)</h2>
-      <div className="grid grid-cols-2 gap-3">
+    <Paper withBorder p="lg">
+      <Title order={3} mb="md">Core Software Requirements (Must-Have)</Title>
+      <SimpleGrid cols={2} spacing="xs">
         {requirements.map((req, index) => (
-          <div key={index} className="flex items-center gap-3 p-3 bg-green-50 border border-green-200 rounded-lg">
-            <CheckCircle className="w-5 h-5 text-green-600" />
-            <span className="text-sm font-medium text-gray-900">{req}</span>
-          </div>
+          <Paper key={index} withBorder p="sm" bg="green.0">
+            <Group gap="xs">
+              <ThemeIcon size="sm" color="green" variant="light">
+                <CheckCircle size={16} />
+              </ThemeIcon>
+              <Text size="sm" fw={500}>{req}</Text>
+            </Group>
+          </Paper>
         ))}
-      </div>
-    </div>
+      </SimpleGrid>
+    </Paper>
   )
 }
 
@@ -270,23 +508,26 @@ function DemoRequirements({ rfp }) {
   if (!rfp.demoRequirements) return null
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6">
-      <h2 className="text-lg font-semibold text-gray-900 mb-4">Demonstration Requirements</h2>
-      <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-        <Monitor className="w-6 h-6 text-blue-600 mb-3" />
-        <p className="text-sm text-gray-900 leading-relaxed">"{rfp.demoRequirements}"</p>
+    <Paper withBorder p="lg">
+      <Title order={3} mb="md">Demonstration Requirements</Title>
+      <Paper withBorder p="md" bg="blue.0">
+        <ThemeIcon size="lg" color="blue" variant="light" mb="sm">
+          <Monitor size={20} />
+        </ThemeIcon>
+        <Text size="sm">"{rfp.demoRequirements}"</Text>
         {rfp.demoStrategy && (
-          <div className="mt-4 pt-4 border-t border-blue-200">
-            <p className="text-xs font-semibold text-blue-900 mb-2">Demo Strategy Recommendations:</p>
-            <ul className="space-y-1 text-xs text-blue-800">
+          <>
+            <Divider my="md" color="blue.2" />
+            <Text size="xs" fw={600} c="blue.9" mb="xs">Demo Strategy Recommendations:</Text>
+            <Stack gap={4}>
               {rfp.demoStrategy.map((strategy, index) => (
-                <li key={index}>• {strategy}</li>
+                <Text key={index} size="xs" c="blue.8">• {strategy}</Text>
               ))}
-            </ul>
-          </div>
+            </Stack>
+          </>
         )}
-      </div>
-    </div>
+      </Paper>
+    </Paper>
   )
 }
 
@@ -294,39 +535,39 @@ function ContractTerms({ rfp }) {
   if (!rfp.contractTerm) return null
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6">
-      <h2 className="text-lg font-semibold text-gray-900 mb-4">Contract & Payment Terms</h2>
-      <div className="grid grid-cols-2 gap-6">
-        <div>
-          <p className="text-sm font-medium text-gray-600 mb-2">Contract Term</p>
-          <div className="p-3 bg-gray-50 rounded-lg">
-            <p className="text-lg font-semibold text-gray-900">{rfp.contractTerm}</p>
-            <p className="text-xs text-gray-500 mt-1">{rfp.contractTermDetails}</p>
-          </div>
-        </div>
-        <div>
-          <p className="text-sm font-medium text-gray-600 mb-2">Billing Interval</p>
-          <div className="p-3 bg-gray-50 rounded-lg">
-            <p className="text-lg font-semibold text-gray-900">{rfp.billingInterval}</p>
-            <p className="text-xs text-gray-500 mt-1">{rfp.billingIntervalDetails}</p>
-          </div>
-        </div>
-        <div>
-          <p className="text-sm font-medium text-gray-600 mb-2">Payment Terms</p>
-          <div className="p-3 bg-gray-50 rounded-lg">
-            <p className="text-lg font-semibold text-gray-900">{rfp.paymentTerms}</p>
-            <p className="text-xs text-gray-500 mt-1">{rfp.paymentTermsDetails}</p>
-          </div>
-        </div>
-        <div>
-          <p className="text-sm font-medium text-gray-600 mb-2">User Licenses</p>
-          <div className="p-3 bg-gray-50 rounded-lg">
-            <p className="text-lg font-semibold text-gray-900">{rfp.userLicenses}</p>
-            <p className="text-xs text-gray-500 mt-1">{rfp.userLicensesDetails}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Paper withBorder p="lg">
+      <Title order={3} mb="md">Contract & Payment Terms</Title>
+      <SimpleGrid cols={2} spacing="md">
+        <Box>
+          <Text size="sm" fw={500} c="dimmed" mb="xs">Contract Term</Text>
+          <Paper bg="gray.0" p="sm">
+            <Text size="lg" fw={600}>{rfp.contractTerm}</Text>
+            <Text size="xs" c="dimmed" mt={4}>{rfp.contractTermDetails}</Text>
+          </Paper>
+        </Box>
+        <Box>
+          <Text size="sm" fw={500} c="dimmed" mb="xs">Billing Interval</Text>
+          <Paper bg="gray.0" p="sm">
+            <Text size="lg" fw={600}>{rfp.billingInterval}</Text>
+            <Text size="xs" c="dimmed" mt={4}>{rfp.billingIntervalDetails}</Text>
+          </Paper>
+        </Box>
+        <Box>
+          <Text size="sm" fw={500} c="dimmed" mb="xs">Payment Terms</Text>
+          <Paper bg="gray.0" p="sm">
+            <Text size="lg" fw={600}>{rfp.paymentTerms}</Text>
+            <Text size="xs" c="dimmed" mt={4}>{rfp.paymentTermsDetails}</Text>
+          </Paper>
+        </Box>
+        <Box>
+          <Text size="sm" fw={500} c="dimmed" mb="xs">User Licenses</Text>
+          <Paper bg="gray.0" p="sm">
+            <Text size="lg" fw={600}>{rfp.userLicenses}</Text>
+            <Text size="xs" c="dimmed" mt={4}>{rfp.userLicensesDetails}</Text>
+          </Paper>
+        </Box>
+      </SimpleGrid>
+    </Paper>
   )
 }
 
@@ -334,35 +575,35 @@ function CompanyOverview({ rfp }) {
   if (!rfp.industry) return null
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6">
-      <h2 className="text-lg font-semibold text-gray-900 mb-4">Company Overview</h2>
-      <div className="grid grid-cols-2 gap-6">
-        <div>
-          <p className="text-sm font-medium text-gray-600 mb-1">Industry</p>
-          <p className="text-sm text-gray-900">{rfp.industry}</p>
-        </div>
-        <div>
-          <p className="text-sm font-medium text-gray-600 mb-1">Headquarters</p>
-          <p className="text-sm text-gray-900">{rfp.headquarters}</p>
-        </div>
-        <div>
-          <p className="text-sm font-medium text-gray-600 mb-1">Company Size</p>
-          <p className="text-sm text-gray-900">{rfp.companySize}</p>
-        </div>
-        <div>
-          <p className="text-sm font-medium text-gray-600 mb-1">Revenue</p>
-          <p className="text-sm text-gray-900">{rfp.revenue}</p>
-        </div>
-        <div>
-          <p className="text-sm font-medium text-gray-600 mb-1">Public/Private</p>
-          <p className="text-sm text-gray-900">{rfp.publicPrivate}</p>
-        </div>
-        <div>
-          <p className="text-sm font-medium text-gray-600 mb-1">Geographic Presence</p>
-          <p className="text-sm text-gray-900">{rfp.geographicPresence}</p>
-        </div>
-      </div>
-    </div>
+    <Paper withBorder p="lg">
+      <Title order={3} mb="md">Company Overview</Title>
+      <SimpleGrid cols={2} spacing="md">
+        <Box>
+          <Text size="sm" fw={500} c="dimmed" mb={4}>Industry</Text>
+          <Text size="sm">{rfp.industry}</Text>
+        </Box>
+        <Box>
+          <Text size="sm" fw={500} c="dimmed" mb={4}>Headquarters</Text>
+          <Text size="sm">{rfp.headquarters}</Text>
+        </Box>
+        <Box>
+          <Text size="sm" fw={500} c="dimmed" mb={4}>Company Size</Text>
+          <Text size="sm">{rfp.companySize}</Text>
+        </Box>
+        <Box>
+          <Text size="sm" fw={500} c="dimmed" mb={4}>Revenue</Text>
+          <Text size="sm">{rfp.revenue}</Text>
+        </Box>
+        <Box>
+          <Text size="sm" fw={500} c="dimmed" mb={4}>Public/Private</Text>
+          <Text size="sm">{rfp.publicPrivate}</Text>
+        </Box>
+        <Box>
+          <Text size="sm" fw={500} c="dimmed" mb={4}>Geographic Presence</Text>
+          <Text size="sm">{rfp.geographicPresence}</Text>
+        </Box>
+      </SimpleGrid>
+    </Paper>
   )
 }
 
@@ -370,44 +611,50 @@ function DepartmentProfile({ rfp }) {
   if (!rfp.departmentStructure) return null
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6">
-      <h2 className="text-lg font-semibold text-gray-900 mb-4">Department Profile</h2>
-      <div className="space-y-4">
-        <div className="flex items-start gap-4 pb-4 border-b border-gray-100">
-          <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
-            <Users className="w-6 h-6 text-indigo-600" />
-          </div>
-          <div className="flex-1">
-            <p className="font-medium text-gray-900">Department Structure</p>
-            <p className="text-sm text-gray-600 mt-1">{rfp.departmentStructure}</p>
-          </div>
-        </div>
+    <Paper withBorder p="lg">
+      <Title order={3} mb="md">Department Profile</Title>
+      <Stack gap="md">
+        <Group align="flex-start" gap="md">
+          <ThemeIcon size="xl" color="indigo" variant="light" radius="xl">
+            <Users size={24} />
+          </ThemeIcon>
+          <Box style={{ flex: 1 }}>
+            <Text fw={500}>Department Structure</Text>
+            <Text size="sm" c="dimmed" mt={4}>{rfp.departmentStructure}</Text>
+          </Box>
+        </Group>
 
         {rfp.technologyNeeds && (
-          <div className="flex items-start gap-4 pb-4 border-b border-gray-100">
-            <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-              <DollarSign className="w-6 h-6 text-green-600" />
-            </div>
-            <div className="flex-1">
-              <p className="font-medium text-gray-900">Technology Needs</p>
-              <p className="text-sm text-gray-600 mt-1">{rfp.technologyNeeds}</p>
-            </div>
-          </div>
+          <>
+            <Divider />
+            <Group align="flex-start" gap="md">
+              <ThemeIcon size="xl" color="green" variant="light" radius="xl">
+                <DollarSign size={24} />
+              </ThemeIcon>
+              <Box style={{ flex: 1 }}>
+                <Text fw={500}>Technology Needs</Text>
+                <Text size="sm" c="dimmed" mt={4}>{rfp.technologyNeeds}</Text>
+              </Box>
+            </Group>
+          </>
         )}
 
         {rfp.painPoints && (
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
-              <Zap className="w-6 h-6 text-blue-600" />
-            </div>
-            <div className="flex-1">
-              <p className="font-medium text-gray-900">Pain Points with Current System</p>
-              <p className="text-sm text-gray-600 mt-1">{rfp.painPoints}</p>
-            </div>
-          </div>
+          <>
+            <Divider />
+            <Group align="flex-start" gap="md">
+              <ThemeIcon size="xl" color="blue" variant="light" radius="xl">
+                <Zap size={24} />
+              </ThemeIcon>
+              <Box style={{ flex: 1 }}>
+                <Text fw={500}>Pain Points with Current System</Text>
+                <Text size="sm" c="dimmed" mt={4}>{rfp.painPoints}</Text>
+              </Box>
+            </Group>
+          </>
         )}
-      </div>
-    </div>
+      </Stack>
+    </Paper>
   )
 }
 
@@ -415,45 +662,47 @@ function CurrentTechStack({ rfp }) {
   if (!rfp.techStack) return null
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6">
-      <h2 className="text-lg font-semibold text-gray-900 mb-4">Current Tech Stack</h2>
-      <div className="space-y-3">
+    <Paper withBorder p="lg">
+      <Title order={3} mb="md">Current Tech Stack</Title>
+      <Stack gap="xs">
         {rfp.techStack.map((tech, index) => (
-          <div
+          <Paper
             key={index}
-            className={`flex items-center justify-between p-3 rounded-lg ${
-              tech.status === 'Replacing'
-                ? 'bg-red-50 border border-red-200'
-                : 'bg-gray-50'
-            }`}
+            withBorder={tech.status === 'Replacing'}
+            p="sm"
+            bg={tech.status === 'Replacing' ? 'red.0' : 'gray.0'}
           >
-            <div className="flex items-center gap-3">
-              <Monitor className={`w-5 h-5 ${tech.status === 'Replacing' ? 'text-red-600' : 'text-gray-600'}`} />
-              <div>
-                <p className="text-sm font-medium text-gray-900">{tech.name}</p>
-                <p className="text-xs text-gray-500">
-                  {tech.category}{tech.year ? ` - Legacy (${tech.year})` : ''}
-                </p>
-              </div>
-            </div>
-            <span className={`px-3 py-1 text-xs font-medium rounded-full ${
-              tech.status === 'Replacing'
-                ? 'bg-red-100 text-red-700'
-                : 'bg-green-100 text-green-700'
-            }`}>
-              {tech.status}
-            </span>
-          </div>
+            <Group justify="space-between" align="center">
+              <Group gap="xs">
+                <ThemeIcon
+                  size="md"
+                  color={tech.status === 'Replacing' ? 'red' : 'gray'}
+                  variant="light"
+                >
+                  <Monitor size={20} />
+                </ThemeIcon>
+                <Box>
+                  <Text size="sm" fw={500}>{tech.name}</Text>
+                  <Text size="xs" c="dimmed">
+                    {tech.category}{tech.year ? ` - Legacy (${tech.year})` : ''}
+                  </Text>
+                </Box>
+              </Group>
+              <Badge color={tech.status === 'Replacing' ? 'red' : 'green'}>
+                {tech.status}
+              </Badge>
+            </Group>
+          </Paper>
         ))}
 
         {rfp.techStackIntegration && (
-          <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg mt-3">
-            <p className="text-xs font-semibold text-blue-900 mb-1">Integration Requirements</p>
-            <p className="text-xs text-blue-800">{rfp.techStackIntegration}</p>
-          </div>
+          <Paper withBorder p="sm" bg="blue.0" mt="xs">
+            <Text size="xs" fw={600} c="blue.9" mb={4}>Integration Requirements</Text>
+            <Text size="xs" c="blue.8">{rfp.techStackIntegration}</Text>
+          </Paper>
         )}
-      </div>
-    </div>
+      </Stack>
+    </Paper>
   )
 }
 
@@ -461,30 +710,37 @@ function DecisionTimeline({ rfp }) {
   if (!rfp.decisionMilestones) return null
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6">
-      <h2 className="text-lg font-semibold text-gray-900 mb-4">Decision Timeline</h2>
-      <div className="space-y-4">
-        <div className="text-center p-4 bg-indigo-50 rounded-lg">
-          <p className="text-3xl font-bold text-indigo-600">{rfp.daysToDecision}</p>
-          <p className="text-sm text-gray-600 mt-1">Days to Final Decision</p>
-        </div>
+    <Paper withBorder p="lg">
+      <Title order={3} mb="md">Decision Timeline</Title>
+      <Stack gap="md">
+        <Paper p="md" bg="indigo.0" style={{ textAlign: 'center' }}>
+          <Text size="xl" fw={700} c="indigo">{rfp.daysToDecision}</Text>
+          <Text size="sm" c="dimmed" mt={4}>Days to Final Decision</Text>
+        </Paper>
 
-        <div className="pt-4 border-t border-gray-200 space-y-3">
+        <Divider />
+
+        <Stack gap="sm">
           {rfp.decisionMilestones.map((milestone, index) => (
-            <div key={index} className="flex items-center gap-2">
-              <div className={`w-2 h-2 rounded-full ${
-                milestone.status === 'completed' ? 'bg-green-500' :
-                milestone.status === 'current' ? 'bg-blue-500' : 'bg-gray-300'
-              }`}></div>
-              <div className="flex-1">
-                <p className="text-xs font-medium text-gray-900">{milestone.name}</p>
-                <p className="text-xs text-gray-500">{milestone.date}</p>
-              </div>
-            </div>
+            <Group key={index} gap="xs" align="center">
+              <Box
+                style={{
+                  width: rem(8),
+                  height: rem(8),
+                  borderRadius: '50%',
+                  backgroundColor: milestone.status === 'completed' ? 'var(--mantine-color-green-5)' :
+                    milestone.status === 'current' ? 'var(--mantine-color-blue-5)' : 'var(--mantine-color-gray-3)'
+                }}
+              />
+              <Box style={{ flex: 1 }}>
+                <Text size="xs" fw={500}>{milestone.name}</Text>
+                <Text size="xs" c="dimmed">{milestone.date}</Text>
+              </Box>
+            </Group>
           ))}
-        </div>
-      </div>
-    </div>
+        </Stack>
+      </Stack>
+    </Paper>
   )
 }
 
@@ -494,60 +750,63 @@ function KeyStakeholders({ rfp }) {
   const getRoleBadgeColor = (role) => {
     switch (role) {
       case 'Decision Maker':
-        return 'bg-purple-100 text-purple-700'
+        return 'violet'
       case 'Primary Contact':
-        return 'bg-blue-100 text-blue-700'
+        return 'blue'
       case 'Influencer':
-        return 'bg-green-100 text-green-700'
+        return 'green'
       case 'Gatekeeper':
-        return 'bg-amber-100 text-amber-700'
+        return 'orange'
       default:
-        return 'bg-gray-100 text-gray-700'
+        return 'gray'
     }
   }
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6">
-      <h2 className="text-lg font-semibold text-gray-900 mb-4">Key Stakeholders</h2>
-      <div className="space-y-4">
+    <Paper withBorder p="lg">
+      <Title order={3} mb="md">Key Stakeholders</Title>
+      <Stack gap="md">
         {rfp.stakeholders.map((stakeholder, index) => (
-          <div key={index} className={`pb-4 ${index < rfp.stakeholders.length - 1 ? 'border-b border-gray-100' : ''}`}>
-            <div className="flex items-start justify-between mb-2">
-              <div>
-                <p className="font-medium text-gray-900 text-sm">{stakeholder.name}</p>
-                <p className="text-xs text-gray-500">{stakeholder.title}</p>
-              </div>
-              <span className={`px-2 py-0.5 text-xs font-medium rounded ${getRoleBadgeColor(stakeholder.role)}`}>
+          <Box key={index}>
+            <Group justify="space-between" align="flex-start" mb="xs">
+              <Box>
+                <Text size="sm" fw={500}>{stakeholder.name}</Text>
+                <Text size="xs" c="dimmed">{stakeholder.title}</Text>
+              </Box>
+              <Badge size="sm" color={getRoleBadgeColor(stakeholder.role)}>
                 {stakeholder.role}
-              </span>
-            </div>
+              </Badge>
+            </Group>
             {stakeholder.email && (
-              <div className="flex items-center gap-2 mt-2">
-                <Mail className="w-3 h-3 text-gray-400" />
-                <a href={`mailto:${stakeholder.email}`} className="text-xs text-indigo-600 hover:underline">
+              <Group gap={4} mt="xs">
+                <Mail size={12} color="var(--mantine-color-dimmed)" />
+                <Anchor href={`mailto:${stakeholder.email}`} size="xs">
                   {stakeholder.email}
-                </a>
-              </div>
+                </Anchor>
+              </Group>
             )}
             {stakeholder.phone && (
-              <div className="flex items-center gap-2 mt-1">
-                <Phone className="w-3 h-3 text-gray-400" />
-                <span className="text-xs text-gray-600">{stakeholder.phone}</span>
-              </div>
+              <Group gap={4} mt={4}>
+                <Phone size={12} color="var(--mantine-color-dimmed)" />
+                <Text size="xs" c="dimmed">{stakeholder.phone}</Text>
+              </Group>
             )}
             {stakeholder.linkedin && (
-              <div className="flex items-center gap-2 mt-1">
-                <Linkedin className="w-3 h-3 text-gray-400" />
-                <a href={`https://${stakeholder.linkedin}`} className="text-xs text-indigo-600 hover:underline flex items-center gap-1">
-                  LinkedIn Profile
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
+              <Group gap={4} mt={4}>
+                <Linkedin size={12} color="var(--mantine-color-dimmed)" />
+                <Anchor href={`https://${stakeholder.linkedin}`} size="xs" target="_blank">
+                  <Group gap={4}>
+                    LinkedIn Profile
+                    <ExternalLink size={12} />
+                  </Group>
+                </Anchor>
+              </Group>
             )}
-          </div>
+            {index < rfp.stakeholders.length - 1 && <Divider mt="md" />}
+          </Box>
         ))}
-      </div>
-    </div>
+      </Stack>
+    </Paper>
   )
 }
 
@@ -555,43 +814,43 @@ function CompetitiveIntelligence({ rfp }) {
   if (!rfp.incumbentRisk && !rfp.expectedCompetitors && !rfp.ourAdvantages) return null
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6">
-      <h2 className="text-lg font-semibold text-gray-900 mb-4">Competitive Intelligence</h2>
-      <div className="space-y-3">
+    <Paper withBorder p="lg">
+      <Title order={3} mb="md">Competitive Intelligence</Title>
+      <Stack gap="xs">
         {rfp.incumbentRisk && (
-          <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg">
-            <p className="text-sm font-medium text-amber-900 mb-1">Incumbent Risk</p>
-            <div className="space-y-1">
+          <Paper withBorder p="sm" bg="orange.0">
+            <Text size="sm" fw={500} c="orange.9" mb={4}>Incumbent Risk</Text>
+            <Stack gap={4}>
               {rfp.incumbentRisk.map((risk, index) => (
-                <p key={index} className="text-xs text-amber-700">• {risk}</p>
+                <Text key={index} size="xs" c="orange.7">• {risk}</Text>
               ))}
-            </div>
-          </div>
+            </Stack>
+          </Paper>
         )}
 
         {rfp.expectedCompetitors && (
-          <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
-            <p className="text-sm font-medium text-red-900 mb-1">Expected Competitors</p>
-            <div className="space-y-1">
+          <Paper withBorder p="sm" bg="red.0">
+            <Text size="sm" fw={500} c="red.9" mb={4}>Expected Competitors</Text>
+            <Stack gap={4}>
               {rfp.expectedCompetitors.map((competitor, index) => (
-                <p key={index} className="text-xs text-red-700">• {competitor}</p>
+                <Text key={index} size="xs" c="red.7">• {competitor}</Text>
               ))}
-            </div>
-          </div>
+            </Stack>
+          </Paper>
         )}
 
         {rfp.ourAdvantages && (
-          <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
-            <p className="text-sm font-medium text-green-900 mb-1">Our Advantages</p>
-            <div className="space-y-1">
+          <Paper withBorder p="sm" bg="green.0">
+            <Text size="sm" fw={500} c="green.9" mb={4}>Our Advantages</Text>
+            <Stack gap={4}>
               {rfp.ourAdvantages.map((advantage, index) => (
-                <p key={index} className="text-xs text-green-700">• {advantage}</p>
+                <Text key={index} size="xs" c="green.7">• {advantage}</Text>
               ))}
-            </div>
-          </div>
+            </Stack>
+          </Paper>
         )}
-      </div>
-    </div>
+      </Stack>
+    </Paper>
   )
 }
 
@@ -599,29 +858,35 @@ function BudgetIntelligence({ rfp }) {
   if (!rfp.estimatedAnnualValue) return null
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6">
-      <h2 className="text-lg font-semibold text-gray-900 mb-4">Budget Intelligence</h2>
-      <div className="space-y-3">
-        <div>
-          <p className="text-sm font-medium text-gray-600 mb-1">Estimated Annual Value</p>
-          <p className="text-xl font-bold text-gray-900">{rfp.estimatedAnnualValue}</p>
-          <p className="text-xs text-gray-500 mt-1">{rfp.estimatedAnnualDetails}</p>
-        </div>
+    <Paper withBorder p="lg">
+      <Title order={3} mb="md">Budget Intelligence</Title>
+      <Stack gap="xs">
+        <Box>
+          <Text size="sm" fw={500} c="dimmed" mb={4}>Estimated Annual Value</Text>
+          <Text size="xl" fw={700}>{rfp.estimatedAnnualValue}</Text>
+          <Text size="xs" c="dimmed" mt={4}>{rfp.estimatedAnnualDetails}</Text>
+        </Box>
         {rfp.contractValue && (
-          <div className="pt-3 border-t border-gray-100">
-            <p className="text-sm font-medium text-gray-600 mb-1">Contract Value</p>
-            <p className="text-sm text-gray-900">{rfp.contractValue}</p>
-            <p className="text-xs text-gray-500 mt-1">{rfp.contractValueDetails}</p>
-          </div>
+          <>
+            <Divider />
+            <Box>
+              <Text size="sm" fw={500} c="dimmed" mb={4}>Contract Value</Text>
+              <Text size="sm">{rfp.contractValue}</Text>
+              <Text size="xs" c="dimmed" mt={4}>{rfp.contractValueDetails}</Text>
+            </Box>
+          </>
         )}
         {rfp.paymentTerms && (
-          <div className="pt-3 border-t border-gray-100">
-            <p className="text-sm font-medium text-gray-600 mb-1">Payment Terms</p>
-            <p className="text-sm text-gray-900">{rfp.billingInterval}, {rfp.paymentTerms}</p>
-          </div>
+          <>
+            <Divider />
+            <Box>
+              <Text size="sm" fw={500} c="dimmed" mb={4}>Payment Terms</Text>
+              <Text size="sm">{rfp.billingInterval}, {rfp.paymentTerms}</Text>
+            </Box>
+          </>
         )}
-      </div>
-    </div>
+      </Stack>
+    </Paper>
   )
 }
 
@@ -629,19 +894,21 @@ function RelationshipHistory({ rfp }) {
   if (!rfp.relationshipHistory) return null
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6">
-      <h2 className="text-lg font-semibold text-gray-900 mb-4">Relationship History</h2>
-      <div className="space-y-3">
+    <Paper withBorder p="lg">
+      <Title order={3} mb="md">Relationship History</Title>
+      <Stack gap="sm">
         {rfp.relationshipHistory.map((history, index) => (
-          <div key={index} className="flex items-start gap-3">
-            <Calendar className="w-4 h-4 text-gray-400 mt-0.5" />
-            <div>
-              <p className="text-sm font-medium text-gray-900">{history.event}</p>
-              <p className="text-xs text-gray-600">{history.description}</p>
-            </div>
-          </div>
+          <Group key={index} align="flex-start" gap="xs">
+            <ThemeIcon size="sm" color="gray" variant="light">
+              <Calendar size={14} />
+            </ThemeIcon>
+            <Box style={{ flex: 1 }}>
+              <Text size="sm" fw={500}>{history.event}</Text>
+              <Text size="xs" c="dimmed">{history.description}</Text>
+            </Box>
+          </Group>
         ))}
-      </div>
-    </div>
+      </Stack>
+    </Paper>
   )
 }

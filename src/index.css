@@ -8,6 +8,12 @@
   html {
     font-family: 'Roboto', system-ui, sans-serif;
   }
+
+  /* High contrast overrides */
+  :root {
+    --mantine-color-dimmed: rgba(0, 0, 0, 0.7) !important;
+    --mantine-color-text: #1a1a1a !important;
+  }
 }
 
 @layer utilities {
@@ -24,4 +30,106 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+}
+
+/* High Contrast Enhancements */
+.mantine-Text-root[data-dimmed] {
+  color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.mantine-Paper-root,
+.mantine-Card-root {
+  border-width: 1px !important;
+  border-color: #d1d5db !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1) !important;
+}
+
+.mantine-Paper-root[data-with-border],
+.mantine-Card-root[data-with-border] {
+  border-color: #9ca3af !important;
+}
+
+.mantine-AppShell-header {
+  border-bottom: 2px solid #d1d5db !important;
+}
+
+/* Improve input contrast */
+.mantine-Input-input {
+  border-color: #9ca3af !important;
+  color: #1a1a1a !important;
+}
+
+.mantine-Input-input::placeholder {
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.mantine-Input-input:focus {
+  border-color: #3b82f6 !important;
+}
+
+/* Improve select/dropdown contrast */
+.mantine-Select-input,
+.mantine-MultiSelect-input {
+  border-color: #9ca3af !important;
+}
+
+/* Badge contrast - More vibrant, less pastel */
+.mantine-Badge-root {
+  font-weight: 600 !important;
+}
+
+/* Light variant badges with stronger colors */
+.mantine-Badge-root[data-variant="light"] {
+  border: 1.5px solid currentColor !important;
+  font-weight: 700 !important;
+}
+
+/* Specific color overrides for better contrast */
+.mantine-Badge-root[data-variant="light"][data-color="blue"] {
+  background-color: rgba(37, 99, 235, 0.15) !important;
+  color: #1d4ed8 !important;
+  border-color: #2563eb !important;
+}
+
+.mantine-Badge-root[data-variant="light"][data-color="teal"] {
+  background-color: rgba(20, 184, 166, 0.15) !important;
+  color: #0d9488 !important;
+  border-color: #14b8a6 !important;
+}
+
+.mantine-Badge-root[data-variant="light"][data-color="green"] {
+  background-color: rgba(34, 197, 94, 0.15) !important;
+  color: #15803d !important;
+  border-color: #22c55e !important;
+}
+
+.mantine-Badge-root[data-variant="light"][data-color="yellow"] {
+  background-color: rgba(250, 204, 21, 0.2) !important;
+  color: #a16207 !important;
+  border-color: #eab308 !important;
+}
+
+.mantine-Badge-root[data-variant="light"][data-color="orange"] {
+  background-color: rgba(249, 115, 22, 0.15) !important;
+  color: #c2410c !important;
+  border-color: #f97316 !important;
+}
+
+.mantine-Badge-root[data-variant="light"][data-color="red"] {
+  background-color: rgba(239, 68, 68, 0.15) !important;
+  color: #dc2626 !important;
+  border-color: #ef4444 !important;
+}
+
+.mantine-Badge-root[data-variant="light"][data-color="grape"],
+.mantine-Badge-root[data-variant="light"][data-color="violet"] {
+  background-color: rgba(139, 92, 246, 0.15) !important;
+  color: #7c3aed !important;
+  border-color: #8b5cf6 !important;
+}
+
+.mantine-Badge-root[data-variant="light"][data-color="gray"] {
+  background-color: rgba(107, 114, 128, 0.15) !important;
+  color: #4b5563 !important;
+  border-color: #6b7280 !important;
 }

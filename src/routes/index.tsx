@@ -1,8 +1,13 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { Briefcase, TrendingUp } from 'lucide-react'
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { useState } from 'react'
+import { Briefcase, TrendingUp, ArrowUpDown, Eye, EyeOff, Heart, FileEdit, ArrowRight, Clock, CheckCircle, Filter } from 'lucide-react'
+import { Tabs, Select, SimpleGrid, Text, Title, Group, Stack, Badge, Button, Paper, Progress, Box, Flex } from '@mantine/core'
 import { mockRFPs } from '../data/mockRFPs'
 import RFPCard from '../components/RFPCard'
 import TailwindTest from '../components/TailwindTest'
+import { isRFPViewed, getInterestedCount, isRFPInterested, getRFPInterest } from '../utils/rfpStorage'
+import { getGlobalAnswers, getQuestionResponses } from '../utils/questionStorage'
+import { defaultRFPQuestions } from '../data/questionTemplates'
 
 export const Route = createFileRoute('/')({
   component: RFPInbox,
@@ -16,32 +21,152 @@ function RFPInbox() {
     return <TailwindTest />
   }
 
+  const [activeTab, setActiveTab] = useState('available')
+  const [sortOption, setSortOption] = useState('newest-posted')
+  const [viewFilter, setViewFilter] = useState('all') // 'all' or 'unviewed'
+  const [rfpTypeFilter, setRfpTypeFilter] = useState('all') // 'all', 'legal-tech', or 'legal-services'
+
+  // Sorting function
+  const sortRFPs = (rfps, option) => {
+    const sorted = [...rfps]
+
+    switch (option) {
+      case 'newest-posted':
+        return sorted.sort((a, b) => new Date(b.postedDate).getTime() - new Date(a.postedDate).getTime())
+
+      case 'deadline-soonest':
+        return sorted.sort((a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime())
+
+      case 'deadline-latest':
+        return sorted.sort((a, b) => new Date(b.deadline).getTime() - new Date(a.deadline).getTime())
+
+      case 'budget-highest':
+        return sorted.sort((a, b) => {
+          const aMax = parseInt(a.budget.split('-')[1].replace(/[^\d]/g, ''))
+          const bMax = parseInt(b.budget.split('-')[1].replace(/[^\d]/g, ''))
+          return bMax - aMax
+        })
+
+      case 'budget-lowest':
+        return sorted.sort((a, b) => {
+          const aMin = parseInt(a.budget.split('-')[0].replace(/[^\d]/g, ''))
+          const bMin = parseInt(b.budget.split('-')[0].replace(/[^\d]/g, ''))
+          return aMin - bMin
+        })
+
+      default:
+        return sorted
+    }
+  }
+
+  // Helper function to check if user has started filling out an RFP
+  const hasStartedRFP = (rfpId) => {
+    const responses = getQuestionResponses(rfpId)
+    return Object.keys(responses).length > 0
+  }
+
+  // Filter RFPs based on active tab
+  const tabFilteredRFPs = mockRFPs.filter(rfp => {
+    const interested = isRFPInterested(rfp.id)
+    const started = hasStartedRFP(rfp.id)
+
+    switch (activeTab) {
+      case 'available':
+        // Not started and not submitted
+        return !started && !interested
+      case 'pending':
+        // Started filling out questions
+        return started && !interested
+      case 'completed':
+        // Submitted application
+        return interested
+      default:
+        return true
+    }
+  })
+
+  // Filter RFPs based on view status (only for Available tab)
+  const viewFilteredRFPs = activeTab === 'available' && viewFilter === 'unviewed'
+    ? tabFilteredRFPs.filter(rfp => !isRFPViewed(rfp.id))
+    : tabFilteredRFPs
+
+  // Filter RFPs based on type (only for Available tab)
+  const filteredRFPs = activeTab === 'available' && rfpTypeFilter !== 'all'
+    ? viewFilteredRFPs.filter(rfp => rfp.rfpType === rfpTypeFilter)
+    : viewFilteredRFPs
+
+  const sortedRFPs = activeTab === 'available' ? sortRFPs(filteredRFPs, sortOption) : filteredRFPs
+
+  // Calculate tab counts
+  const availableCount = mockRFPs.filter(rfp => !hasStartedRFP(rfp.id) && !isRFPInterested(rfp.id)).length
+  const pendingCount = mockRFPs.filter(rfp => hasStartedRFP(rfp.id) && !isRFPInterested(rfp.id)).length
+  const completedCount = mockRFPs.filter(rfp => isRFPInterested(rfp.id)).length
+
   const totalRFPs = mockRFPs.length
-  const newRFPs = mockRFPs.filter(rfp => rfp.status === 'new').length
+  const unviewedRFPs = mockRFPs.filter(rfp => !isRFPViewed(rfp.id)).length
+  const interestedRFPs = getInterestedCount()
   const highValueRFPs = mockRFPs.filter(rfp => {
     const amount = parseInt(rfp.budget.replace(/[^\d]/g, ''))
     return amount >= 100000
   }).length
 
+  // Calculate global answers completion
+  const globalAnswers = getGlobalAnswers()
+  const answeredQuestions = Object.keys(globalAnswers).filter(key => {
+    const value = globalAnswers[key]
+    // Check if value is not empty
+    if (typeof value === 'string') return value.trim().length > 0
+    if (Array.isArray(value)) return value.length > 0
+    if (typeof value === 'object' && value !== null) {
+      // For objects like {selected: [], otherText: ''}
+      if (value.selected) return value.selected.length > 0
+      return Object.keys(value).length > 0
+    }
+    return false
+  }).length
+  const totalQuestions = defaultRFPQuestions.length
+  const completionPercentage = totalQuestions > 0 ? Math.round((answeredQuestions / totalQuestions) * 100) : 0
+
   return (
-    <div className="space-y-8">
+    <Stack gap="xl">
       {/* Header Section */}
-      <div className="text-center">
-        <div className="flex items-center justify-center mb-4">
-          <div className="p-3 bg-blue-100 rounded-full">
-            <Briefcase className="h-8 w-8 text-blue-600" />
-          </div>
-        </div>
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          RFP Opportunities
-        </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Discover and apply to high-quality Request for Proposals from leading companies worldwide.
-        </p>
-      </div>
+      <Flex justify="space-between" align="flex-start" gap="xl">
+        <Box style={{ flex: 1 }}>
+          <Title order={1} size="h1" mb="md">
+            RFP Opportunities
+          </Title>
+          <Text size="lg" c="dimmed">
+            Discover and apply to high-quality Request for Proposals from leading companies worldwide.
+          </Text>
+        </Box>
+
+        {/* Pre-fill Answers Card - Compact */}
+        <Paper bg="indigo.0" withBorder p="sm" style={{ borderColor: 'var(--mantine-color-indigo-2)' }}>
+          <Group justify="space-between" gap="xs" mb="xs">
+            <Group gap="xs">
+              <FileEdit style={{ width: 16, height: 16, color: 'var(--mantine-color-indigo-6)' }} />
+              <Text size="sm" fw={600}>Pre-fill Answers</Text>
+            </Group>
+            <Text size="sm" fw={700} c="indigo.6">{completionPercentage}%</Text>
+          </Group>
+          <Text size="xs" c="dimmed" mb="xs">
+            {answeredQuestions} of {totalQuestions} questions
+          </Text>
+          <Button
+            component={Link}
+            to="/my-answers"
+            fullWidth
+            size="xs"
+            color="indigo"
+            rightSection={<ArrowRight style={{ width: 12, height: 12 }} />}
+          >
+            {completionPercentage === 0 ? 'Get Started' : 'Edit Answers'}
+          </Button>
+        </Paper>
+      </Flex>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatsCard
           title="Total Opportunities"
           value={totalRFPs}
@@ -50,11 +175,20 @@ function RFPInbox() {
           textColor="text-blue-600"
         />
         <StatsCard
-          title="New This Week"
-          value={newRFPs}
-          subtitle="Fresh opportunities"
+          title="Unviewed"
+          value={unviewedRFPs}
+          subtitle="Not yet viewed"
           bgColor="bg-emerald-50"
           textColor="text-emerald-600"
+          icon={<EyeOff className="h-5 w-5" />}
+        />
+        <StatsCard
+          title="Interested"
+          value={interestedRFPs}
+          subtitle="Marked as interested"
+          bgColor="bg-pink-50"
+          textColor="text-pink-600"
+          icon={<Heart className="h-5 w-5" />}
         />
         <StatsCard
           title="Premium Projects"
@@ -64,40 +198,109 @@ function RFPInbox() {
           textColor="text-amber-600"
           icon={<TrendingUp className="h-5 w-5" />}
         />
-      </div>
+      </div> */}
 
       {/* RFP Grid */}
-      <div>
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-semibold text-gray-900">Available Opportunities</h2>
-          <div className="text-sm text-gray-500">
-            {totalRFPs} opportunities available
-          </div>
-        </div>
+      <Box>
+        {/* Tabs */}
+        <Tabs value={activeTab} onChange={setActiveTab} mb="lg">
+          <Tabs.List>
+            <Tabs.Tab
+              value="available"
+              leftSection={<Briefcase style={{ width: 20, height: 20 }} />}
+              rightSection={<Badge size="sm" variant={activeTab === 'available' ? 'filled' : 'light'}>{availableCount}</Badge>}
+            >
+              Available
+            </Tabs.Tab>
+            <Tabs.Tab
+              value="pending"
+              leftSection={<Clock style={{ width: 20, height: 20 }} />}
+              rightSection={<Badge size="sm" variant={activeTab === 'pending' ? 'filled' : 'light'}>{pendingCount}</Badge>}
+            >
+              In Progress
+            </Tabs.Tab>
+            <Tabs.Tab
+              value="completed"
+              leftSection={<CheckCircle style={{ width: 20, height: 20 }} />}
+              rightSection={<Badge size="sm" variant={activeTab === 'completed' ? 'filled' : 'light'}>{completedCount}</Badge>}
+            >
+              Completed
+            </Tabs.Tab>
+          </Tabs.List>
+        </Tabs>
 
-        <div className="grid gap-8 lg:grid-cols-2">
-          {mockRFPs.map((rfp) => (
-            <RFPCard key={rfp.id} rfp={rfp} />
+        {/* Filters - Below Tabs */}
+        <Flex justify="space-between" align="center" gap="md" mb="lg">
+          {activeTab === 'available' && (
+            <Group gap="md">
+              <Select
+                value={rfpTypeFilter}
+                onChange={(value) => setRfpTypeFilter(value || 'all')}
+                data={[
+                  { value: 'all', label: 'All Types' },
+                  { value: 'legal-tech', label: 'Legal Tech' },
+                  { value: 'legal-services', label: 'Legal Services' },
+                ]}
+                leftSection={<Filter style={{ width: 16, height: 16 }} />}
+                size="sm"
+                w={180}
+              />
+              <Select
+                value={viewFilter}
+                onChange={(value) => setViewFilter(value || 'all')}
+                data={[
+                  { value: 'all', label: 'All RFPs' },
+                  { value: 'unviewed', label: 'Unviewed Only' },
+                ]}
+                leftSection={<Eye style={{ width: 16, height: 16 }} />}
+                size="sm"
+                w={180}
+              />
+              <Select
+                value={sortOption}
+                onChange={(value) => setSortOption(value || 'newest-posted')}
+                data={[
+                  { value: 'newest-posted', label: 'Newest Posted' },
+                  { value: 'deadline-soonest', label: 'Deadline (Soonest)' },
+                  { value: 'deadline-latest', label: 'Deadline (Latest)' },
+                  { value: 'budget-highest', label: 'Budget (Highest)' },
+                  { value: 'budget-lowest', label: 'Budget (Lowest)' },
+                ]}
+                leftSection={<ArrowUpDown style={{ width: 16, height: 16 }} />}
+                size="sm"
+                w={200}
+              />
+            </Group>
+          )}
+          {activeTab !== 'available' && <Box />}
+          <Text size="sm" c="dimmed">
+            {sortedRFPs.length} {sortedRFPs.length === 1 ? 'opportunity' : 'opportunities'}
+          </Text>
+        </Flex>
+
+        <SimpleGrid cols={{ base: 1, lg: 2 }} spacing="xl">
+          {sortedRFPs.map((rfp) => (
+            <RFPCard key={rfp.id} rfp={rfp} showProgress={activeTab === 'pending'} />
           ))}
-        </div>
-      </div>
-    </div>
+        </SimpleGrid>
+      </Box>
+    </Stack>
   )
 }
 
 function StatsCard({ title, value, subtitle, bgColor, textColor, icon }) {
   return (
-    <div className={`${bgColor} rounded-xl p-6 border border-gray-200`}>
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-sm font-medium text-gray-600 mb-1">{title}</p>
-          <p className={`text-3xl font-bold ${textColor} mb-1`}>{value}</p>
-          <p className="text-sm text-gray-500">{subtitle}</p>
-        </div>
-        <div className={`${textColor} opacity-80`}>
-          {icon || <Briefcase className="h-8 w-8" />}
-        </div>
-      </div>
-    </div>
+    <Paper withBorder radius="lg" p="lg" bg={bgColor}>
+      <Group justify="space-between">
+        <Stack gap="xs">
+          <Text size="sm" fw={500} c="dimmed">{title}</Text>
+          <Text size="2rem" fw={700} c={textColor}>{value}</Text>
+          <Text size="sm" c="dimmed">{subtitle}</Text>
+        </Stack>
+        <Box c={textColor} style={{ opacity: 0.8 }}>
+          {icon || <Briefcase style={{ width: 32, height: 32 }} />}
+        </Box>
+      </Group>
+    </Paper>
   )
 }

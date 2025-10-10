@@ -1,7 +1,11 @@
 import { Link } from '@tanstack/react-router'
-import { Calendar, DollarSign, Building2, MapPin, Clock, ArrowRight, Star } from 'lucide-react'
+import { Card, Badge, Group, Stack, Text, Title, Button, Progress, ThemeIcon } from '@mantine/core'
+import { Calendar, DollarSign, Building2, MapPin, Clock, ArrowRight, Star, Eye, Heart, Zap, CheckCircle2, XCircle, Monitor, Scale } from 'lucide-react'
+import { isRFPViewed, getRFPInterest } from '../utils/rfpStorage'
+import { getProgressStats } from '../utils/questionStorage'
+import { defaultRFPQuestions, generateBuyerSpecificQuestions } from '../data/questionTemplates'
 
-export default function RFPCard({ rfp }) {
+export default function RFPCard({ rfp, showProgress }) {
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       month: 'short',
@@ -13,11 +17,11 @@ export default function RFPCard({ rfp }) {
   const getStatusColor = (status) => {
     switch (status) {
       case 'new':
-        return 'bg-emerald-50 text-emerald-700 border-emerald-200'
+        return 'teal'
       case 'reviewed':
-        return 'bg-blue-50 text-blue-700 border-blue-200'
+        return 'blue'
       default:
-        return 'bg-gray-50 text-gray-700 border-gray-200'
+        return 'gray'
     }
   }
 
@@ -36,93 +40,175 @@ export default function RFPCard({ rfp }) {
     return diffDays
   }
 
+  const getRFPTypeInfo = (rfpType) => {
+    if (rfpType === 'legal-services') {
+      return {
+        label: 'Legal Services',
+        icon: Scale,
+        color: 'grape'
+      }
+    }
+    // Default to legal-tech
+    return {
+      label: 'Legal Tech',
+      icon: Monitor,
+      color: 'blue'
+    }
+  }
+
   const daysRemaining = getDaysRemaining(rfp.deadline)
   const budgetLevel = getBudgetLevel(rfp.budget)
+  const isViewed = isRFPViewed(rfp.id)
+  const interestStatus = getRFPInterest(rfp.id)
+  const typeInfo = getRFPTypeInfo(rfp.rfpType)
+
+  // Calculate progress if needed
+  // Total questions = default questions (26) + buyer-specific questions (5) = 31
+  const buyerQuestions = generateBuyerSpecificQuestions(rfp)
+  const totalQuestions = defaultRFPQuestions.length + buyerQuestions.length
+  const progressStats = showProgress ? getProgressStats(rfp.id, totalQuestions) : null
+
+  const TypeIcon = typeInfo.icon
 
   return (
-    <div className="group bg-white rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300 overflow-hidden">
-      {/* Card Header */}
-      <div className="p-6 pb-4">
-        <div className="flex justify-between items-start mb-3">
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-2">
-              <span className={`px-2 py-1 text-xs font-medium rounded-md border ${getStatusColor(rfp.status)}`}>
-                {rfp.status}
-              </span>
-              {budgetLevel === 'high' && (
-                <div className="flex items-center gap-1 px-2 py-1 bg-amber-50 text-amber-700 text-xs font-medium rounded-md border border-amber-200">
-                  <Star className="h-3 w-3 fill-current" />
-                  <span>Premium</span>
-                </div>
-              )}
-              {daysRemaining <= 7 && daysRemaining > 0 && (
-                <span className="px-2 py-1 bg-red-50 text-red-700 text-xs font-medium rounded-md border border-red-200">
-                  Urgent
-                </span>
-              )}
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
-              {rfp.title}
-            </h3>
-          </div>
-        </div>
+    <Card
+      shadow="sm"
+      padding="lg"
+      radius="md"
+      withBorder
+      style={{
+        opacity: 1,
+        backgroundColor: 'white'
+      }}
+    >
+      <Card.Section withBorder inheritPadding py="md">
+        <Stack gap="sm">
+          <Group gap="xs" wrap="wrap">
+            <Badge
+              leftSection={<TypeIcon size={12} />}
+              color={typeInfo.color}
+              variant="light"
+            >
+              {typeInfo.label}
+            </Badge>
+            <Badge color={getStatusColor(rfp.status)} variant="light">
+              {rfp.status}
+            </Badge>
+            {interestStatus && (
+              interestStatus.buyerResponse === 'accepted' ? (
+                <Badge leftSection={<CheckCircle2 size={12} />} color="green" variant="light">
+                  Accepted
+                </Badge>
+              ) : interestStatus.buyerResponse === 'rejected' ? (
+                <Badge leftSection={<XCircle size={12} />} color="gray" variant="light">
+                  Declined
+                </Badge>
+              ) : (
+                <Badge leftSection={<Clock size={12} />} color="yellow" variant="light">
+                  Pending
+                </Badge>
+              )
+            )}
+            {isViewed && (
+              <Badge leftSection={<Eye size={12} />} color="gray" variant="light">
+                Viewed
+              </Badge>
+            )}
+            {budgetLevel === 'high' && (
+              <Badge leftSection={<Star size={12} />} color="yellow" variant="light">
+                Premium
+              </Badge>
+            )}
+            {daysRemaining <= 7 && daysRemaining > 0 && (
+              <Badge color="red" variant="light">
+                Urgent
+              </Badge>
+            )}
+          </Group>
 
-        <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
-          <div className="flex items-center gap-1">
-            <Building2 className="h-4 w-4 text-gray-400" />
-            <span className="font-medium">{rfp.company}</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <MapPin className="h-4 w-4 text-gray-400" />
-            <span>{rfp.location}</span>
-          </div>
-        </div>
+          <Title order={4} lineClamp={2}>
+            {rfp.title}
+          </Title>
 
-        <p className="text-gray-600 leading-relaxed mb-6 line-clamp-3">
-          {rfp.description}
-        </p>
-      </div>
+          <Group gap="md">
+            <Group gap={4}>
+              <Building2 size={16} color="var(--mantine-color-dimmed)" />
+              <Text size="sm" fw={500}>{rfp.company}</Text>
+            </Group>
+            <Group gap={4}>
+              <MapPin size={16} color="var(--mantine-color-dimmed)" />
+              <Text size="sm">{rfp.location}</Text>
+            </Group>
+          </Group>
 
-      {/* Card Metrics */}
-      <div className="px-6 py-4 bg-gray-50 border-t border-gray-100">
-        <div className="grid grid-cols-3 gap-4">
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-1 text-gray-500 mb-1">
-              <DollarSign className="h-4 w-4" />
-            </div>
-            <div className="text-sm font-semibold text-gray-900">{rfp.budget}</div>
-            <div className="text-xs text-gray-500">Budget</div>
-          </div>
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-1 text-gray-500 mb-1">
-              <Calendar className="h-4 w-4" />
-            </div>
-            <div className="text-sm font-semibold text-gray-900">
+          <Text size="sm" c="dimmed" lineClamp={3}>
+            {rfp.description}
+          </Text>
+
+          {rfp.rfpType === 'legal-tech' && rfp.solutionCategory && (
+            <Group gap="xs">
+              <Text size="xs" fw={500} c="dimmed">Solution:</Text>
+              <Badge color="blue" variant="light" size="sm">
+                {rfp.solutionCategory}
+              </Badge>
+            </Group>
+          )}
+        </Stack>
+      </Card.Section>
+
+      <Card.Section withBorder inheritPadding py="md" bg="gray.0">
+        <Group grow>
+          <Stack align="center" gap={4}>
+            <ThemeIcon variant="light" color="gray" size="sm">
+              <DollarSign size={16} />
+            </ThemeIcon>
+            <Text size="sm" fw={600}>{rfp.budget}</Text>
+            <Text size="xs" c="dimmed">Budget</Text>
+          </Stack>
+          <Stack align="center" gap={4}>
+            <ThemeIcon variant="light" color="gray" size="sm">
+              <Calendar size={16} />
+            </ThemeIcon>
+            <Text size="sm" fw={600}>
               {daysRemaining > 0 ? `${daysRemaining} days` : 'Overdue'}
-            </div>
-            <div className="text-xs text-gray-500">Remaining</div>
-          </div>
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-1 text-gray-500 mb-1">
-              <Clock className="h-4 w-4" />
-            </div>
-            <div className="text-sm font-semibold text-gray-900">{formatDate(rfp.postedDate)}</div>
-            <div className="text-xs text-gray-500">Posted</div>
-          </div>
-        </div>
-      </div>
+            </Text>
+            <Text size="xs" c="dimmed">Remaining</Text>
+          </Stack>
+          <Stack align="center" gap={4}>
+            <ThemeIcon variant="light" color="gray" size="sm">
+              <Clock size={16} />
+            </ThemeIcon>
+            <Text size="sm" fw={600}>{formatDate(rfp.postedDate)}</Text>
+            <Text size="xs" c="dimmed">Posted</Text>
+          </Stack>
+        </Group>
+      </Card.Section>
 
-      {/* Card Footer */}
-      <div className="p-6 pt-4">
-        <Link
-          to="/rfp/$rfpId"
-          params={{ rfpId: rfp.id.toString() }}
-          className="group/link w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-all duration-200 shadow-sm hover:shadow-md"
-        >
-          <span>View Details & Apply</span>
-          <ArrowRight className="h-4 w-4 group-hover/link:translate-x-0.5 transition-transform" />
-        </Link>
-      </div>
-    </div>
+      <Card.Section inheritPadding py="md">
+        <Stack gap="md">
+          {showProgress && progressStats && (
+            <div>
+              <Group justify="space-between" mb={8}>
+                <Text size="sm" fw={500}>Application Progress</Text>
+                <Text size="sm" fw={600} c="blue">{progressStats.percentage}%</Text>
+              </Group>
+              <Progress value={progressStats.percentage} color="blue" size="sm" />
+              <Text size="xs" c="dimmed" mt={4}>
+                {progressStats.completed + progressStats.inProgress} of {totalQuestions} questions answered
+              </Text>
+            </div>
+          )}
+          <Button
+            component={Link}
+            to="/rfp/$rfpId"
+            params={{ rfpId: rfp.id.toString() }}
+            rightSection={<ArrowRight size={16} />}
+            fullWidth
+          >
+            View Details & Apply
+          </Button>
+        </Stack>
+      </Card.Section>
+    </Card>
   )
 }

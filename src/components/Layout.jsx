@@ -1,51 +1,75 @@
 import { Link } from '@tanstack/react-router'
+import { AppShell, Container, Group, Anchor, Title } from '@mantine/core'
 import { Inbox } from 'lucide-react'
+import AdminBar from './AdminBar'
+import ScrollToTop from './ScrollToTop'
 
-export default function Layout({ children }) {
+export default function Layout({ children, noBackground = false }) {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {children}
-      </main>
-    </div>
+    <>
+      <ScrollToTop />
+      <AdminBar />
+      <AppShell
+        header={{ height: 60 }}
+        padding="md"
+        styles={{
+          main: {
+            minHeight: '100vh',
+            backgroundColor: noBackground ? 'white' : 'var(--mantine-color-gray-0)',
+          },
+        }}
+      >
+        <AppShell.Header>
+          <Header />
+        </AppShell.Header>
+        <AppShell.Main>
+          <Container size="xl">
+            {children}
+          </Container>
+        </AppShell.Main>
+      </AppShell>
+    </>
   )
 }
 
 function Header() {
   return (
-    <header className="bg-white shadow-sm border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          <Logo />
-          <Navigation />
-        </div>
-      </div>
-    </header>
+    <Container size="xl" h="100%">
+      <Group justify="space-between" h="100%">
+        <Logo />
+        <Navigation />
+      </Group>
+    </Container>
   )
 }
 
 function Logo() {
   return (
-    <Link
+    <Anchor
+      component={Link}
       to="/"
-      className="flex items-center space-x-2 text-xl font-semibold text-gray-900 hover:text-blue-600 transition-colors"
+      underline="never"
+      c="dark"
+      style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
     >
-      <Inbox className="h-6 w-6" />
-      <span>RFP Portal</span>
-    </Link>
+      <Inbox size={24} />
+      <Title order={3} fw={600}>RFP Portal</Title>
+    </Anchor>
   )
 }
 
 function Navigation() {
   return (
-    <nav className="flex items-center space-x-4">
-      <Link
+    <Group gap="md">
+      <Anchor
+        component={Link}
         to="/"
-        className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+        c="dimmed"
+        fw={500}
+        size="sm"
       >
         Inbox
-      </Link>
-    </nav>
+      </Anchor>
+    </Group>
   )
 }

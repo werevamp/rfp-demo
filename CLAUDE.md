@@ -6,7 +6,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Build an RFP (Request for Proposal) management system that allows sellers to view available RFPs and submit proposals. This is a wireframe/mockup using fake data to demonstrate the UI and user flows.
+Build an RFP (Request for Proposal) management system that allows sellers to view available RFPs and submit proposals. **This is a sales demo tool designed for presentation at conference booths.** It's a wireframe/mockup using fake data to showcase what the future RFP tool on the platform will look like.
+
+### Purpose
+
+This tool demonstrates the complete RFP workflow for both buyers and sellers in the legal industry. The fake data is curated to present realistic scenarios to conference attendees.
 
 ## Technology Stack
 
@@ -15,6 +19,35 @@ Build an RFP (Request for Proposal) management system that allows sellers to vie
 - Tailwind CSS
 - Lucide-react (for icons)
 - Fake data stored in a local data file
+
+## RFP Types
+
+The system supports 4 distinct buyer experiences, each representing a different type of RFP:
+
+1. **New Legal Tech Product Purchase** - Buyer looking to purchase new legal technology
+2. **Replace Legal Tech with New Product** - Buyer looking to replace existing legal tech solution
+3. **Lawfirm (Legal Services RFP)** - Buyer seeking legal services from a law firm
+4. **ALSP (Alternative Legal Service Provider RFP)** - Buyer seeking alternative legal service providers
+
+Each RFP type has its own set of questions and requirements that vendors must respond to.
+
+## Complete User Flow
+
+The demo demonstrates the following workflow:
+
+1. **Buyer Creates RFP** - Buyer fills out an intake form (this part will be built with admin tools later)
+2. **Seller Views Opportunities** - The completed intake form appears in the seller's RFP opportunities/inbox page
+3. **Seller Selects RFP** - Seller clicks on an RFP to view details
+4. **Display Type-Specific Content** - Based on the RFP type, the correct overview and questions are displayed
+5. **Vendor Responds** - Vendor fills out the questions form to apply to the RFP
+6. **Status Update** - Once vendor submission is complete, the RFP state changes to "Shortlisted" (indicating the response is being reviewed by the buyer)
+
+### Future Admin Tool
+
+An admin interface will be added later to allow conference booth staff to:
+- Create/edit buyer intake forms
+- Switch between different RFP scenarios
+- Manage demo data
 
 ## Routing Structure
 
@@ -96,10 +129,11 @@ Create a mock data file with the following structure for each RFP:
   id: number,
   title: string,
   company: string,
+  rfpType: string, // "legal-tech-new", "legal-tech-replace", "lawfirm", "alsp"
   budget: string, // e.g., "$50,000 - $75,000"
   deadline: string, // ISO date format
   postedDate: string, // ISO date format
-  status: string, // "new", "reviewed", etc.
+  status: string, // "new", "reviewed", "shortlisted", etc.
   location: string, // "Remote", "Hybrid - City", "On-site - City"
   description: string, // Full description
   requirements: string[], // Array of requirement strings
@@ -107,7 +141,21 @@ Create a mock data file with the following structure for each RFP:
 }
 ```
 
-Include at least 4-5 sample RFPs with varied data to demonstrate different states.
+### RFP Type Values
+
+- `"legal-tech-new"` - New Legal Tech Product Purchase
+- `"legal-tech-replace"` - Replace Legal Tech with New Product
+- `"lawfirm"` - Lawfirm (Legal Services RFP)
+- `"alsp"` - ALSP RFP
+
+### Status Values
+
+- `"new"` - Newly posted RFP, not yet viewed
+- `"reviewed"` - RFP has been viewed by vendor
+- `"shortlisted"` - Vendor has submitted response, under buyer review
+- Additional statuses can be added as needed
+
+Include at least 4-5 sample RFPs with varied data to demonstrate different states and types. **Ensure each RFP type is represented in the mock data.**
 
 ## Component Structure
 
@@ -204,11 +252,14 @@ src/
 
 ## Notes
 
+- **This is a conference booth demo/sales tool** - designed to showcase the future product
 - This is a wireframe/mockup - no backend integration needed
-- All data should be static/mock data
-- Focus on demonstrating the UI and user flow
+- All data should be static/mock data curated for presentation
+- Focus on demonstrating the UI and user flow for both buyers and sellers
 - No actual form submission or file upload functionality required
 - Use alerts or console.logs to simulate successful actions
+- When vendor submits a proposal, update the RFP status to "shortlisted"
+- Ensure all 4 RFP types are represented in the demo data with type-specific questions
 
 ## Development Commands
 
