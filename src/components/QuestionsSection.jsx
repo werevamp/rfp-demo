@@ -7,6 +7,8 @@ import QuestionProgress from './QuestionProgress'
 import { getQuestionResponse, saveQuestionResponse, markQuestionComplete, getProgressStats } from '../utils/questionStorage'
 import { markRFPInterest } from '../utils/rfpStorage'
 import { generateBuyerSpecificQuestions } from '../data/questionTemplates'
+import { getCurrentVendor } from '../utils/vendorStorage'
+import { saveVendorResponse, calculateMatchPercentage } from '../utils/vendorResponseStorage'
 
 export default function QuestionsSection({ rfp, isTemplate = false }) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
@@ -20,7 +22,9 @@ export default function QuestionsSection({ rfp, isTemplate = false }) {
   const questions = useMemo(() => {
     const globalQuestions = rfp.questions || []
     const buyerQuestions = !isTemplate ? generateBuyerSpecificQuestions(rfp) : []
-    return [...buyerQuestions, ...globalQuestions]
+    const allQuestions = [...buyerQuestions, ...globalQuestions]
+    console.log('Questions list for RFP:', rfp.id, allQuestions)
+    return allQuestions
   }, [rfp, isTemplate])
 
   const currentQuestion = questions[currentQuestionIndex]
@@ -81,27 +85,104 @@ export default function QuestionsSection({ rfp, isTemplate = false }) {
   }
 
   const handlePrevious = () => {
+    // Auto-mark current question as complete if it has a valid answer
+    autoMarkCompleteIfValid()
+
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1)
     }
   }
 
   const handleNext = () => {
+    // Auto-mark current question as complete if it has a valid answer
+    autoMarkCompleteIfValid()
+
     if (currentQuestionIndex < totalQuestions - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1)
     }
   }
 
+  const autoMarkCompleteIfValid = () => {
+    if (!currentQuestion) return
+
+    const currentValue = responses[currentQuestion.id]
+
+    // Check if the question has a valid non-empty response
+    const hasValidResponse = isValidResponse(currentValue)
+
+    if (hasValidResponse) {
+      // Mark as complete
+      markQuestionComplete(rfp.id, currentQuestion.id)
+      setOriginalSavedValues(prev => ({
+        ...prev,
+        [currentQuestion.id]: {
+          value: currentValue,
+          status: 'completed'
+        }
+      }))
+    }
+  }
+
+  const isValidResponse = (value) => {
+    if (value === undefined || value === null || value === '') {
+      return false
+    }
+    if (typeof value === 'string' && value.trim() === '') {
+      return false
+    }
+    if (Array.isArray(value) && value.length === 0) {
+      return false
+    }
+    if (
+      typeof value === 'object' &&
+      !Array.isArray(value) &&
+      value.selected &&
+      Array.isArray(value.selected) &&
+      value.selected.length === 0
+    ) {
+      return false
+    }
+    return true
+  }
+
   const handleMarkComplete = () => {
     if (currentQuestion) {
       const state = getButtonState()
+      const currentValue = responses[currentQuestion.id]
+
+      // Validate required questions before marking complete
+      if (currentQuestion.required) {
+        let isEmpty = false
+
+        if (currentValue === undefined || currentValue === null || currentValue === '') {
+          isEmpty = true
+        } else if (Array.isArray(currentValue) && currentValue.length === 0) {
+          isEmpty = true
+        } else if (
+          typeof currentValue === 'object' &&
+          !Array.isArray(currentValue) &&
+          currentValue.selected &&
+          Array.isArray(currentValue.selected) &&
+          currentValue.selected.length === 0
+        ) {
+          isEmpty = true
+        }
+
+        if (isEmpty) {
+          notifications.show({
+            title: 'Required Field',
+            message: 'Please provide an answer before marking this question as complete',
+            color: 'red',
+          })
+          return
+        }
+      }
 
       // Only mark as complete if it's not "Continue" state
       // "Continue" means already completed with no edits
       if (state?.text !== 'Continue') {
         markQuestionComplete(rfp.id, currentQuestion.id)
         // Update the original saved value after marking complete
-        const currentValue = responses[currentQuestion.id]
         setOriginalSavedValues(prev => ({
           ...prev,
           [currentQuestion.id]: {
@@ -151,6 +232,25 @@ export default function QuestionsSection({ rfp, isTemplate = false }) {
         color: 'red',
       })
       return
+    }
+
+    // Get current vendor
+    const currentVendor = getCurrentVendor()
+
+    // Check if this is a buyer-created RFP (not a mock RFP)
+    // Only track vendor responses for buyer-created RFPs
+    const isBuyerRFP = typeof rfp.id === 'string' && rfp.id.startsWith('rfp_')
+
+    if (isBuyerRFP) {
+      // Calculate match percentage
+      const matchPercentage = calculateMatchPercentage(rfp.id, currentVendor.id)
+
+      // Save vendor response
+      saveVendorResponse(rfp.id, currentVendor.id, 'responded', {
+        matchPercentage,
+        vendorName: currentVendor.companyName,
+        notes: ''
+      })
     }
 
     // Mark application as pending (submitted)

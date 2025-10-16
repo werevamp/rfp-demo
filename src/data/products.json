@@ -1,0 +1,3117 @@
+[
+  {
+    "id": 1121,
+    "name": " Transactionly",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1594661969/piemtspzyu34zimff4om.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1594661970/j0fzw4v1z0smdigczpjy.png"
+    }
+  },
+  {
+    "id": 1538,
+    "name": "101 Eligibility Analyzer",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1631217554/rbw1jbo0vtf6bmrvdkiy.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1631217555/i3ryfstty5x4fle86djb.png"
+    }
+  },
+  {
+    "id": 10902,
+    "name": "13Now",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1719940026/gvttxgx443upsim0fdhr.png",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 1055,
+    "name": "1LAW",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1582655326/srle462gfyfl6jpipcge.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1582655327/gp13rfz77njia1pzs7u1.jpg"
+    }
+  },
+  {
+    "id": 12402,
+    "name": "1SIGN",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 8046,
+    "name": "24HourFlex",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705461799/k5faw4usgaxwd5pxbhvx.png"
+    }
+  },
+  {
+    "id": 5910,
+    "name": "5:00 PM",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705459157/chauydbknomu2htmp2cn.jpg"
+    }
+  },
+  {
+    "id": 7038,
+    "name": "8am",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705460547/dd9rltshvnl7kiw3ui6w.png"
+    }
+  },
+  {
+    "id": 1080,
+    "name": "ABBYY",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1585355849/ttvqruiep6o9dvora3dw.jpg"
+    }
+  },
+  {
+    "id": 1082,
+    "name": "Accurate Legal Billing",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1585358488/wfxbtfxtfkx9bdmrvw74.jpg"
+    }
+  },
+  {
+    "id": 1294,
+    "name": "AccuRoute",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/AccuRoute.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/AccuRoute.png"
+    }
+  },
+  {
+    "id": 1302,
+    "name": "Adobe Sign",
+    "details": {
+      "url": "https://acrobat.adobe.com/us/en/sign.html",
+      "slides": [
+        "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Adobe%20Sign.png"
+      ],
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Adobe%20Sign.png",
+      "demoVideo": null,
+      "signInURL": "https://secure.echosign.com/public/login",
+      "emailSupport": null,
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Adobe%20Sign.png"
+    }
+  },
+  {
+    "id": 1905,
+    "name": "Advocat",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1662139649/vbzwsdomugemfgn45yzf.png"
+    }
+  },
+  {
+    "id": 693,
+    "name": "Advologix",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/logo/Advologix.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Advologix.png"
+    }
+  },
+  {
+    "id": 1300,
+    "name": "Aerofiler",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Aerofiler.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Aerofiler.png"
+    }
+  },
+  {
+    "id": 1306,
+    "name": "Agiloft",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1748558058/pf60wzbm1tol7pfdkkpx.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1748558059/mvjpkytgoeexsjlaooci.png"
+    }
+  },
+  {
+    "id": 10993,
+    "name": "Airia",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1739484638/kkkborh8c771mulaq0qc.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1739484835/uo42ysdeobqlj5eqfsv3.png"
+    }
+  },
+  {
+    "id": 1545,
+    "name": "Aleri",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1634959958/sd8l1r32pn8loqsvrpmn.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1634959959/f5axinfkjol1ejrdmicm.png"
+    }
+  },
+  {
+    "id": 11006,
+    "name": "AllRize - AI-Powered Law Practice Management Platform",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1744831697/zkv16n2cl3kzsyvpbyi2.jpg",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 1298,
+    "name": "ALM Legal Compass",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 1189,
+    "name": "ALN Docket Alerts",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1589993949/x9wbzsv4vtbk7n9qu6rx.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1589993622/shukrzdsy35mgxogzkbr.jpg"
+    }
+  },
+  {
+    "id": 1193,
+    "name": "ALN eDockets",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1590012090/x64bxmqm7uvypk2l8cd7.jpg"
+    }
+  },
+  {
+    "id": 1192,
+    "name": "ALN eFiling Portal",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1590010435/vfyi7fljuutgoqtnjezn.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1590010435/kamcdgx8u0qlvqq2tqei.png"
+    }
+  },
+  {
+    "id": 1190,
+    "name": "ALN Forms Workflow",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1589994438/gxwcamhcewhxev4xiyhu.jpg"
+    }
+  },
+  {
+    "id": 1194,
+    "name": "ALN Smart Dockets",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1590182218/fqbbskpn5xpswnmzlebe.png"
+    }
+  },
+  {
+    "id": 851,
+    "name": "Alt Legal",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1581296489/o4rh67esuey659djzog7.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Alt%20Legal.png"
+    }
+  },
+  {
+    "id": 1309,
+    "name": "App4Legal",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/App4Legal.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/App4Legal.png"
+    }
+  },
+  {
+    "id": 1312,
+    "name": "Apperio",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Apperio.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Apperio.png"
+    }
+  },
+  {
+    "id": 1960,
+    "name": "ArteLetra Translations",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1686096385/d4xhmqaoppz7ykwk7bfo.bmp",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1686096385/l5koj1swgrjvkd7j87pq.jpg"
+    }
+  },
+  {
+    "id": 6823,
+    "name": "Artemis 7",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705460305/nukdavrhburr1sv4o3ks.jpg"
+    }
+  },
+  {
+    "id": 10934,
+    "name": "Assembly Neos",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1724247396/vlbqvc4vmjfryestbqyh.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1724247397/jwpv64p0d3s1qbubmf0r.png"
+    }
+  },
+  {
+    "id": 1128,
+    "name": "Athennian",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1629816674/mzremfrtb76434hn3bhr.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1629816675/yeo8dywqvgbosqnzbanh.png"
+    }
+  },
+  {
+    "id": 6168,
+    "name": "Aurea CRM",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705459460/m8c8chppnp7ozafyndav.png"
+    }
+  },
+  {
+    "id": 12393,
+    "name": "Automated AI Governance",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1755181254/tfxoiie2wkywokgpzgij.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1755181255/vf8ad5twnbdfus1bap3c.png"
+    }
+  },
+  {
+    "id": 700,
+    "name": "AUTTO",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1580754530/smcupc5lmisqn9upos8t.svg",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Autto.png"
+    }
+  },
+  {
+    "id": 1896,
+    "name": "AUTTO Digital Transformation Simplified",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1661347099/hifla5tj3ft6stpfk4xs.jpg",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Autto.png"
+    }
+  },
+  {
+    "id": 701,
+    "name": "Avvoka",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Avvoka.png"
+    }
+  },
+  {
+    "id": 1129,
+    "name": "AXDRAFT by Onit",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1589232539/mykchobf8ulqjdifjikh.png"
+    }
+  },
+  {
+    "id": 1885,
+    "name": "AXDRAFT CLM",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1659600832/snqthk9nazw44m15sgxt.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1659600833/isinf8dczjxq9atjiv7i.png"
+    }
+  },
+  {
+    "id": 1498,
+    "name": "AXEL GO",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1624895288/wnmoh1ybiqhzxcwwlsuf.svg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1624894090/kr2w6zskal3wty7zqldb.jpg"
+    }
+  },
+  {
+    "id": 2077,
+    "name": "BA Insight  ",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1704728397/wjbzoizygft2zp3ozaub.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1741196558/xcrve105bbikmryxdggx.webp"
+    }
+  },
+  {
+    "id": 1604,
+    "name": "BanyanRFP",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1647453930/bvbwgmi7whrmivykathr.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1644637565/pm1cti1rdvruhyozpv0f.jpg"
+    }
+  },
+  {
+    "id": 1602,
+    "name": "Bigle Legal",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1644535359/xved5ejwcjcadtvb9wsk.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1644535534/as64jw9r7yyymyoqchiw.png"
+    }
+  },
+  {
+    "id": 707,
+    "name": "Bloomberg Law",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Bloomberg%20Law.png"
+    }
+  },
+  {
+    "id": 1286,
+    "name": "Bloomberg Litigation Analytics",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1610383713/zsdcymej4vkbwajqy4qg.png"
+    }
+  },
+  {
+    "id": 1090,
+    "name": "BluePencil",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1585598071/ngfhiutoy1v0nlblipit.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1585598071/utxjkn61f7qezu7k3b1c.jpg"
+    }
+  },
+  {
+    "id": 880,
+    "name": "Bodhala",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1610388470/knlo8eh33xhdnrnfcijm.webp",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1610388471/d2zl4nryhcjlekjpp2fm.jpg"
+    }
+  },
+  {
+    "id": 10790,
+    "name": "BoostDraft",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1709829550/sydjbybnuunjsfk012ci.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1709829551/res0c6fmvec6pt3khb06.png"
+    }
+  },
+  {
+    "id": 711,
+    "name": "Brief Analyzer - Bloomberg Law",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/logo/Brief%20Analyzer%20-%20Bloomberg%20Law.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Brief%20Analyzer%20-%20Bloomberg%20Law.png"
+    }
+  },
+  {
+    "id": 1322,
+    "name": "BriefCatch™",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1740774086/kpqjkdothuueofx3a8y7.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1740774087/ctmf6wdzgphwfzp3vxq3.png"
+    }
+  },
+  {
+    "id": 712,
+    "name": "Brightflag",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1606771091/frxum3emvbxdqds3hqbk.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1606771091/dfbul9qswtyjieib5eij.jpg"
+    }
+  },
+  {
+    "id": 1321,
+    "name": "Brightleaf",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1658841048/wj9j0hyo4f5mgjewtpqh.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Brightleaf.png"
+    }
+  },
+  {
+    "id": 1077,
+    "name": "BRYTER",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654004187/udr5pttryout1azccebv.svg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1584494009/imhvudml0tl9lt64trkx.png"
+    }
+  },
+  {
+    "id": 842,
+    "name": "BusyLamp",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/logo/BusyLamp.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/BusyLamp.png"
+    }
+  },
+  {
+    "id": 12401,
+    "name": "Caira",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1759050607/mgtpmfqzhs0sm5kchrpq.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1759050607/sxkwrcerhfygxrs0nh0u.png"
+    }
+  },
+  {
+    "id": 1953,
+    "name": "Calloquy, PBC",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1683055282/uu5ubdd9hkaqp3bhowcx.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1683055282/tikb8t3uhwmvdzrcnwr9.svg"
+    }
+  },
+  {
+    "id": 1487,
+    "name": "CallPesa",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1622710487/xkotdoebjz1dxhhhujzb.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1622710488/b2mpc4a4cezfjb7ipxa3.png"
+    }
+  },
+  {
+    "id": 1492,
+    "name": "Candle",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1623761038/x4w2wzbgzooox6jxu2i9.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1623761039/vwgahmoqwrtafwe5tlcj.png"
+    }
+  },
+  {
+    "id": 713,
+    "name": "CARA by Casetext",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/CARA.png"
+    }
+  },
+  {
+    "id": 1331,
+    "name": "Carta",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Carta.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Carta.png"
+    }
+  },
+  {
+    "id": 1606,
+    "name": "Case Status",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1645063851/rhgitrumr2fi1wh9gjhe.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1645063851/oxjozvhhy4zhubkudmjf.png"
+    }
+  },
+  {
+    "id": 1291,
+    "name": "Casedo",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1612528106/nxljfirkdnvs1mtzpws7.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1612528107/ntdawewcklqumvgvnmsy.png"
+    }
+  },
+  {
+    "id": 4120,
+    "name": "CaseFlex",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705457008/bqpdkkerqfljd8byjgst.png"
+    }
+  },
+  {
+    "id": 718,
+    "name": "CaseFox",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1708668316/jdbhtf2cvqxiwohobalb.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1708668317/bgljdippe4acxstqlrle.jpg"
+    }
+  },
+  {
+    "id": 1214,
+    "name": "Casepoint",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1729106273/drmbfb59aqekkhl0johd.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1729106274/t9gbb3vqovvqv74i9ela.jpg"
+    }
+  },
+  {
+    "id": 687,
+    "name": "Casetext",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Casetext.png"
+    }
+  },
+  {
+    "id": 1287,
+    "name": "Casetext Compose",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1610480097/xm4zhodqifpwa5yll6bg.png"
+    }
+  },
+  {
+    "id": 1858,
+    "name": "Catylex",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654530868/viznyzdkycvi6yr5gbto.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654526778/xkm6pw0bvh3gwljj0ntc.png"
+    }
+  },
+  {
+    "id": 1766,
+    "name": "Cenza Technologies LLC",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1657865994/i7eqv0e4usbuq5tdh5dc.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1657865996/w9jycskwuvulaoh0z1zb.png"
+    }
+  },
+  {
+    "id": 1491,
+    "name": "Certified Email / Registered Email",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1623661918/eo9shty4ktg8girnsdp9.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1623661919/kyubc7xvy4fmkq5hmxar.png"
+    }
+  },
+  {
+    "id": 10972,
+    "name": "Chamelio",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1733066519/bdisqs8qpwnzxphwlngt.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1733066520/jc1p8hj8zd9nmvcq6izr.png"
+    }
+  },
+  {
+    "id": 881,
+    "name": "Checkbox",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1641604164/yboras1lxdu0yykp3ww8.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1641604165/tccixcrcrzfrtuegseh0.png"
+    }
+  },
+  {
+    "id": 799,
+    "name": "CiteRight",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1582822217/nhuu6u3kobkxxlt1cyjf.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/CiteRight.png"
+    }
+  },
+  {
+    "id": 12394,
+    "name": "Claire Caquant",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1757409831/bets5gnwypepcrfqhed9.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1757409832/mn6kdcz4wwveb5um8jyk.png"
+    }
+  },
+  {
+    "id": 10903,
+    "name": "Clarilis",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1719998602/xxmiq4x1nrkh3afpg6fj.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1719998603/i2abdx4tkoywmq2xuvc3.png"
+    }
+  },
+  {
+    "id": 1617,
+    "name": "Clarra",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1646689994/yalikebe2ow9sbmjotul.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1646689994/c3jlvr6dxcbu0uvhxgrv.jpg"
+    }
+  },
+  {
+    "id": 10836,
+    "name": "Clause9",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1716976308/o1rwnssza9ckvhjjh5fb.png"
+    }
+  },
+  {
+    "id": 10835,
+    "name": "ClauseBuddy",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1716973286/cdoda2erlhthl6frukfr.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1716973287/juabzqoupfnyhnp1zbly.png"
+    }
+  },
+  {
+    "id": 800,
+    "name": "ClauseMatch",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/logo/Clausematch.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Clausematch.png"
+    }
+  },
+  {
+    "id": 1535,
+    "name": "Clearbrief",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1631553680/netuqjhcxm2kc11ov7va.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1631553680/muj6yzpti8vc66ic30is.png"
+    }
+  },
+  {
+    "id": 1116,
+    "name": "ClearstoneIP",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1586786552/nqkvaspmxqpnkijatbet.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1586786554/fxqdf5irsjbayqhah5hh.png"
+    }
+  },
+  {
+    "id": 682,
+    "name": "Clio Grow",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Clio%20Grow.png"
+    }
+  },
+  {
+    "id": 681,
+    "name": "Clio Manage",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Clio%20Manage.png"
+    }
+  },
+  {
+    "id": 1270,
+    "name": "Closing Folders by iManage",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1605898998/fq9hidcemkxkvxzjw8bs.png"
+    }
+  },
+  {
+    "id": 1338,
+    "name": "CloudNine Discovery",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/CloudNine%20Discovery.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/CloudNine%20Discovery.png"
+    }
+  },
+  {
+    "id": 2062,
+    "name": "CobbleStone Contract Insight Enterprise",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1699562974/ryy9sxo3nvzv83aoaofx.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1699562975/sswaji2nzvjboi1xmem3.jpg"
+    }
+  },
+  {
+    "id": 2061,
+    "name": "CobbleStone Contract Insight Express",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1699566024/zukbzaowrn5fxo73gq5x.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1699566025/kedm1qiaeplh81u91k6q.jpg"
+    }
+  },
+  {
+    "id": 939,
+    "name": "Cognitiv+",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1661931918/bah0zkkfznvyef33s8nf.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1661931919/xxixvkzo9hbf2mpdrxkj.png"
+    }
+  },
+  {
+    "id": 6531,
+    "name": "Comaea Apps",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 1936,
+    "name": "Composure.law",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1672970841/hxx6pggsru17pd3mloi7.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1672970841/bkuusaipfh4qxvjxyvje.png"
+    }
+  },
+  {
+    "id": 819,
+    "name": "Conga - Apttus",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Conga.png"
+    }
+  },
+  {
+    "id": 1963,
+    "name": "Consilio",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1686241814/wgk76vyjelhjoz87vsll.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1686241984/nbmtiatcrih5eqgtrx4l.png"
+    }
+  },
+  {
+    "id": 6130,
+    "name": "ContactEase",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705459384/tizlvi4pw0ap6j8spfms.svg"
+    }
+  },
+  {
+    "id": 1341,
+    "name": "Contract Logix",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1735847708/grgyzxjl64pwq3z9tfvc.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1735847709/umfcqfw0qoz6kzsdz7hu.svg"
+    }
+  },
+  {
+    "id": 1542,
+    "name": "Contract Mill",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1633956927/pbkgaauklnwxmcpz98pc.jpg"
+    }
+  },
+  {
+    "id": 1948,
+    "name": "Contractbook",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1678778494/ifni3ojk4bw4kimdzujq.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1678777971/rxeh7u4skg3i7zwkbraz.webp"
+    }
+  },
+  {
+    "id": 731,
+    "name": "ContractPodAi",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654699486/vmxqe79lkvj7ap1migmz.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654699487/jwlqcatnhlf2ctter7qo.png"
+    }
+  },
+  {
+    "id": 818,
+    "name": "ContractRoom",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/ContractRoom.png"
+    }
+  },
+  {
+    "id": 1120,
+    "name": "Contracts for Procurement Professionals",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654790502/ja8shr7jemiantffaeo5.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654791137/o4qonfpzcmk30rk9jgt2.png"
+    }
+  },
+  {
+    "id": 823,
+    "name": "ContractWorks",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1612233088/brrogly5lymsaskwidlz.png"
+    }
+  },
+  {
+    "id": 1901,
+    "name": "ContractZen Governance Suite ",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1663066632/mtbopofsiutaa580mcdl.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1699606974/d46opgjeer9hvuydfrjx.jpg"
+    }
+  },
+  {
+    "id": 1115,
+    "name": "CORVUM",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1586379437/y0wii13x80j5vhirokcd.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1586379574/zokqqdqabccfnhfefprh.jpg"
+    }
+  },
+  {
+    "id": 829,
+    "name": "Counsel Link",
+    "details": {
+      "url": "https://www.counsellink.net/",
+      "phone": "",
+      "slides": [],
+      "logoUrl": "",
+      "twitter": "",
+      "facebook": "",
+      "linkedin": "",
+      "demoVideo": "https://youtu.be/Alwf_BIW-tU",
+      "resources": [],
+      "signInUrl": "https://www.counsellink.net/aui/index.html#/login",
+      "emailSupport": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Counsel%20Link.png",
+      "privacyPolicyUrl": ""
+    }
+  },
+  {
+    "id": 1965,
+    "name": "CounselCommand",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1687983628/uefdaszkhsviivgcnhyc.png"
+    }
+  },
+  {
+    "id": 824,
+    "name": "Coupa",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Coupa.png"
+    }
+  },
+  {
+    "id": 1346,
+    "name": "Courtroom Insight",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Courtroom%20Insight.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Courtroom%20Insight.png"
+    }
+  },
+  {
+    "id": 1350,
+    "name": "CPA Global - Inprotech",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/CPA%20Global%20-%20Inprotech.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/CPA%20Global%20-%20Inprotech.png"
+    }
+  },
+  {
+    "id": 1348,
+    "name": "CPA Global - Ipendo",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/CPA%20Global%20-%20Ipendo.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/CPA%20Global%20-%20Ipendo.png"
+    }
+  },
+  {
+    "id": 1349,
+    "name": "CPA Global Explorer",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/CPA%20Global%20Explorer.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/CPA%20Global%20Explorer.png"
+    }
+  },
+  {
+    "id": 1351,
+    "name": "CPA Global Innography",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/CPA%20Global%20Innography.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/CPA%20Global%20Innography.png"
+    }
+  },
+  {
+    "id": 10880,
+    "name": "Credentials Leaks Monitoring",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1718035001/wmmtrtmjqzo4qq9ykazf.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1718033169/ukbnpy2mmuxrvkaaqlwt.png"
+    }
+  },
+  {
+    "id": 2007,
+    "name": "CV Partner",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1694082533/yfd9dkeljxay5earhae6.svg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1694082372/gybiuuyibbqz9jsqbgaa.jpg"
+    }
+  },
+  {
+    "id": 1469,
+    "name": "Dashboard Legal",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1621863703/nuxvgm13o56ky6qqjztq.svg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1671137964/roctzzxux47cbm4mbd0y.png"
+    }
+  },
+  {
+    "id": 12396,
+    "name": "Dazychain",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1758520240/hqip0jnnb0ouepxnoccj.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1758520680/cwgwjmwvccbuhzxueghv.png"
+    }
+  },
+  {
+    "id": 882,
+    "name": "dealcloser",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1580495847/ndi4gtvdpsypbkujsrx6.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/dealcloser.png"
+    }
+  },
+  {
+    "id": 10770,
+    "name": "Delium",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1706050354/aqffys8uygzse33gwyv7.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705984222/iak41nr8i0ca964wqnrd.png"
+    }
+  },
+  {
+    "id": 10927,
+    "name": "Deposition Insights™",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1722191758/peyzdqdezvojw6swjy8i.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1722191759/p2p1vky47pvmirbzmve0.jpg"
+    }
+  },
+  {
+    "id": 10962,
+    "name": "Dioptra",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1729112448/reprf5gzlc82v5ibycbr.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1729112449/ujjorvsryetqupryydq3.png"
+    }
+  },
+  {
+    "id": 2313,
+    "name": "DISCO eDiscovery",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705453906/ogths8imyq7wzu5ykym2.svg"
+    }
+  },
+  {
+    "id": 734,
+    "name": "DISCO Ediscovery ",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Disco.png"
+    }
+  },
+  {
+    "id": 1941,
+    "name": "Divergent Language Solutions",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1675453929/yrp7ox1gtt80sczdhtqr.jpg"
+    }
+  },
+  {
+    "id": 1118,
+    "name": "DocJuris",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1588263577/k5avae6shcrgxbbkraeh.svg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1588263580/qvaclv3ywmwnbmtjxkln.png"
+    }
+  },
+  {
+    "id": 1776,
+    "name": "Docket",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1652899833/qqdq3ypuow24rnqnfzsw.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1652800900/qgbksmk8anybry0r76yl.jpg"
+    }
+  },
+  {
+    "id": 931,
+    "name": "DocsCorp",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/DocsCorp.png"
+    }
+  },
+  {
+    "id": 1618,
+    "name": "DocStyle",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1647452955/snge0hi9dckpw6dfrjxm.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1647452956/m7c1rh0aqbfiyxf44s1d.png"
+    }
+  },
+  {
+    "id": 1150,
+    "name": "DocStyle ",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1647447495/vsgrwsbcwehgszsl12f6.jpg"
+    }
+  },
+  {
+    "id": 790,
+    "name": "DocuSign",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/DocuSign.png"
+    }
+  },
+  {
+    "id": 1076,
+    "name": "DocuVision.ai",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1595479972/tbwlyivcxfab544qvddq.png"
+    }
+  },
+  {
+    "id": 10023,
+    "name": "Doku4Documents",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705463971/kzevb7qnt5uholncovaj.png"
+    }
+  },
+  {
+    "id": 827,
+    "name": "Draft Analyzer by Bloomberg",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Draft%20Analyzer.png"
+    }
+  },
+  {
+    "id": 1092,
+    "name": "Draft Builders",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1585603019/uwrruhneyrtl6lqbkura.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1585774703/ohqmzoajrbxatezccj5z.png"
+    }
+  },
+  {
+    "id": 10841,
+    "name": "Draftable Legal ",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1717020129/iswfh04sy4hrmwpzhn00.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1717020130/moy8swzgotwqklyguscf.png"
+    }
+  },
+  {
+    "id": 10838,
+    "name": "DraftCheck",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1716989020/pwefp05t9nmvpb7zewhh.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1716989020/bdm2qds8bzepjvt1i57l.png"
+    }
+  },
+  {
+    "id": 1360,
+    "name": "DraftWise",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/DraftWise.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/DraftWise.png"
+    }
+  },
+  {
+    "id": 10846,
+    "name": "Dray Translations",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1717317439/waurjn5s4ivgaasc9xuc.jpg",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 12389,
+    "name": "dsdsad",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1753506991/c9guff43huzjxob8qyuj.png"
+    }
+  },
+  {
+    "id": 814,
+    "name": "eBrevia",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1580457025/ae1pkpbyxwdgwu5ek8m7.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/eBrevia.png"
+    }
+  },
+  {
+    "id": 1429,
+    "name": "EC3",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 1153,
+    "name": "ECFX, Inc",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1589324976/ieifgz5qhzwsip6vzoom.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1589324977/iswyu6rifrzcb3vomav0.jpg"
+    }
+  },
+  {
+    "id": 1857,
+    "name": "eDiscoTECH",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654486852/jbawtw8d9ebd5md5fa6i.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654486853/al106lxwu4jbe7pipixn.jpg"
+    }
+  },
+  {
+    "id": 1363,
+    "name": "eDiscovery Assistant",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1687369971/pe656me845zrvz13o1za.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1687369972/hxlbbadqmabsd2u0enfm.png"
+    }
+  },
+  {
+    "id": 1944,
+    "name": "eDiscovery Service Provider",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1676535861/xbq5yvtyi3kyu1mesmzx.png"
+    }
+  },
+  {
+    "id": 1871,
+    "name": "eDiscovery Solutions ",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1656345354/gdpzzigwuuru5o0jngg1.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1656345355/azxgxtizsmhghowolnct.png"
+    }
+  },
+  {
+    "id": 10926,
+    "name": "eLaw® Case Tracking",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1722186515/pjpoj9tjsthbe4caf9e3.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1722186567/kgmc7bqhk46qsu9zrjha.jpg"
+    }
+  },
+  {
+    "id": 737,
+    "name": "Elevate",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654691448/or7zfeh9t3z4d7hxwqnv.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654691449/mcf9idhb4swxanxoztfr.png"
+    }
+  },
+  {
+    "id": 10904,
+    "name": "ElevenFlo",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1720573436/zxlwfhylzp8vpe1qtyok.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1720573437/rbfqts9kwpiwdlowuuj6.png"
+    }
+  },
+  {
+    "id": 10775,
+    "name": "Employment Mediation & Workplace Investigation",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1706554190/ailygosiblyni6jbfton.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1706554191/smxh4rcpxk5a2yg5h0tg.png"
+    }
+  },
+  {
+    "id": 10913,
+    "name": "ENSPACE",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1721674989/gihjyusug8aeeih7fjxh.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1721674990/vhuws7xlxy2krmlp4lqi.png"
+    }
+  },
+  {
+    "id": 1364,
+    "name": "Epiq",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Epiq.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Epiq.png"
+    }
+  },
+  {
+    "id": 1779,
+    "name": "Epona USA, Inc.",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1679003161/zdl1zhvhrsfidz76puzk.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1665764641/bn7aa6adis6l24xlx3sw.jpg"
+    }
+  },
+  {
+    "id": 10778,
+    "name": "Eve - Legal AI Assistant",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1707771633/ssd8ccpgpbmxouijvmlu.svg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1707771635/selfhhrhyhczytq1i4xc.svg"
+    }
+  },
+  {
+    "id": 807,
+    "name": "Everchron",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/logo/Everchron.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Everchron.png"
+    }
+  },
+  {
+    "id": 883,
+    "name": "Everlaw",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1717689640/qwub8c4urgx05o7gzdfd.svg"
+    }
+  },
+  {
+    "id": 1510,
+    "name": "Evidence-Optix®",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1671123667/l9103djqz76bs0tszzgh.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1671123668/mc3qgwnga9yrar0weee7.jpg"
+    }
+  },
+  {
+    "id": 1079,
+    "name": "Evisort",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1673972289/wpfp0ywteqiny6zwwlfx.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1673972289/dba7kh2yduuokeghsu89.jpg"
+    }
+  },
+  {
+    "id": 825,
+    "name": "Exari Systems by Coupa",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Exari%20Systems.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Exari%20Systems.png"
+    }
+  },
+  {
+    "id": 809,
+    "name": "Exterro",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Exterro.png"
+    }
+  },
+  {
+    "id": 703,
+    "name": "ezBriefs",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1645809850/hc3sb3xrejzoswqf6act.png"
+    }
+  },
+  {
+    "id": 10808,
+    "name": "f",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 4635,
+    "name": "FastVisa",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705457510/utdtd0rnefqgal9jqncd.jpg"
+    }
+  },
+  {
+    "id": 6637,
+    "name": "FICO Debt Manager 9",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705460072/uq75r0uwvzwto4snaw2d.jpg"
+    }
+  },
+  {
+    "id": 1011,
+    "name": "Figma",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/logo/Figma.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Figma.png"
+    }
+  },
+  {
+    "id": 1488,
+    "name": "Fileread",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1623175947/tusvoz4vqwqosjosizqi.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1623175948/klail9caidm6ikstdliv.png"
+    }
+  },
+  {
+    "id": 10780,
+    "name": "FileTrail Digital",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1708982602/ykkabg7aczg8exwwd2ei.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1708982603/omfffndtrfhqsvruxian.png"
+    }
+  },
+  {
+    "id": 10777,
+    "name": "FileTrail Physical",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1707167549/i5x3hyxjvrovgwei7plk.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1707167549/gv5dznkybolreqidcgy0.png"
+    }
+  },
+  {
+    "id": 10786,
+    "name": "FileTrail Transfer",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1709047713/y2dhn3czqirooutadm8c.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1709047714/oipy1kez93xlawfh13v3.png"
+    }
+  },
+  {
+    "id": 1159,
+    "name": "Filevine",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1683240988/nztufb7d1bffd1rm7o2o.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1683240989/q8rwo62sndpffvswhlvf.png"
+    }
+  },
+  {
+    "id": 1879,
+    "name": "Firmwide Diversity - Operation Empowering Change",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1658502218/xpjqpswz7x3j5gtjrvnb.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1658502219/mxdlejwqzqpegi6kvpon.jpg"
+    }
+  },
+  {
+    "id": 10947,
+    "name": "FLIghtONE",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1727083485/e9thsranzznobiizkgwy.png"
+    }
+  },
+  {
+    "id": 10857,
+    "name": "FLInstitute",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1717502282/zor9r870ijribwwtvxwy.png"
+    }
+  },
+  {
+    "id": 1946,
+    "name": "Forensic Accounting, eDiscovery, and Digital Forensic Services",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1677645024/sycqmasbil1tsyyripeg.jpg",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 1855,
+    "name": "Forensync",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654253668/dvd8q60rlhqoidc9d9ya.svg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654253670/w696nwjcxolyflyrt55b.svg"
+    }
+  },
+  {
+    "id": 1939,
+    "name": "Foresight® BoardOps",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1674071125/qzfttnm8fcx2dfufjfh5.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1674070577/ifg0szvv4hqa3fnaxxjs.png"
+    }
+  },
+  {
+    "id": 1284,
+    "name": "Forte by Litera",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1610047656/fkf2vtrck9rvrhh8zune.jpg"
+    }
+  },
+  {
+    "id": 10912,
+    "name": "Gatekeeper ",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1721211455/rubpuwyhvkuy2rm7yuvd.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1721211455/jq0s7bw91tpxguymh0me.png"
+    }
+  },
+  {
+    "id": 1511,
+    "name": "GetQuorum",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1627397818/y8ayfolpysg0h44sncvj.jpg"
+    }
+  },
+  {
+    "id": 1870,
+    "name": "gf",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1655518538/vllu0okor2kjl078zu8h.png"
+    }
+  },
+  {
+    "id": 1872,
+    "name": "Gibson Testimony Intelligence",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1656603533/ebcwq4tr9tgplj39eyj2.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1656603533/enaqmvrz8rfmxhnvscip.png"
+    }
+  },
+  {
+    "id": 1849,
+    "name": "Global Intellectual Property Solutions",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1653397109/hvlqnya9llgxwpym24os.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1653397110/qggqr0ex95qaca4e1pbc.jpg"
+    }
+  },
+  {
+    "id": 10067,
+    "name": "Go4Clients",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705464012/adlca3j5406kqxpkq5zz.jpg"
+    }
+  },
+  {
+    "id": 11000,
+    "name": "Harvey",
+    "details": {
+      "url": "https://www.harvey.ai/",
+      "slides": [],
+      "logoUrl": "",
+      "demoVideo": "https://youtu.be/92_ipeEdpU0?si=g6ZYbEdPXceP1nCN",
+      "bannerImage": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1742307989/ootki3tob70ikmq3yzko.png",
+      "startingMonthlyPrice": ""
+    }
+  },
+  {
+    "id": 1784,
+    "name": "Helm360",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 1565,
+    "name": "Henchman",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1639555902/sxoex5pugqxg8rnhvfdo.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1639555903/ymnqwtufj1cyq6mfxrdx.png"
+    }
+  },
+  {
+    "id": 12384,
+    "name": "HerculesAI for Billing Compliance",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1750794189/ilq5ysizqv0ccovxem8d.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1750794190/faybfqzywbuhnpm4qcsc.png"
+    }
+  },
+  {
+    "id": 4485,
+    "name": "HR Tracking Database Software",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 781,
+    "name": "Hubspot",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/logo/Hubspot.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Hubspot.png"
+    }
+  },
+  {
+    "id": 744,
+    "name": "Icertis",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1611774012/pyj7y4uefp1ffefb8sg5.svg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1611774013/mkxqov0mdaibuckvmydn.jpg"
+    }
+  },
+  {
+    "id": 1938,
+    "name": "iCONECT",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1674053747/b9oregjhqoejlmnryfmo.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1674053515/psalxph7z0kebzn23s7k.png"
+    }
+  },
+  {
+    "id": 934,
+    "name": "iManage Work",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1679076113/xb0wnqafxiejka249myb.png"
+    }
+  },
+  {
+    "id": 10848,
+    "name": "InnoLaw Group",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1717422271/nyqx1ta4abzq4nsgddcx.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1717422272/mpdgvzl4h1elw7r6u3ln.png"
+    }
+  },
+  {
+    "id": 885,
+    "name": "Intapp",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Intapp.png"
+    }
+  },
+  {
+    "id": 1940,
+    "name": "Intellek LMS",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1675330644/hjew6l7rjjxikotffcmd.jpg"
+    }
+  },
+  {
+    "id": 746,
+    "name": "Ironclad",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Ironclad.png"
+    }
+  },
+  {
+    "id": 2686,
+    "name": "IST eDiscovery & Forensics ",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705454483/axfnt3zaiinffj6mvwkj.png"
+    }
+  },
+  {
+    "id": 1468,
+    "name": "Jade",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1621625791/ahfv0unfaumyetyt5c0f.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1621625791/bcbdvrynknznwtejaruj.jpg"
+    }
+  },
+  {
+    "id": 1078,
+    "name": "Josef",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1709094304/zllcwnbh248yeeyqsggg.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1709094305/vgjhjpmtzpjclixnqmav.png"
+    }
+  },
+  {
+    "id": 10793,
+    "name": "Josef Q",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1710391645/unqafhhslavuk3ed9nuq.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1710391645/xkbmrteiirrjlqakxsqa.png"
+    }
+  },
+  {
+    "id": 12399,
+    "name": "JUNE",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1758718698/dtf03vgn1vofx4yr0bbe.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1758718699/dlijxlfcqhtmeh7csrg0.png"
+    }
+  },
+  {
+    "id": 2060,
+    "name": "Juremy EU Terminology Search",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1699092434/onsvxqiiuqqxzwfhzmer.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1699092434/sdrtr1phy3fpcunwsac1.png"
+    }
+  },
+  {
+    "id": 1562,
+    "name": "JuriBlox Legal Suite",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1637751755/wnpxqkktd8g0z8bjky5x.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1637766608/dpypncf4lp44hugo7oa4.jpg"
+    }
+  },
+  {
+    "id": 1383,
+    "name": "Juridoc",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1637110112/q1jfe4oy8njjqcnpfusx.jpg"
+    }
+  },
+  {
+    "id": 10908,
+    "name": "Justice Accelerator",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1721030362/cbygzlpv6vaj8cugvueg.png"
+    }
+  },
+  {
+    "id": 8797,
+    "name": "Kafinea",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705462405/t90hnycxpr5syzaztp10.png"
+    }
+  },
+  {
+    "id": 1385,
+    "name": "KLDiscovery",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1719329761/vmvkrnpjluuy41kweyxc.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1637204529/eyyytfm6zqqka4y80og4.svg"
+    }
+  },
+  {
+    "id": 1971,
+    "name": "Knovos Discovery",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1690804428/pmiw9gww3wis7fpav8zw.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1690804431/aahwehf3jlefvdystmzi.png"
+    }
+  },
+  {
+    "id": 817,
+    "name": "Knowable",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Knowable.png"
+    }
+  },
+  {
+    "id": 1049,
+    "name": "Lawgood",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1582065100/z48pcwtqqklupn3rspou.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1582065101/lqzxwa3hpxs9r3yad3fo.png"
+    }
+  },
+  {
+    "id": 1862,
+    "name": "LawVu legal workspace",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654636571/mthr4hmcje6lxzymmfas.jpg"
+    }
+  },
+  {
+    "id": 1397,
+    "name": "Leaflet",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1640279014/v4z6uinbysmuykqu0o5b.jpg"
+    }
+  },
+  {
+    "id": 10818,
+    "name": "Legal Files",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1714162728/qak7egcsj6famya9w0uv.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1714162729/ggcasprv5ugamjbggwi0.jpg"
+    }
+  },
+  {
+    "id": 1566,
+    "name": "Legal Metrics",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1640616500/abtgtcoh8bfmyzbqijri.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1640637285/nuulhewhx2hrkciabfci.svg"
+    }
+  },
+  {
+    "id": 2400,
+    "name": "Legal Track",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705454079/yvc4a6ao8jgfcdscbrhg.png"
+    }
+  },
+  {
+    "id": 2025,
+    "name": "LegalOn Technologies",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1695931831/ql0us9smbh0wcnsdy0t8.svg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1695931833/l5thetmjarhv15gd8dlh.svg"
+    }
+  },
+  {
+    "id": 2063,
+    "name": "LegalSifter",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1738781447/yil7c0o4xqmrwnxbpide.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1752608578/zh11qbvm8lba4p155wx4.svg"
+    }
+  },
+  {
+    "id": 10938,
+    "name": "LegalTranslations.com",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1725435596/kngscbeiqhuj7870ex1c.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1725435597/helacilnwxomah4vvb45.png"
+    }
+  },
+  {
+    "id": 1268,
+    "name": "LegalVIEW BillAnalyzer",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654003040/bxtmtcaah1fhrc3oc4l4.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1605892145/qjeyjtg9ifhs1tofapxt.jpg"
+    }
+  },
+  {
+    "id": 832,
+    "name": "LegalVIEW by Wolters Kluwer",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/LegalVIEW%20by%20WK.png"
+    }
+  },
+  {
+    "id": 1962,
+    "name": "Legisway by Wolters Kluwer",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Cheetah%20by%20Wolters%20Kluwer.png"
+    }
+  },
+  {
+    "id": 11001,
+    "name": "Legora",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1742310110/rfmwv51bhpqmhnrfpvpw.png"
+    }
+  },
+  {
+    "id": 10970,
+    "name": "Leopard PROWESS",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1742842023/fakq1cqg7ubuf6cgc5x2.png"
+    }
+  },
+  {
+    "id": 1072,
+    "name": "Leverton",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1583417593/ozuhqoo5yezpnagwvcm9.svg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1583417595/pejve3xbzf4wtmkfayec.png"
+    }
+  },
+  {
+    "id": 1972,
+    "name": "Lexbe eDiscovery Platform (LEP)",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1690924934/odwcorued16rvzwpnq5n.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1690924935/hx27nxuapmdfpwz1fqwp.jpg"
+    }
+  },
+  {
+    "id": 1407,
+    "name": "LexCheck",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1645134304/b4yrberrtiuwytxy0i6e.svg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1645134306/tvnatquyygpxao0lk1if.png"
+    }
+  },
+  {
+    "id": 750,
+    "name": "Lexis+",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/logo/Lexis%20Advance.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Lexis%20Advance.png"
+    }
+  },
+  {
+    "id": 680,
+    "name": "LexisNexis",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/LexisNexis.png"
+    }
+  },
+  {
+    "id": 10971,
+    "name": "LexisNexis CounselLink+",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1732656405/q5imlifrshmkapiaqeks.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1732656405/ymsx0nr3xf9irblnhq4n.png"
+    }
+  },
+  {
+    "id": 1411,
+    "name": "LexisNexis CourtLink",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 2038,
+    "name": "LinkSquares Analyze",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1698336425/yhif0oicdvbuyvzc8yyl.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1698778159/pbydy41qd58alucxnxs4.png"
+    }
+  },
+  {
+    "id": 816,
+    "name": "LinkSquares CLM",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1611875033/dyl2l5q6tl3mysj14go3.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1700250357/wcdn0e9twxhjg57wjmtt.svg"
+    }
+  },
+  {
+    "id": 2037,
+    "name": "LinkSquares Finalize",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1698336736/anhhpxlsblrzvx65ftty.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1698778134/shpzj6liu58rwzz0ujfi.png"
+    }
+  },
+  {
+    "id": 2039,
+    "name": "LinkSquares Prioritize",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1698336249/cwn9cjpxdbmuhadgwjg2.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1698778186/wedro00kdzl0l925tqcg.png"
+    }
+  },
+  {
+    "id": 2049,
+    "name": "LinkSquares Sign ",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1698351421/pvkvdlrfzkeeu9rwctqb.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1698778211/uqqu6fywmeierf6zaflt.png"
+    }
+  },
+  {
+    "id": 752,
+    "name": "Litify",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1666814957/jvyxdi7q8y7hw87jh8dz.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1666814957/attvhktso1zk7bd4qzkj.png"
+    }
+  },
+  {
+    "id": 1470,
+    "name": "Litigaze",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1621866126/eppyhxie5hyaucvpx7if.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1621866127/b4mpr1lju3amxvhvuy8r.png"
+    }
+  },
+  {
+    "id": 1913,
+    "name": "Live Early Data Assessment",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1666041079/cqhsmmiqxsith0ht93k5.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1666041079/ldarpdjrabuorhe3hcna.png"
+    }
+  },
+  {
+    "id": 1412,
+    "name": "Loio.  Your contract companion.",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1647532737/pja86bah14plgrtcpjrg.png"
+    }
+  },
+  {
+    "id": 1762,
+    "name": "LTC4 - Legal Technology Core Competencies Certification Coalition",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 755,
+    "name": "Luminance",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1580514219/rzikngkjjx0uklv3qnkz.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Luminance.png"
+    }
+  },
+  {
+    "id": 1590,
+    "name": "Lupl",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1644251388/vzsewczftjxaadlyvusd.svg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1644251390/hgcw0mxlojimynsagirw.jpg"
+    }
+  },
+  {
+    "id": 2051,
+    "name": "Macro",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1698701038/dlognkayxyqiuxqiczz4.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1698701038/d93b3rqiikxxx53ub0to.svg"
+    }
+  },
+  {
+    "id": 1786,
+    "name": "Malbek",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1724710874/tjh1pzytbwyw4fmmmuko.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1724710875/bxcowb6pepzyx8xnzrbc.png"
+    }
+  },
+  {
+    "id": 10989,
+    "name": "Marveri",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1738182913/dzqeyj1hhvsewohmbtbu.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1738182914/nsrs46pwimoq63uuuxg7.png"
+    }
+  },
+  {
+    "id": 1934,
+    "name": "Matter Hub",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1695306964/nfpcuep39suifvpwbpbr.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1695307132/nfsaznoidv2tam88fk5u.jpg"
+    }
+  },
+  {
+    "id": 12385,
+    "name": "MatterSuite",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1751628811/vwpadriyomgqzzmh88fh.jpg"
+    }
+  },
+  {
+    "id": 10773,
+    "name": "Maxime",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1706308910/em0wiftbwsxs6rrkgq7h.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1706308910/x9qdqsoekjj5lojfvlue.png"
+    }
+  },
+  {
+    "id": 2075,
+    "name": "Mercury ELM",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1703200000/gnamsqqh5zeh9487kp8p.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1703200000/n887rwv9jmya1puzuzzo.jpg"
+    }
+  },
+  {
+    "id": 1210,
+    "name": "Metadact by Litera",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1595381012/rovy55o8wjleccqxwg0s.png"
+    }
+  },
+  {
+    "id": 4776,
+    "name": "Metridea Enterprise Contracts",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705457659/jh02epul4lcmv5d6ndfl.png"
+    }
+  },
+  {
+    "id": 1787,
+    "name": "Micron Systems Inc.",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 1195,
+    "name": "Microsoft 365 office suite migration assistance",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1591831082/shhxtpffnj00cxxzb3ig.png"
+    }
+  },
+  {
+    "id": 774,
+    "name": "Microsoft Office 365",
+    "details": {
+      "phone": "",
+      "slides": [
+        "https://res.cloudinary.com/dh1giwabb/image/upload/v1589481406/rcu5clr5qtnftem5g54t.png"
+      ],
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/logo/Microsoft%20Office%20365.png",
+      "twitter": "",
+      "facebook": "",
+      "linkedin": "",
+      "demoVideo": "",
+      "resources": [],
+      "signInUrl": "https://login.microsoftonline.com/",
+      "emailInquiry": "",
+      "emailSupport": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Microsoft%20Office%20365.png"
+    }
+  },
+  {
+    "id": 775,
+    "name": "Microsoft Outlook",
+    "details": {
+      "slides": [],
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/logo/Microsoft%20Outlook.png",
+      "demoVideo": "https://www.youtube.com/watch?v=edABo0VnHK8",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Microsoft%20Outlook.png"
+    }
+  },
+  {
+    "id": 773,
+    "name": "Microsoft Teams",
+    "details": {
+      "url": "https://www.microsoft.com/en-us/microsoft-365/microsoft-teams/download-app",
+      "phone": "",
+      "slides": [
+        "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/screens/Microsoft Teams/screen1.jpg",
+        "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/screens/Microsoft Teams/screen0.jpg"
+      ],
+      "logoUrl": "",
+      "twitter": "",
+      "facebook": "",
+      "linkedin": "",
+      "demoVideo": "https://www.youtube.com/watch?v=w_NOLTAzDaQ",
+      "resources": [],
+      "signInUrl": "https://login.microsoftonline.com/",
+      "emailInquiry": "",
+      "emailSupport": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1609443750/ozvrcbdeo6jvykdvthdf.png"
+    }
+  },
+  {
+    "id": 1594,
+    "name": "Mike DocReview",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1644329100/szgpfrmalhakieghvzcn.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1665742362/drsenvbiqhb8aesof1ed.png"
+    }
+  },
+  {
+    "id": 10932,
+    "name": "Mitratech Acuity ELM",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1723678983/ezomntjvjwb0bz4vgc1d.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1723678984/cdyywxohfislbd3ydh40.png"
+    }
+  },
+  {
+    "id": 831,
+    "name": "Mitratech ELM",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Collaborati%20%2F%20Viewabill.png"
+    }
+  },
+  {
+    "id": 10930,
+    "name": "Mitratech HotDocs",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1723677214/j2wyh6iqiyyjncuwkms5.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1723677214/x3qw1ryw2mg2cp5vfyl5.png"
+    }
+  },
+  {
+    "id": 10929,
+    "name": "Mitratech LegalHold ",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1723675940/mgbavowh7tn8mz8xjbfg.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1723675941/xbqzfjcs0zhowa6le9fk.png"
+    }
+  },
+  {
+    "id": 10928,
+    "name": "Mitratech Managed Bill Review (MBR) ",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1723674764/bw9p8adrh4rp0lhdlpx6.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1723674765/roc37ushivqxpjaue94c.png"
+    }
+  },
+  {
+    "id": 1418,
+    "name": "Mitratech TAP: Workflow Automation",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1723674204/nxwdvx34y21oo5vvhcva.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1723674204/malkyk1l7seiahe5fzkh.png"
+    }
+  },
+  {
+    "id": 839,
+    "name": "Mitratech TeamConnect",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1723672088/m4sqyaiyd9a5zuymgfio.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1723672088/bd2lkpx0x7dczd64runu.png"
+    }
+  },
+  {
+    "id": 10805,
+    "name": "mot-r Adaptive ELM",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1712233509/qs1kqcgky273q3kp0cza.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1712233510/gemonq8m6o10ascvumfu.png"
+    }
+  },
+  {
+    "id": 10806,
+    "name": "mot-r Enterprise Legal Management",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1712272020/frekfzbsqdaxl9c9zjq1.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1712272021/knjfti2qyjawk7i3vzmf.png"
+    }
+  },
+  {
+    "id": 1544,
+    "name": "Motionize",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1634508099/ni3dnuzofgpegjndqoqw.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1634508100/ywzuew4bg2csr6y9ydxy.png"
+    }
+  },
+  {
+    "id": 5709,
+    "name": "NAVEX IRM",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705458916/zoxj74uusvk2v4dh4mqs.svg"
+    }
+  },
+  {
+    "id": 5578,
+    "name": "Navex One",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705458752/qgqtba06dnymorgboltz.svg"
+    }
+  },
+  {
+    "id": 1788,
+    "name": "NBI, Inc.",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654111286/p4g5s6anf2gi0nva5sfm.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654111287/du3dr6ygpzquf9jibqi4.png"
+    }
+  },
+  {
+    "id": 1568,
+    "name": "neopolis",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1641205634/dklgsxolaaqyvuml8lp0.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1641205635/nsot1ofdmxjf9ymuutfv.png"
+    }
+  },
+  {
+    "id": 756,
+    "name": "Neota",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1659346782/wzanq3jgvt2zr9pude9u.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1659346782/eew01kzagarl37zk1fna.png"
+    }
+  },
+  {
+    "id": 780,
+    "name": "NetDocuments",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1670434118/sduqmzddkio25lk9qrca.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1607027570/g4a6byjhdmzlaggmsjxa.jpg"
+    }
+  },
+  {
+    "id": 1455,
+    "name": "NEXL",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1621483836/m81ykvsypc1ufmlg2dax.png"
+    }
+  },
+  {
+    "id": 10878,
+    "name": "NexLaw",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1717995148/sjxhlob4op2cbtlunqua.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1717994499/u8svnjoj0ud1idfk9izj.png"
+    }
+  },
+  {
+    "id": 2071,
+    "name": "Non-Disclosure Agreement (Unilateral/ Mutual)",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1701773038/eati9gx95bvisvlxvn3n.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1701773038/nudhimfbrlr1nhsjh1dq.png"
+    }
+  },
+  {
+    "id": 1933,
+    "name": "NRF Horizon Scanner",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1672936632/jwhfbu4gmone7z6xh7b1.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1695307147/vhedkuxkqvcatmz7rcan.png"
+    }
+  },
+  {
+    "id": 1171,
+    "name": "OneTrust ",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1589386713/z448lh5cjkfigv12vbub.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1589386713/acvdm4vr0m2tzwdggczt.jpg"
+    }
+  },
+  {
+    "id": 5655,
+    "name": "OneTrust GRC and Security Assurance Cloud",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705458837/bsfknou0wrwwonrm2k8d.svg"
+    }
+  },
+  {
+    "id": 2280,
+    "name": "OneTrust Privacy and Data Governance Cloud",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705453854/l5st9ois14gr6bivzysd.svg"
+    }
+  },
+  {
+    "id": 843,
+    "name": "Onit",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1710886188/uo8ea8ewd4j9aawjbniv.png"
+    }
+  },
+  {
+    "id": 833,
+    "name": "Onna",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654627226/g9k1syx07kormiqsxdcw.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1673901762/z14s8mcs1f11w95kdb4s.jpg"
+    }
+  },
+  {
+    "id": 10968,
+    "name": "Ontoris Contract Lifecycle Management ",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1729431092/dido0bnydvzddwj91ivn.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1729431093/tmxolvwcw8raiddkoogr.png"
+    }
+  },
+  {
+    "id": 10967,
+    "name": "Ontoris Legal Matter Management ",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1729430485/zup8p5achflnvnh1u6nz.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1729430486/hyebrjrfbsc3eoy6pvrc.png"
+    }
+  },
+  {
+    "id": 757,
+    "name": "OpenText",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/OpenText.png"
+    }
+  },
+  {
+    "id": 1430,
+    "name": "OpenText Axcelerate",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 758,
+    "name": "P4W - Tikit",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/logo/P4W%20-%20Tikit.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/P4W%20-%20Tikit.png"
+    }
+  },
+  {
+    "id": 1040,
+    "name": "PainWorth",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1581638717/xkqjqyiaef9c7qaxcbfb.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1581638717/xp0wviatq1ejwia9hs2o.jpg"
+    }
+  },
+  {
+    "id": 760,
+    "name": "Paladin",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Paladin.png"
+    }
+  },
+  {
+    "id": 1958,
+    "name": "Paragon Legal",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1717691254/h2kqgfpepyh7bjtgcukx.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1717691255/c54iqqndsfewj02e8kje.png"
+    }
+  },
+  {
+    "id": 1037,
+    "name": "Parley Pro",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1581530934/l3mu8xby2ijcsql17qzb.jpg"
+    }
+  },
+  {
+    "id": 1853,
+    "name": "Passport® by Wolters Kluwer ELM Solutions",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654007410/nnhslkxrhlb4pffsvnvp.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654007411/io29zweij5watrr8fpia.png"
+    }
+  },
+  {
+    "id": 1112,
+    "name": "PatentPartsList.com",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1586205377/jzo5espeow8ejjmy3svr.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1586205378/aucnmptpsbmm9g7pwx2c.jpg"
+    }
+  },
+  {
+    "id": 1038,
+    "name": "PERSUIT",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1747847942/s0j7xczs3anw6birgjzx.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1747847943/ssaihngbrsstn0xwshht.png"
+    }
+  },
+  {
+    "id": 10842,
+    "name": "PointOne Automatic Timekeeping",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1717087742/vb9wiyglhljqzwafbiby.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1717087743/rixi7jhauncx5oti6qj6.png"
+    }
+  },
+  {
+    "id": 1759,
+    "name": "Pramata",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1653663834/cljgb9vqpoxjbw8wq3r4.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1653663838/wwrhzm8doudk6wmjr8yd.png"
+    }
+  },
+  {
+    "id": 1212,
+    "name": "Prenario",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1595840352/f1426bic33krjjq0yjln.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1595840353/r1n7gad0odlzial8b3gl.png"
+    }
+  },
+  {
+    "id": 2067,
+    "name": "Prevail",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1700248927/vyaeb5j3utchzdrtayol.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1700248927/mlkcuclhuhtrmfy8oi2d.png"
+    }
+  },
+  {
+    "id": 1075,
+    "name": "Prevalent",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1587044083/iweukceofijrij3ye9nt.svg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1586443770/cd9pgn9simqsivttu9ao.jpg"
+    }
+  },
+  {
+    "id": 1959,
+    "name": "Priori Marketplace",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1685730590/ctaylgtxfbihls0bxuhz.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1685730591/gp6cnu3s8x6hg4joqy4d.png"
+    }
+  },
+  {
+    "id": 1918,
+    "name": "Query",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1667485575/kjm0ay8pjdvjh66qqibs.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1667485427/ytgqzkfxl042u8dg0yrj.png"
+    }
+  },
+  {
+    "id": 1792,
+    "name": "Quovant",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 1952,
+    "name": "Razor365 CLM",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1681993769/jrboil0azbejybb46hva.webp",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1664266051/anvynwteyxnrawh9c8u4.png"
+    }
+  },
+  {
+    "id": 1881,
+    "name": "RazorLex",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705656831/ziynmfvbhwhcy7sabswu.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705656832/adksxelxw9j2mhptxfwi.jpg"
+    }
+  },
+  {
+    "id": 1880,
+    "name": "RazorSign",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705654300/trcp6gxfnkpa93szyghk.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705654301/p2mziboi6seyntbexlkn.webp"
+    }
+  },
+  {
+    "id": 2011,
+    "name": "Recital",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1694709144/crklsjg9ap0u42eipmei.png"
+    }
+  },
+  {
+    "id": 10924,
+    "name": "Record Insights®",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1722135777/bfir7otosjosqwrxiaz1.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1722136385/cx9bmcb79mgxkdlvhv3r.png"
+    }
+  },
+  {
+    "id": 1790,
+    "name": "Red Marker - AI powered advertising compliance",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 10939,
+    "name": "Redactable",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1725655529/zwtujdt08yt2eufv7wdy.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1725655529/jhhkv8wje36iirifjr3k.png"
+    }
+  },
+  {
+    "id": 765,
+    "name": "Relativity",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Relativity.png"
+    }
+  },
+  {
+    "id": 1866,
+    "name": "Relyance AI",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654877158/v6uyxlwytvu0gqd97rmu.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654877159/cl4lijdgmgxtprml0nex.png"
+    }
+  },
+  {
+    "id": 844,
+    "name": "Repstor",
+    "details": {
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/logo/Repstor.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Repstor.png"
+    }
+  },
+  {
+    "id": 10781,
+    "name": "Revolutio.Ai Legal Workspace and Matter Management Platform",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1707910929/fcvkl15rsmz6hbp9vrwg.png"
+    }
+  },
+  {
+    "id": 10796,
+    "name": "RightHub",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1710946637/ayh5qlwgzonl2e3ocqqu.jpg"
+    }
+  },
+  {
+    "id": 1796,
+    "name": "RJH Consulting: Law Firm Consultants",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 1920,
+    "name": "Rowan Patents",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1668445020/ynisllbdbytgomj8yims.jpg"
+    }
+  },
+  {
+    "id": 2031,
+    "name": "Rulebooks",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1697453807/ggwmn0urrsdolyvvwrgx.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1697453807/tbzeor2c35chfqhrwj9k.png"
+    }
+  },
+  {
+    "id": 770,
+    "name": "Salesforce",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Salesforce.png"
+    }
+  },
+  {
+    "id": 5061,
+    "name": "Salesforce Sales Cloud",
+    "details": {
+      "url": "https://www.salesforce.com/",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705458056/wtxcypyjy2uodpccdzaa.svg"
+    }
+  },
+  {
+    "id": 2647,
+    "name": "SAP Ariba",
+    "details": {
+      "url": "https://www.sap.com/",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705454405/g0lgxzbhh1ydmmddrcra.svg"
+    }
+  },
+  {
+    "id": 7203,
+    "name": "Scopidea",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705460743/u0i6p5t7j3xwfjueczg8.png"
+    }
+  },
+  {
+    "id": 2316,
+    "name": "Signeasy",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 845,
+    "name": "SimpleLegal",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654034550/eociw103x2ddwwnimnwe.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/SimpleLegal.png"
+    }
+  },
+  {
+    "id": 1441,
+    "name": "Sirion",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1688676095/ccxlh2ety4gnluqctutz.png"
+    }
+  },
+  {
+    "id": 1271,
+    "name": "SLATE",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 1256,
+    "name": "SLATE by SDL",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1605626692/weanyphxbk0c1bo7e0iu.svg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1605642512/meraofukrlvwckntaofy.jpg"
+    }
+  },
+  {
+    "id": 2073,
+    "name": "SmartDepo",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1702233998/ecunhcij4fmgjgaoitzt.png",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 10863,
+    "name": "SmartSAR",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1717751013/l9a9uqcdgtlkrhq7wvb0.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1717751013/gke8hw3jmy0gx3vnlfuy.jpg"
+    }
+  },
+  {
+    "id": 1122,
+    "name": "SMI Aware",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1588868637/ypnsbxoe9jdu6hmgdc9r.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1588869127/hpgmtmjofzrgs3zjxcej.png"
+    }
+  },
+  {
+    "id": 871,
+    "name": "Specifio",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1585773388/cmbgt5iorow7djakbkf1.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1585792030/bmedgpjgqhxtjxnv5uck.png"
+    }
+  },
+  {
+    "id": 1894,
+    "name": "SpeedLegal™",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1661155239/xih29t7ivr26pwvhkuro.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1661155056/ehronoessorpualotuza.png"
+    }
+  },
+  {
+    "id": 1922,
+    "name": "Spellbook",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1752673020/cclahk8evlyg56yrfwrz.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1752673021/npbt9bxd5oijjkstflwa.png"
+    }
+  },
+  {
+    "id": 1070,
+    "name": "SpotDraft",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1583159715/dgylmstffw6jwukynu4y.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1583158043/zj35ct4c9aumxlvpjx4c.jpg"
+    }
+  },
+  {
+    "id": 1898,
+    "name": "StoredIQ for Information Governance",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1662104281/al8foqtzkg8hfmlkbp4z.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1662104282/g2ksfu5v9otiqkorddih.png"
+    }
+  },
+  {
+    "id": 1895,
+    "name": "Stout Legal Management Consulting",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1661182213/hlr7pugyqwwxysaslsa7.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1661182100/v5ickntrzkkwypf9vyf0.jpg"
+    }
+  },
+  {
+    "id": 10910,
+    "name": "Streamline AI ",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1721078035/k6mtvt4qimtvl2ewc6xs.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1721078036/jztdqdyumuq5r9xserbt.svg"
+    }
+  },
+  {
+    "id": 10914,
+    "name": "Subpoena Manager",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1721695608/dgehh4n8y4stsnxtm8bf.svg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1721695609/ckhm3ydtzget7hphtdbk.svg"
+    }
+  },
+  {
+    "id": 1534,
+    "name": "Summize",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1718179633/hpmezcf2fj2wnzk6glhs.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1718179633/aumhjhy7wk6dpugzyabs.png"
+    }
+  },
+  {
+    "id": 3125,
+    "name": "SurePoint Legal Management System (LMS)",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705455748/uxkygvxjcpd9uhtjgp2i.svg"
+    }
+  },
+  {
+    "id": 1613,
+    "name": "SurePoint Technologies",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1646155831/edkysftaktndetgkozak.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1646155831/czgaxa8zfd2x8apm3fqj.jpg"
+    }
+  },
+  {
+    "id": 1119,
+    "name": "Syntheia",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1630522201/crh3i6ohjztr4lxuju6s.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1589998095/zlcbazukvrbwob99pzx2.png"
+    }
+  },
+  {
+    "id": 1501,
+    "name": "Synyo",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1625468169/gwxhqlffyabaeawoa5js.png"
+    }
+  },
+  {
+    "id": 1930,
+    "name": "TCDI",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1671485112/tbr6nlcuuf06rcitj75j.svg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1684961258/v03pnousqccimcnmyhvq.jpg"
+    }
+  },
+  {
+    "id": 10324,
+    "name": "Telintel Enterprise Platform",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 1257,
+    "name": "Temburi",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1604701404/rofesuyj61upqgvcqkis.png"
+    }
+  },
+  {
+    "id": 1290,
+    "name": "TermScout",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1612299989/gfhk1i5mmworaw5av5gc.svg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1612299991/v3khmvrt5cjtzw5gexzk.jpg"
+    }
+  },
+  {
+    "id": 10963,
+    "name": "test prod 123",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1754328428/kxjinc4iqeruktnpgexg.svg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1754328430/bkt7gqf1gzlkz5yhhcp6.png"
+    }
+  },
+  {
+    "id": 10965,
+    "name": "test prod 33",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 10987,
+    "name": "test prod suite 2",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 10964,
+    "name": "Test Product Update",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 10834,
+    "name": "The Law Boutique ",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1716972647/wv0ljcazpazzf8ism5zi.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1716972648/d16o8tggph9glceq57ig.png"
+    }
+  },
+  {
+    "id": 1255,
+    "name": "Theorem LTS",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1604035253/ema5dgrk8acwabjuv9nr.svg"
+    }
+  },
+  {
+    "id": 12021,
+    "name": "Thomson Reuters CoCounsel Drafting",
+    "details": {
+      "url": "https://legal.thomsonreuters.com/en/products/co-counsel",
+      "squareLogoUrl": "https://cdn.brandfetch.io/legal.thomsonreuters.com/en/products/co-counsel/w/400/h/400?c=1idwXh72YbOuUB5BDNA"
+    }
+  },
+  {
+    "id": 867,
+    "name": "ThoughtRiver",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1664467781/oxe4qorcebeqx2v3iv6u.png",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Thought%20River.png"
+    }
+  },
+  {
+    "id": 1051,
+    "name": "ThoughtTrace",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1582301032/lnwwhezspftyfvov833y.svg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1582302086/p7hmholhxasnluuzs6na.png"
+    }
+  },
+  {
+    "id": 769,
+    "name": "Time Matters",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1626963760/ask2fevjdnex5ffqxdlp.png",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 10997,
+    "name": "TimeSentry AI",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1741643402/oqbjoa205oryzhmgi6yh.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1741643403/h6fmukpcfjxacfs3x1qd.png"
+    }
+  },
+  {
+    "id": 1897,
+    "name": "Tonkean LegalWorks",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1662056166/xupihnfhnqistimqrhss.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1662056166/hrowbdbustpstno3i4rd.png"
+    }
+  },
+  {
+    "id": 7345,
+    "name": "Total Workforce Management System (TWMS)",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 1908,
+    "name": "Traact",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1678342453/ednvjsje9lsnot4wx0c8.webp",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1678342454/w3o4anyt584wzs2nekbd.webp"
+    }
+  },
+  {
+    "id": 857,
+    "name": "TrademarkNow",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1582872602/iwa5iuhcdbkspyet8ni5.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1591810292/awseos7d158jbnddxujz.png"
+    }
+  },
+  {
+    "id": 1563,
+    "name": "Trakti",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1695288094/tp48opu1sykbdaivztrq.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1695288095/wm7llujwnlwigldb016h.png"
+    }
+  },
+  {
+    "id": 872,
+    "name": "Trellis",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1580927287/bteimpmfmccqjjlwrdqe.svg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1580927289/lfsxg0xdfge4keuiezni.png"
+    }
+  },
+  {
+    "id": 12390,
+    "name": "TrialView",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1753954795/ejnyjhe2cormkn5r0wmd.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1753954795/q8hp1i17qxkmtg35zoko.png"
+    }
+  },
+  {
+    "id": 1460,
+    "name": "Trokt | Thumbprinter",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1622227841/kvzjgivvkskqspffnepl.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1621521702/b2zbxehw3w6gy3gzel1h.png"
+    }
+  },
+  {
+    "id": 1588,
+    "name": "TrueScreen",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1643811460/m2v4pn6foi9nfhwx70xx.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1643811461/waexjhfnohaqgyeaplfd.png"
+    }
+  },
+  {
+    "id": 683,
+    "name": "Trustbot",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1580244894/niodbcbnl5o941ofeora.svg",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Trustbot.png"
+    }
+  },
+  {
+    "id": 1961,
+    "name": "Truve.ai",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1686155150/tl3clfnqsjtuqwzgctxs.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1686155151/jahfpk0jnby3blusu9qh.png"
+    }
+  },
+  {
+    "id": 1269,
+    "name": "TyMetrix 360° by Wolters Kluwer ELM Solutions",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654006024/qtfhbiuhzmzl1b5lofmb.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1605896396/eosu1shky2xkjlk7awcg.jpg"
+    }
+  },
+  {
+    "id": 838,
+    "name": "UniCourt Enterprise API",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1756796494/bdmprio1wvnms9z6jymo.jpg"
+    }
+  },
+  {
+    "id": 10833,
+    "name": "Vault",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1716968263/ngpnwlwpntfed79radfz.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1716965995/ntx3bxungmbjxqgz6u4m.png"
+    }
+  },
+  {
+    "id": 724,
+    "name": "VitalLaw® for Corporate Counsel",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1686842129/gdrxhzkrpfs3jfhucfjp.jpg",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Cheetah%20by%20Wolters%20Kluwer.png"
+    }
+  },
+  {
+    "id": 12392,
+    "name": "vLex Analytics",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1754669271/kphnuo8ei5fhse4lros5.jpg"
+    }
+  },
+  {
+    "id": 12391,
+    "name": "vLex Legal Research",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1754667922/ipuhwetcexf9xe64vb5j.jpg"
+    }
+  },
+  {
+    "id": 10887,
+    "name": "Volody CLM",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1718604521/ro55eu36cymq3ezgjmk7.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1718604522/cno1jb67gpu1bhjvmkqy.png"
+    }
+  },
+  {
+    "id": 1763,
+    "name": "Vox Actio LLC",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1653490304/acsulwxoywgeo8bddocw.png",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1653490535/yotc7hwupruautm93bhm.png"
+    }
+  },
+  {
+    "id": 740,
+    "name": "Westlaw Edge",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Westlaw.png"
+    }
+  },
+  {
+    "id": 739,
+    "name": "Westlaw Firm Central",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Firm%20Central%20-%20Westlaw.png"
+    }
+  },
+  {
+    "id": 1863,
+    "name": "Whistleblowing Software",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1654675173/to0f6ly2mvcy84hp1agq.png"
+    }
+  },
+  {
+    "id": 1794,
+    "name": "Wolters Kluwer ELM Solutions",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1655304906/msmfibfyyg8xkstlrxfi.png"
+    }
+  },
+  {
+    "id": 1123,
+    "name": "WordRake",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1609860561/prxc6cnyxmpdrg9wegqe.webp",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1589227302/ysopqaqkgdcpjzkwnk9a.jpg"
+    }
+  },
+  {
+    "id": 1276,
+    "name": "Workday",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1607978662/hb26sxglxdmhswih8raf.jpg"
+    }
+  },
+  {
+    "id": 7477,
+    "name": "Workforce Operations",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": ""
+    }
+  },
+  {
+    "id": 5452,
+    "name": "Workiva",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1705458592/xoyewxft9t64elmlckry.svg"
+    }
+  },
+  {
+    "id": 1797,
+    "name": "Worldwide IP Solutions",
+    "details": {
+      "logoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1653397379/sdyuo6vdc505ylzzbbmp.jpg",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1653397379/rg8dj49cx3dcblymbsbb.jpg"
+    }
+  },
+  {
+    "id": 1489,
+    "name": "Xakia",
+    "details": {
+      "logoUrl": "",
+      "squareLogoUrl": "https://res.cloudinary.com/dh1giwabb/image/upload/v1679684795/jnt2y3hpyz60us3aepmx.jpg"
+    }
+  }
+]

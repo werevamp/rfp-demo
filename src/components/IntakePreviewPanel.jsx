@@ -15,8 +15,11 @@ import {
   contractTerms,
   billingTerms,
   paymentTerms,
-  productRecommendations
+  productRecommendations,
+  replacementReasons,
+  currentToolStatus
 } from '../data/intakeOptions'
+import productsData from '../data/products.json'
 
 export default function IntakePreviewPanel({ formData, isOpen, onClose, currentStep = 1 }) {
   if (!isOpen) return null
@@ -54,6 +57,17 @@ export default function IntakePreviewPanel({ formData, isOpen, onClose, currentS
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(value)
+  }
+
+  // Helper function to convert product IDs to product names
+  const formatProductNames = (productIds) => {
+    if (!productIds || productIds.length === 0) return '(None added)'
+    return productIds
+      .map(id => {
+        const product = productsData.find(p => p.id === id)
+        return product ? product.name : `Unknown Product (${id})`
+      })
+      .join(', ')
   }
 
   const QuestionAnswer = ({ question, answer }) => (
@@ -145,10 +159,24 @@ export default function IntakePreviewPanel({ formData, isOpen, onClose, currentS
                   <Title order={4} size="md" c="gray.9">Product Information</Title>
                 </Box>
                 <Box px="lg" pt="sm" style={{ borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
-                  <QuestionAnswer
-                    question="Product Search"
-                    answer={formData.productSearch}
-                  />
+                  {formData.productSearch && (
+                    <QuestionAnswer
+                      question="Specific Product"
+                      answer={formData.productSearch}
+                    />
+                  )}
+                  {formData.categorySearch && (
+                    <QuestionAnswer
+                      question="Product Category"
+                      answer={formData.categorySearch}
+                    />
+                  )}
+                  {!formData.productSearch && !formData.categorySearch && (
+                    <QuestionAnswer
+                      question="Product Selection"
+                      answer="(Not provided)"
+                    />
+                  )}
                 </Box>
               </Box>
             )}
@@ -260,11 +288,7 @@ export default function IntakePreviewPanel({ formData, isOpen, onClose, currentS
                 <Box px="lg" pt="sm" style={{ borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
                   <QuestionAnswer
                     question="Existing Tech Stack"
-                    answer={
-                      formData.existingTechStack && formData.existingTechStack.length > 0
-                        ? formData.existingTechStack.join(', ')
-                        : '(None added)'
-                    }
+                    answer={formatProductNames(formData.existingTechStack)}
                   />
                 </Box>
               </Box>
@@ -338,6 +362,10 @@ export default function IntakePreviewPanel({ formData, isOpen, onClose, currentS
                 <Box px="lg" pt="sm" style={{ borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
                   <Stack gap={0}>
                     <QuestionAnswer
+                      question="Proposal Submission Deadline"
+                      answer={formatDate(formData.deadline)}
+                    />
+                    <QuestionAnswer
                       question="Contract Term"
                       answer={formatArrayValues(formData.contractTerm, contractTerms)}
                     />
@@ -360,6 +388,232 @@ export default function IntakePreviewPanel({ formData, isOpen, onClose, currentS
 
             {/* Tech Intake - Step 12: Contact */}
             {formData.rfpType === 'legal-tech-new' && shouldShowSection(12) && (
+              <Box>
+                <Box py="xs" px="lg" style={{ backgroundColor: 'var(--mantine-color-gray-0)', borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <Title order={4} size="md" c="gray.9">Contact Information</Title>
+                </Box>
+                <Box px="lg" pt="sm">
+                  <Stack gap={0}>
+                    <QuestionAnswer
+                      question="Email Address"
+                      answer={formData.email}
+                    />
+                    <QuestionAnswer
+                      question="Terms Accepted"
+                      answer={formData.acceptedTerms ? 'Yes' : 'Not yet accepted'}
+                    />
+                  </Stack>
+                </Box>
+              </Box>
+            )}
+
+            {/* Tech Replace - Step 2: Product to Replace */}
+            {formData.rfpType === 'legal-tech-replace' && shouldShowSection(2) && (
+              <Box>
+                <Box py="xs" px="lg" style={{ backgroundColor: 'var(--mantine-color-gray-0)', borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <Title order={4} size="md" c="gray.9">Product to Replace</Title>
+                </Box>
+                <Box px="lg" pt="sm" style={{ borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <QuestionAnswer
+                    question="Software to Replace"
+                    answer={formData.productToReplace}
+                  />
+                </Box>
+              </Box>
+            )}
+
+            {/* Tech Replace - Step 3: Replacement Reasons */}
+            {formData.rfpType === 'legal-tech-replace' && shouldShowSection(3) && (
+              <Box>
+                <Box py="xs" px="lg" style={{ backgroundColor: 'var(--mantine-color-gray-0)', borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <Title order={4} size="md" c="gray.9">Replacement Reasons</Title>
+                </Box>
+                <Box px="lg" pt="sm" style={{ borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <Stack gap={0}>
+                    <QuestionAnswer
+                      question="Reasons for Replacing"
+                      answer={formatArrayValues(formData.replacementReasons, replacementReasons)}
+                    />
+                    {formData.replacementReasons?.includes('other') && (
+                      <QuestionAnswer
+                        question="Other Reason"
+                        answer={formData.replacementReasonsOther}
+                      />
+                    )}
+                  </Stack>
+                </Box>
+              </Box>
+            )}
+
+            {/* Tech Replace - Step 4: Current Status */}
+            {formData.rfpType === 'legal-tech-replace' && shouldShowSection(4) && (
+              <Box>
+                <Box py="xs" px="lg" style={{ backgroundColor: 'var(--mantine-color-gray-0)', borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <Title order={4} size="md" c="gray.9">Current Status</Title>
+                </Box>
+                <Box px="lg" pt="sm" style={{ borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <Stack gap={0}>
+                    <QuestionAnswer
+                      question="Status with Current Tool"
+                      answer={getLabel(formData.currentStatus, currentToolStatus)}
+                    />
+                    {formData.currentStatus === 'other' && (
+                      <QuestionAnswer
+                        question="Other Status"
+                        answer={formData.currentStatusOther}
+                      />
+                    )}
+                  </Stack>
+                </Box>
+              </Box>
+            )}
+
+            {/* Tech Replace - Step 5: Use Case */}
+            {formData.rfpType === 'legal-tech-replace' && shouldShowSection(5) && (
+              <Box>
+                <Box py="xs" px="lg" style={{ backgroundColor: 'var(--mantine-color-gray-0)', borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <Title order={4} size="md" c="gray.9">Use Case</Title>
+                </Box>
+                <Box px="lg" pt="sm" style={{ borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <QuestionAnswer
+                    question="Use Case Description"
+                    answer={formData.useCaseDescription}
+                  />
+                </Box>
+              </Box>
+            )}
+
+            {/* Tech Replace - Step 6: Core Features */}
+            {formData.rfpType === 'legal-tech-replace' && shouldShowSection(6) && (
+              <Box>
+                <Box py="xs" px="lg" style={{ backgroundColor: 'var(--mantine-color-gray-0)', borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <Title order={4} size="md" c="gray.9">Core Features</Title>
+                </Box>
+                <Box px="lg" pt="sm" style={{ borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <QuestionAnswer
+                    question="Required Features"
+                    answer={
+                      formData.coreFeatures && formData.coreFeatures.length > 0
+                        ? formData.coreFeatures
+                            .filter(f => f.feature && f.feature.trim())
+                            .map((f, i) => `${i + 1}. ${f.feature}${f.priority ? ` (${getLabel(f.priority, featurePriority)})` : ''}`)
+                            .join('\n') || '(None added)'
+                        : '(None added)'
+                    }
+                  />
+                </Box>
+              </Box>
+            )}
+
+            {/* Tech Replace - Step 7: Existing Technology */}
+            {formData.rfpType === 'legal-tech-replace' && shouldShowSection(7) && (
+              <Box>
+                <Box py="xs" px="lg" style={{ backgroundColor: 'var(--mantine-color-gray-0)', borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <Title order={4} size="md" c="gray.9">Technology Integration</Title>
+                </Box>
+                <Box px="lg" pt="sm" style={{ borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <QuestionAnswer
+                    question="Existing Tech Stack"
+                    answer={formatProductNames(formData.existingTechStack)}
+                  />
+                </Box>
+              </Box>
+            )}
+
+            {/* Tech Replace - Step 8: Selected Products */}
+            {formData.rfpType === 'legal-tech-replace' && shouldShowSection(8) && (
+              <Box>
+                <Box py="xs" px="lg" style={{ backgroundColor: 'var(--mantine-color-gray-0)', borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <Title order={4} size="md" c="gray.9">Product Selection</Title>
+                </Box>
+                <Box px="lg" pt="sm" style={{ borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <Stack gap={0}>
+                    <QuestionAnswer
+                      question="Selected Products for Bids"
+                      answer={formatArrayValues(formData.selectedProducts, productRecommendations)}
+                    />
+                    <QuestionAnswer
+                      question="Maximum Number of Responses"
+                      answer={formData.maxResponses || '(Not specified)'}
+                    />
+                  </Stack>
+                </Box>
+              </Box>
+            )}
+
+            {/* Tech Replace - Step 9: Number of Users */}
+            {formData.rfpType === 'legal-tech-replace' && shouldShowSection(9) && (
+              <Box>
+                <Box py="xs" px="lg" style={{ backgroundColor: 'var(--mantine-color-gray-0)', borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <Title order={4} size="md" c="gray.9">Users</Title>
+                </Box>
+                <Box px="lg" pt="sm" style={{ borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <QuestionAnswer
+                    question="Number of Users/Seats"
+                    answer={formData.numberOfUsers}
+                  />
+                </Box>
+              </Box>
+            )}
+
+            {/* Tech Replace - Step 10: Sign Timeline */}
+            {formData.rfpType === 'legal-tech-replace' && shouldShowSection(10) && (
+              <Box>
+                <Box py="xs" px="lg" style={{ backgroundColor: 'var(--mantine-color-gray-0)', borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <Title order={4} size="md" c="gray.9">Timeline</Title>
+                </Box>
+                <Box px="lg" pt="sm" style={{ borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <Stack gap={0}>
+                    <QuestionAnswer
+                      question="How Soon to Sign"
+                      answer={getLabel(formData.signTimeline, signTimeline)}
+                    />
+                    {formData.signTimeline === 'other' && (
+                      <QuestionAnswer
+                        question="Other Timeline"
+                        answer={formData.signTimelineOther}
+                      />
+                    )}
+                  </Stack>
+                </Box>
+              </Box>
+            )}
+
+            {/* Tech Replace - Step 11: Additional Info */}
+            {formData.rfpType === 'legal-tech-replace' && shouldShowSection(11) && (
+              <Box>
+                <Box py="xs" px="lg" style={{ backgroundColor: 'var(--mantine-color-gray-0)', borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <Title order={4} size="md" c="gray.9">Additional Information</Title>
+                </Box>
+                <Box px="lg" pt="sm" style={{ borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <Stack gap={0}>
+                    <QuestionAnswer
+                      question="Proposal Submission Deadline"
+                      answer={formatDate(formData.deadline)}
+                    />
+                    <QuestionAnswer
+                      question="Contract Term"
+                      answer={formatArrayValues(formData.contractTerm, contractTerms)}
+                    />
+                    <QuestionAnswer
+                      question="Billing Term"
+                      answer={formatArrayValues(formData.billingTerm, billingTerms)}
+                    />
+                    <QuestionAnswer
+                      question="Payment Term"
+                      answer={formatArrayValues(formData.paymentTerm, paymentTerms)}
+                    />
+                    <QuestionAnswer
+                      question="Custom Questions"
+                      answer={formData.customQuestions}
+                    />
+                  </Stack>
+                </Box>
+              </Box>
+            )}
+
+            {/* Tech Replace - Step 12: Contact */}
+            {formData.rfpType === 'legal-tech-replace' && shouldShowSection(12) && (
               <Box>
                 <Box py="xs" px="lg" style={{ backgroundColor: 'var(--mantine-color-gray-0)', borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
                   <Title order={4} size="md" c="gray.9">Contact Information</Title>
@@ -501,7 +755,11 @@ export default function IntakePreviewPanel({ formData, isOpen, onClose, currentS
                 <Box px="lg" pt="sm" style={{ borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
                   <Stack gap={0}>
                     <QuestionAnswer
-                      question="Expected Project Date Range"
+                      question="Proposal Submission Deadline"
+                      answer={formatDate(formData.deadline)}
+                    />
+                    <QuestionAnswer
+                      question="Expected Project Timeline"
                       answer={
                         formData.projectStartDate && formData.projectEndDate
                           ? `${formatDate(formData.projectStartDate)} - ${formatDate(formData.projectEndDate)}`

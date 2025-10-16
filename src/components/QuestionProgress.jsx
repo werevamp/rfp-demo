@@ -103,7 +103,9 @@ export default function QuestionProgress({ rfpId, questions, currentQuestionInde
                 return acc
               }, {})
 
-              return Object.entries(groupedQuestions).map(([sectionName, sectionQuestions]) => (
+              return Object.entries(groupedQuestions)
+                .filter(([sectionName, sectionQuestions]) => sectionQuestions.length > 0)
+                .map(([sectionName, sectionQuestions]) => (
                 <Stack key={sectionName} gap="xs">
                   {/* Section Header */}
                   <Text

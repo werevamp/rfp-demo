@@ -1,7 +1,7 @@
 import * as yup from 'yup'
 
-// Validation schema for Technology Purchase intake form
-export const techIntakeSchema = yup.object().shape({
+// Validation schema for Technology Replacement intake form
+export const techReplaceIntakeSchema = yup.object().shape({
   // Step 1
   title: yup
     .string()
@@ -13,27 +13,29 @@ export const techIntakeSchema = yup.object().shape({
     .max(100, 'Company description must be 100 characters or less'),
 
   // Step 2
-  productSearch: yup.string().notRequired(),
+  productToReplace: yup
+    .string()
+    .required('Product to replace is required'),
 
   // Step 3
+  replacementReasons: yup
+    .array()
+    .of(yup.string())
+    .min(1, 'Please select at least one reason')
+    .required('Replacement reasons are required'),
+  replacementReasonsOther: yup.string().notRequired(),
+
+  // Step 4
+  currentStatus: yup
+    .string()
+    .required('Current status is required'),
+  currentStatusOther: yup.string().notRequired(),
+
+  // Step 5
   useCaseDescription: yup
     .string()
     .required('Use case description is required')
     .max(500, 'Use case description must be 500 characters or less'),
-
-  // Step 4
-  purchaseFactors: yup
-    .array()
-    .of(yup.string())
-    .min(1, 'Please select at least one purchase factor')
-    .required('Purchase factors are required'),
-  purchaseFactorsOther: yup.string().notRequired(),
-
-  // Step 5
-  budgetStatus: yup
-    .string()
-    .required('Budget status is required'),
-  budgetStatusOther: yup.string().notRequired(),
 
   // Step 6
   coreFeatures: yup
@@ -65,10 +67,7 @@ export const techIntakeSchema = yup.object().shape({
 
   // Step 9
   numberOfUsers: yup
-    .number()
-    .typeError('Number of users must be a number')
-    .positive('Number of users must be positive')
-    .integer('Number of users must be a whole number')
+    .string()
     .required('Number of users is required'),
 
   // Step 10
@@ -106,51 +105,51 @@ export const techIntakeSchema = yup.object().shape({
 // Validation schemas for each step
 export const stepSchemas = {
   1: yup.object().shape({
-    title: techIntakeSchema.fields.title,
-    companyDescription: techIntakeSchema.fields.companyDescription,
+    title: techReplaceIntakeSchema.fields.title,
+    companyDescription: techReplaceIntakeSchema.fields.companyDescription,
   }),
   2: yup.object().shape({
-    productSearch: techIntakeSchema.fields.productSearch,
+    productToReplace: techReplaceIntakeSchema.fields.productToReplace,
   }),
   3: yup.object().shape({
-    useCaseDescription: techIntakeSchema.fields.useCaseDescription,
+    replacementReasons: techReplaceIntakeSchema.fields.replacementReasons,
+    replacementReasonsOther: techReplaceIntakeSchema.fields.replacementReasonsOther,
   }),
   4: yup.object().shape({
-    purchaseFactors: techIntakeSchema.fields.purchaseFactors,
-    purchaseFactorsOther: techIntakeSchema.fields.purchaseFactorsOther,
+    currentStatus: techReplaceIntakeSchema.fields.currentStatus,
+    currentStatusOther: techReplaceIntakeSchema.fields.currentStatusOther,
   }),
   5: yup.object().shape({
-    budgetStatus: techIntakeSchema.fields.budgetStatus,
-    budgetStatusOther: techIntakeSchema.fields.budgetStatusOther,
+    useCaseDescription: techReplaceIntakeSchema.fields.useCaseDescription,
   }),
   6: yup.object().shape({
-    coreFeatures: techIntakeSchema.fields.coreFeatures,
-    featureFiles: techIntakeSchema.fields.featureFiles,
+    coreFeatures: techReplaceIntakeSchema.fields.coreFeatures,
+    featureFiles: techReplaceIntakeSchema.fields.featureFiles,
   }),
   7: yup.object().shape({
-    existingTechStack: techIntakeSchema.fields.existingTechStack,
-    integrationRequired: techIntakeSchema.fields.integrationRequired,
+    existingTechStack: techReplaceIntakeSchema.fields.existingTechStack,
+    integrationRequired: techReplaceIntakeSchema.fields.integrationRequired,
   }),
   8: yup.object().shape({
-    selectedProducts: techIntakeSchema.fields.selectedProducts,
-    maxResponses: techIntakeSchema.fields.maxResponses,
+    selectedProducts: techReplaceIntakeSchema.fields.selectedProducts,
+    maxResponses: techReplaceIntakeSchema.fields.maxResponses,
   }),
   9: yup.object().shape({
-    numberOfUsers: techIntakeSchema.fields.numberOfUsers,
+    numberOfUsers: techReplaceIntakeSchema.fields.numberOfUsers,
   }),
   10: yup.object().shape({
-    signTimeline: techIntakeSchema.fields.signTimeline,
-    signTimelineOther: techIntakeSchema.fields.signTimelineOther,
+    signTimeline: techReplaceIntakeSchema.fields.signTimeline,
+    signTimelineOther: techReplaceIntakeSchema.fields.signTimelineOther,
   }),
   11: yup.object().shape({
-    deadline: techIntakeSchema.fields.deadline,
-    contractTerm: techIntakeSchema.fields.contractTerm,
-    billingTerm: techIntakeSchema.fields.billingTerm,
-    paymentTerm: techIntakeSchema.fields.paymentTerm,
-    customQuestions: techIntakeSchema.fields.customQuestions,
+    deadline: techReplaceIntakeSchema.fields.deadline,
+    contractTerm: techReplaceIntakeSchema.fields.contractTerm,
+    billingTerm: techReplaceIntakeSchema.fields.billingTerm,
+    paymentTerm: techReplaceIntakeSchema.fields.paymentTerm,
+    customQuestions: techReplaceIntakeSchema.fields.customQuestions,
   }),
   12: yup.object().shape({
-    email: techIntakeSchema.fields.email,
-    acceptedTerms: techIntakeSchema.fields.acceptedTerms,
+    email: techReplaceIntakeSchema.fields.email,
+    acceptedTerms: techReplaceIntakeSchema.fields.acceptedTerms,
   }),
 }

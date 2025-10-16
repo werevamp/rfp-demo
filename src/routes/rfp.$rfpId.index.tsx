@@ -1,6 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Stack, Paper, Group, Text, Title, SimpleGrid, ThemeIcon, Badge, Box, Divider, Alert } from '@mantine/core'
 import { mockRFPs } from '../data/mockRFPs'
+import { getAllBuyerIntakesArray } from '../utils/buyerIntakeStorage'
+import { transformAllIntakesToRFPs } from '../utils/intakeToRFP'
 import {
   Calendar,
   DollarSign,
@@ -22,16 +24,64 @@ import {
   ExternalLink
 } from 'lucide-react'
 
+// Helper to get all RFPs (mock + buyer intakes)
+const getAllRFPs = () => {
+  const buyerIntakes = getAllBuyerIntakesArray()
+  const transformedIntakes = transformAllIntakesToRFPs(buyerIntakes)
+  return [...transformedIntakes, ...mockRFPs]
+}
+
+// Helper to find RFP by ID
+const findRFPById = (rfpId) => {
+  const allRFPs = getAllRFPs()
+
+  // Try to find by string ID first (buyer intake RFPs use string IDs like "rfp_123...")
+  let rfp = allRFPs.find(r => r.id === rfpId)
+
+  // If not found, try parsing as integer (mock RFPs use integer IDs)
+  if (!rfp) {
+    rfp = allRFPs.find(r => r.id === parseInt(rfpId))
+  }
+
+  return rfp
+}
+
 export const Route = createFileRoute('/rfp/$rfpId/')({
   component: RFPOverview,
 })
 
 function RFPOverview() {
   const { rfpId } = Route.useParams()
-  const rfp = mockRFPs.find(r => r.id === parseInt(rfpId))
+  const rfp = findRFPById(rfpId)
 
   if (!rfp) {
-    return <Text>RFP not found</Text>
+    const allRFPs = getAllRFPs()
+    const buyerIntakeCount = getAllBuyerIntakesArray().length
+    const availableIds = allRFPs.map(r => r.id).join(', ')
+
+    return (
+      <Paper p="lg" withBorder>
+        <Stack gap="md">
+          <Text size="lg" fw={600} c="red">RFP not found</Text>
+          <Text size="sm" c="dimmed">
+            The RFP with ID <Text component="span" fw={600}>{rfpId}</Text> could not be found.
+          </Text>
+          <Paper bg="gray.0" p="sm">
+            <Stack gap="xs">
+              <Text size="xs" c="dimmed">
+                • Total RFPs: {allRFPs.length} ({buyerIntakeCount} cached, {mockRFPs.length} mock)
+              </Text>
+              <Text size="xs" c="dimmed">
+                • Requested ID: {rfpId}
+              </Text>
+              <Text size="xs" c="dimmed" style={{ wordBreak: 'break-all' }}>
+                • Available IDs: {availableIds}
+              </Text>
+            </Stack>
+          </Paper>
+        </Stack>
+      </Paper>
+    )
   }
 
   const formatDate = (dateString) => {

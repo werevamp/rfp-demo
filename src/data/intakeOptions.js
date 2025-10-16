@@ -165,3 +165,18 @@ export const productRecommendations = [
   { value: "competing-product-4", label: "Competing Product 4" },
   { value: "five-six-max", label: "Five - Six max" }
 ]
+
+// Tech Replacement specific options
+export const replacementReasons = [
+  { value: "price", label: "Price" },
+  { value: "features", label: "Feature / Functionality" },
+  { value: "support", label: "Support" },
+  { value: "other", label: "Other" }
+]
+
+export const currentToolStatus = [
+  { value: "looking-around", label: "We are looking around but may renew" },
+  { value: "intend-leave", label: "We intend to leave, but have yet to cancel" },
+  { value: "cancellation-sent", label: "We have sent a cancellation notice" },
+  { value: "other", label: "Other" }
+]

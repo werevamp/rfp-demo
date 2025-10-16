@@ -1,4 +1,5 @@
 // LocalStorage utility for buyer intake form data
+import buyerProfiles from '../data/buyerProfiles.json'
 
 const STORAGE_KEY = 'buyer_intakes'
 const DRAFT_KEY = 'buyer_intake_draft'
@@ -14,6 +15,18 @@ export const generateRFPId = () => {
 }
 
 /**
+ * Get a random buyer profile (for demo purposes)
+ * In production, this would be based on authenticated user
+ * @returns {Object} Buyer profile
+ */
+const getBuyerProfile = () => {
+  // For now, randomly select a buyer profile
+  // In production, this would be determined by the logged-in user
+  const randomIndex = Math.floor(Math.random() * buyerProfiles.length)
+  return buyerProfiles[randomIndex]
+}
+
+/**
  * Save a completed buyer intake to localStorage
  * @param {Object} formData - The complete form data
  * @returns {string} The generated RFP ID
@@ -21,11 +34,23 @@ export const generateRFPId = () => {
 export const saveBuyerIntake = (formData) => {
   try {
     const rfpId = generateRFPId()
+    const currentDate = new Date().toISOString()
+    const buyerProfile = getBuyerProfile()
+
     const intake = {
       ...formData,
       rfpId,
-      createdAt: new Date().toISOString(),
-      status: 'new'
+      createdAt: currentDate,
+      postedDate: currentDate,
+      status: 'Open',
+      // Add buyer profile data
+      buyerProfileId: buyerProfile.id,
+      company: buyerProfile.companyName,
+      location: buyerProfile.workLocation || buyerProfile.location,
+      // Optional: add more enrichment fields
+      industry: buyerProfile.industry,
+      companySize: buyerProfile.companySize,
+      headquarters: buyerProfile.headquarters
     }
 
     const intakes = getAllBuyerIntakes()
@@ -171,4 +196,26 @@ export const clearDraft = (formType = null) => {
  */
 export const hasDraft = () => {
   return getDraft() !== null
+}
+
+/**
+ * Update the status of a buyer intake
+ * @param {string} rfpId - The RFP ID
+ * @param {string} newStatus - The new status ('Open', 'Closed', 'In Review', 'Completed')
+ * @returns {boolean} True if update was successful
+ */
+export const updateBuyerIntakeStatus = (rfpId, newStatus) => {
+  try {
+    const intakes = getAllBuyerIntakes()
+    if (intakes[rfpId]) {
+      intakes[rfpId].status = newStatus
+      intakes[rfpId].statusUpdatedAt = new Date().toISOString()
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(intakes))
+      return true
+    }
+    return false
+  } catch (error) {
+    console.error('Error updating buyer intake status:', error)
+    return false
+  }
 }

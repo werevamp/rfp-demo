@@ -4,6 +4,8 @@ import { Calendar, DollarSign, Building2, MapPin, Clock, ArrowRight, Star, Eye, 
 import { isRFPViewed, getRFPInterest } from '../utils/rfpStorage'
 import { getProgressStats } from '../utils/questionStorage'
 import { defaultRFPQuestions, generateBuyerSpecificQuestions } from '../data/questionTemplates'
+import { getVendorResponse } from '../utils/vendorResponseStorage'
+import { getCurrentVendor } from '../utils/vendorStorage'
 
 export default function RFPCard({ rfp, showProgress }) {
   const formatDate = (dateString) => {
@@ -68,6 +70,29 @@ export default function RFPCard({ rfp, showProgress }) {
   const totalQuestions = defaultRFPQuestions.length + buyerQuestions.length
   const progressStats = showProgress ? getProgressStats(rfp.id, totalQuestions) : null
 
+  // Check if current vendor has responded to this RFP
+  const currentVendor = getCurrentVendor()
+  const vendorResponse = currentVendor ? getVendorResponse(rfp.id, currentVendor.id) : null
+
+  // Status colors and labels for vendor responses
+  const vendorStatusColors = {
+    'responded': 'blue',
+    'shortlisted': 'purple',
+    'evaluating': 'yellow',
+    'won': 'green',
+    'lost': 'red',
+    'declined': 'gray'
+  }
+
+  const vendorStatusLabels = {
+    'responded': 'Responded',
+    'shortlisted': 'Shortlisted',
+    'evaluating': 'Evaluating',
+    'won': 'Won',
+    'lost': 'Lost',
+    'declined': 'Declined'
+  }
+
   const TypeIcon = typeInfo.icon
 
   return (
@@ -94,6 +119,14 @@ export default function RFPCard({ rfp, showProgress }) {
             <Badge color={getStatusColor(rfp.status)} variant="light">
               {rfp.status}
             </Badge>
+            {vendorResponse && (
+              <Badge
+                color={vendorStatusColors[vendorResponse.status] || 'gray'}
+                variant="filled"
+              >
+                {vendorStatusLabels[vendorResponse.status] || vendorResponse.status}
+              </Badge>
+            )}
             {interestStatus && (
               interestStatus.buyerResponse === 'accepted' ? (
                 <Badge leftSection={<CheckCircle2 size={12} />} color="green" variant="light">

@@ -24,8 +24,7 @@ function TechnologySolution() {
     if (purchaseType === 'new') {
       navigate({ to: '/intake/tech-new', search: { step: 1 } })
     } else if (purchaseType === 'replace') {
-      // TODO: Create replace flow
-      navigate({ to: '/intake/thank-you' })
+      navigate({ to: '/intake/tech-replace', search: { step: 1 } })
     }
   }
 

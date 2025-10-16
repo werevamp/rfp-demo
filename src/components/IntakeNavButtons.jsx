@@ -16,18 +16,13 @@ export function BackButton({ onClick, to }) {
   }
 
   return (
-    <ActionIcon
-      variant="outline"
-      size="xl"
-      onClick={handleClick}
-      color="gray"
-    >
+    <ActionIcon variant="outline" size="xl" onClick={handleClick} color="gray">
       <ArrowUp size={20} />
     </ActionIcon>
   )
 }
 
-export function NextButton({ onClick, disabled, type = "button", isSubmit = false }) {
+export function NextButton({ onClick, disabled, type = 'button', isSubmit = false }) {
   return (
     <Group gap="md">
       <Button

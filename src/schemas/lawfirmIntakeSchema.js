@@ -65,6 +65,11 @@ export const lawfirmIntakeSchema = yup.object().shape({
     .notRequired(),
 
   // Step 6
+  deadline: yup
+    .date()
+    .typeError('Deadline is required')
+    .required('Application deadline is required')
+    .min(new Date(), 'Deadline must be in the future'),
   projectStartDate: yup
     .date()
     .typeError('Start date is required')
@@ -124,6 +129,7 @@ export const stepSchemas = {
     maxResponses: lawfirmIntakeSchema.fields.maxResponses,
   }),
   6: yup.object().shape({
+    deadline: lawfirmIntakeSchema.fields.deadline,
     projectStartDate: lawfirmIntakeSchema.fields.projectStartDate,
     projectEndDate: lawfirmIntakeSchema.fields.projectEndDate,
     customQuestions: lawfirmIntakeSchema.fields.customQuestions,

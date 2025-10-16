@@ -19,25 +19,24 @@ import {
   NumberInput,
   ActionIcon,
   ThemeIcon,
-  Modal
+  Modal,
+  Avatar,
 } from '@mantine/core'
-import { Search } from 'lucide-react'
+import { Search, X } from 'lucide-react'
 import IntakeLayout from '../components/IntakeLayout'
 import StepIndicator from '../components/StepIndicator'
 import { BackButton, NextButton } from '../components/IntakeNavButtons'
 import { saveDraft, getDraft, saveBuyerIntake } from '../utils/buyerIntakeStorage'
 import { lawfirmIntakeSchema, stepSchemas } from '../schemas/lawfirmIntakeSchema'
-import {
-  practiceAreas,
-  experienceLevels,
-  pricingModels
-} from '../data/intakeOptions'
+import { practiceAreas, experienceLevels, pricingModels } from '../data/intakeOptions'
+import LawfirmAutocomplete from '../components/LawfirmAutocomplete'
+import lawfirmsData from '../data/lawfirms.json'
 
 export const Route = createFileRoute('/intake/lawfirm')({
   component: LawfirmIntake,
   validateSearch: (search) => ({
-    step: Number(search?.step) || 1
-  })
+    step: Number(search?.step) || 1,
+  }),
 })
 
 function LawfirmIntake() {
@@ -73,12 +72,13 @@ function LawfirmIntake() {
     useTheoremMarketplace: true,
     serviceProviders: [],
     maxResponses: '',
+    deadline: '',
     projectStartDate: '',
     projectEndDate: '',
     customQuestions: [''],
     uploadedFiles: [],
     email: '',
-    acceptedTerms: false
+    acceptedTerms: false,
   }
 
   // Initialize form with draft data or defaults
@@ -86,10 +86,15 @@ function LawfirmIntake() {
   const methods = useForm({
     defaultValues: draft ? { ...defaultValues, ...draft } : defaultValues,
     resolver: yupResolver(lawfirmIntakeSchema),
-    mode: 'onChange'
+    mode: 'onChange',
   })
 
-  const { watch, trigger, formState: { errors, isValid } } = methods
+  const {
+    watch,
+    trigger,
+    setValue,
+    formState: { errors, isValid },
+  } = methods
 
   // Watch all form values for auto-save
   const formValues = watch()
@@ -98,6 +103,13 @@ function LawfirmIntake() {
   useEffect(() => {
     saveDraft(formValues, 'lawfirm')
   }, [formValues])
+
+  // Reset acceptedTerms when reaching final step to prevent auto-submission
+  useEffect(() => {
+    if (step === 7) {
+      setValue('acceptedTerms', false)
+    }
+  }, [step, setValue])
 
   const goToStep = (newStep) => {
     navigate({ to: '/intake/lawfirm', search: { step: newStep } })
@@ -108,8 +120,17 @@ function LawfirmIntake() {
     const currentStepSchema = stepSchemas[step]
     const isStepValid = await trigger(Object.keys(currentStepSchema.fields))
 
+    console.log('handleNext called:', {
+      step,
+      isStepValid,
+      currentStepFields: Object.keys(currentStepSchema.fields),
+    })
+
     if (isStepValid && step < 7) {
+      window.scrollTo(0, 0)
       goToStep(step + 1)
+    } else {
+      console.log('Not navigating - either invalid or on final step')
     }
   }
 
@@ -122,6 +143,17 @@ function LawfirmIntake() {
   }
 
   const handleSubmit = methods.handleSubmit((data) => {
+    console.log('handleSubmit called on step:', step)
+
+    // Only submit if on final step
+    if (step !== 7) {
+      console.log('Attempted submission on step', step, '- blocking')
+      return
+    }
+
+    console.log('Form data:', data)
+
+    console.log(step)
     // Save to localStorage
     const rfpId = saveBuyerIntake(data)
 
@@ -136,7 +168,7 @@ function LawfirmIntake() {
     const stepFieldNames = Object.keys(currentStepSchema.fields)
     const stepErrors = {}
 
-    stepFieldNames.forEach(fieldName => {
+    stepFieldNames.forEach((fieldName) => {
       if (errors[fieldName]) {
         stepErrors[fieldName] = errors[fieldName]
       }
@@ -145,8 +177,14 @@ function LawfirmIntake() {
     return stepErrors
   }
 
+  const getDisplayableStepErrors = () => {
+    const stepErrors = getStepErrors()
+    const { acceptedTerms, ...otherErrors } = stepErrors
+    return otherErrors
+  }
+
   const hasStepErrors = () => {
-    return Object.keys(getStepErrors()).length > 0
+    return Object.keys(getDisplayableStepErrors()).length > 0
   }
 
   return (
@@ -155,7 +193,7 @@ function LawfirmIntake() {
         <form onSubmit={handleSubmit}>
           <Group align="flex-start" gap="xl" py="lg" style={{ minHeight: '100vh' }}>
             {/* Left Sidebar - Step Indicator */}
-            <Box style={{ width: 64, flexShrink: 0, position: 'sticky', top: 32 }}>
+            <Box style={{ width: 64, flexShrink: 0, position: 'sticky', top: 32, paddingTop: 8 }}>
               <StepIndicator currentStep={step} totalSteps={7} />
             </Box>
 
@@ -173,25 +211,27 @@ function LawfirmIntake() {
               <Group gap="md" mt="xl">
                 <BackButton onClick={handleBack} />
                 {step < 7 ? (
-                  <NextButton
-                    onClick={handleNext}
-                    type="button"
-                  />
+                  <NextButton onClick={handleNext} type="button" />
                 ) : (
-                  <NextButton
-                    type="submit"
-                    isSubmit={true}
-                  />
+                  <NextButton type="submit" isSubmit={true} disabled={!formValues.acceptedTerms} />
                 )}
               </Group>
 
               {/* Show validation errors */}
               {hasStepErrors() && (
                 <Alert color="red" mt="md">
-                  <Text size="sm" fw={600} c="red.8" mb="xs">Please fix the following errors:</Text>
-                  <Stack gap={4} component="ul" style={{ listStylePosition: 'inside', paddingLeft: 0 }}>
-                    {Object.entries(getStepErrors()).map(([field, error]) => (
-                      <Text key={field} component="li" size="sm" c="red.7">{error.message}</Text>
+                  <Text size="sm" fw={600} c="red.8" mb="xs">
+                    Please fix the following errors:
+                  </Text>
+                  <Stack
+                    gap={4}
+                    component="ul"
+                    style={{ listStylePosition: 'inside', paddingLeft: 0 }}
+                  >
+                    {Object.entries(getDisplayableStepErrors()).map(([field, error]) => (
+                      <Text key={field} component="li" size="sm" c="red.7">
+                        {error.message}
+                      </Text>
                     ))}
                   </Stack>
                 </Alert>
@@ -206,15 +246,23 @@ function LawfirmIntake() {
 
 // Step 1: Title & Company Description
 function Step1({ errors }) {
-  const { register } = useFormContext()
+  const { register, watch } = useFormContext()
+  const companyDescription = watch('companyDescription') || ''
 
   return (
     <Stack gap="xl">
-      <Title order={1} size="2.5rem" c="gray.9">RFP Builder</Title>
+      <Title order={1} size="2.5rem" c="gray.9">
+        RFP Builder
+      </Title>
 
       <Box>
         <Title order={2} size="xl" c="gray.9" mb="sm">
-          Title {errors.title && <Text component="span" c="red.6">*</Text>}
+          Title{' '}
+          {errors.title && (
+            <Text component="span" c="red.6">
+              *
+            </Text>
+          )}
         </Title>
         <TextInput
           {...register('title')}
@@ -227,19 +275,30 @@ function Step1({ errors }) {
       <Box>
         <Group gap="xs" mb="sm">
           <Title order={2} size="xl" c="gray.9">
-            Please provide your anonymous company description {errors.companyDescription && <Text component="span" c="red.6">*</Text>}
+            Please provide your anonymous company description{' '}
+            {errors.companyDescription && (
+              <Text component="span" c="red.6">
+                *
+              </Text>
+            )}
           </Title>
           <ThemeIcon size="sm" radius="xl" color="blue">
-            <Text size="xs" c="white">i</Text>
+            <Text size="xs" c="white">
+              i
+            </Text>
           </ThemeIcon>
         </Group>
-        <TextInput
+        <Textarea
           {...register('companyDescription')}
           placeholder='e.g. "Am law 200 firm, software company, consultancy (limit: 100 characters)'
           maxLength={100}
+          rows={4}
           error={errors.companyDescription?.message}
           size="md"
         />
+        <Text size="sm" c="gray.5" ta="right" mt="xs">
+          {companyDescription.length}/100
+        </Text>
       </Box>
     </Stack>
   )
@@ -252,7 +311,9 @@ function Step2({ errors }) {
 
   return (
     <Stack gap="lg">
-      <Title order={1} size="2.5rem" c="gray.9">Description of work</Title>
+      <Title order={1} size="2.5rem" c="gray.9">
+        Description of work
+      </Title>
       <Text c="gray.6" size="lg">
         This helps competitive bidders know if this is something they are a good fit for
       </Text>
@@ -270,7 +331,9 @@ function Step2({ errors }) {
         <Group justify="space-between" mt="xs">
           <Box>
             {errors.workDescription && (
-              <Text size="sm" c="red.6">{errors.workDescription.message}</Text>
+              <Text size="sm" c="red.6">
+                {errors.workDescription.message}
+              </Text>
             )}
           </Box>
           <Text size="sm" c="gray.5">
@@ -298,11 +361,18 @@ function Step3({ errors }) {
 
   return (
     <Stack gap="xl">
-      <Title order={1} size="2.5rem" c="gray.9">Requirements</Title>
+      <Title order={1} size="2.5rem" c="gray.9">
+        Requirements
+      </Title>
 
       <Box>
         <Title order={2} size="xl" c="gray.9" mb="sm">
-          Requested Practice Experience {errors.practiceAreas && <Text component="span" c="red.6">*</Text>}
+          Requested Practice Experience{' '}
+          {errors.practiceAreas && (
+            <Text component="span" c="red.6">
+              *
+            </Text>
+          )}
         </Title>
         <Controller
           name="practiceAreas"
@@ -322,7 +392,12 @@ function Step3({ errors }) {
 
       <Box>
         <Title order={2} size="xl" c="gray.9" mb="sm">
-          Requested Experience Level {errors.experienceLevel && <Text component="span" c="red.6">*</Text>}
+          Requested Experience Level{' '}
+          {errors.experienceLevel && (
+            <Text component="span" c="red.6">
+              *
+            </Text>
+          )}
         </Title>
         <Controller
           name="experienceLevel"
@@ -343,12 +418,7 @@ function Step3({ errors }) {
         <Title order={2} size="xl" c="gray.9" mb="sm">
           Bar License
         </Title>
-        <Button
-          onClick={addBarLicense}
-          variant="outline"
-          color="blue"
-          size="md"
-        >
+        <Button onClick={addBarLicense} variant="outline" color="blue" size="md">
           ADD BAR LICENSE
         </Button>
         {barLicenses.length > 0 && (
@@ -390,11 +460,18 @@ function Step4({ errors }) {
 
   return (
     <Stack gap="xl">
-      <Title order={1} size="2.5rem" c="gray.9">Pricing</Title>
+      <Title order={1} size="2.5rem" c="gray.9">
+        Pricing
+      </Title>
 
       <Box>
         <Title order={2} size="xl" c="gray.9" mb="sm">
-          Preferred Pricing Model {errors.preferredPricingModel && <Text component="span" c="red.6">*</Text>}
+          Preferred Pricing Model{' '}
+          {errors.preferredPricingModel && (
+            <Text component="span" c="red.6">
+              *
+            </Text>
+          )}
         </Title>
         <Controller
           name="preferredPricingModel"
@@ -414,7 +491,12 @@ function Step4({ errors }) {
 
       <Box>
         <Title order={2} size="xl" c="gray.9" mb="sm">
-          Budget Range {(errors.budgetFrom || errors.budgetTo) && <Text component="span" c="red.6">*</Text>}
+          Budget Range{' '}
+          {(errors.budgetFrom || errors.budgetTo) && (
+            <Text component="span" c="red.6">
+              *
+            </Text>
+          )}
         </Title>
         <Group gap="md" align="flex-start">
           <Box style={{ flex: 1 }}>
@@ -436,7 +518,9 @@ function Step4({ errors }) {
               )}
             />
           </Box>
-          <Text size="2xl" c="gray.4" mt="xs">—</Text>
+          <Text size="2xl" c="gray.4" mt="xs">
+            —
+          </Text>
           <Box style={{ flex: 1 }}>
             <Controller
               name="budgetTo"
@@ -476,9 +560,52 @@ function Step4({ errors }) {
 
 // Step 5: Who should we request bids from?
 function Step5({ errors }) {
-  const { register, watch, control } = useFormContext()
+  const { register, watch, setValue, control } = useFormContext()
   const [searchModalOpen, setSearchModalOpen] = useState(false)
   const selectYourFirms = watch('selectYourFirms')
+  const serviceProviders = watch('serviceProviders') || []
+
+  // Helper function to get firm initials
+  const getInitials = (name) => {
+    return name
+      .split(' ')
+      .slice(0, 2)
+      .map(word => word[0])
+      .join('')
+      .toUpperCase()
+  }
+
+  // Helper function to generate consistent color based on name
+  const getColorFromName = (name) => {
+    const colors = [
+      'blue', 'cyan', 'teal', 'green', 'lime',
+      'yellow', 'orange', 'red', 'pink', 'grape',
+      'violet', 'indigo'
+    ]
+    const charSum = name.split('').reduce((sum, char) => sum + char.charCodeAt(0), 0)
+    return colors[charSum % colors.length]
+  }
+
+  // Helper function to get logo URL
+  const getLogoUrl = (firm) => {
+    return firm.details?.logoUrl || firm.details?.logo || ''
+  }
+
+  // Get selected firms data
+  const selectedFirms = serviceProviders
+    .map(firmId => lawfirmsData.find(f => f.id === firmId))
+    .filter(Boolean)
+
+  const handleFirmSelect = (firm) => {
+    if (!serviceProviders.includes(firm.id)) {
+      setValue('serviceProviders', [...serviceProviders, firm.id])
+    }
+    setSearchModalOpen(false)
+  }
+
+  const handleRemoveFirm = (firmId) => {
+    setValue('serviceProviders', serviceProviders.filter(id => id !== firmId))
+  }
 
   return (
     <Stack gap="xl">
@@ -486,14 +613,13 @@ function Step5({ errors }) {
         Who should we request bids from?
       </Title>
       <Text c="gray.6">
-        To ensure clarity and competitive pricing, avoid requesting bids from suppliers you're currently speaking with
+        To ensure clarity and competitive pricing, avoid requesting bids from suppliers you're
+        currently speaking with
       </Text>
 
       <Box>
         <Group gap="sm" mb="md">
-          <Checkbox
-            {...register('selectYourFirms')}
-          />
+          <Checkbox {...register('selectYourFirms')} />
           <Text fw={700} c="gray.9">
             Select Your Firms
           </Text>
@@ -502,12 +628,64 @@ function Step5({ errors }) {
         {selectYourFirms && (
           <Box>
             <Text fw={600} c="gray.7" mb="sm">
-              Select which law firms should receive this RFP. The list of your law firms enabled to receive RFPs can be viewed on the Panel Law Firms section of your Legal Admin Page. Your RFP will be sent to the designated RFP manager at each firm.
+              Select which law firms should receive this RFP. The list of your law firms enabled to
+              receive RFPs can be viewed on the Panel Law Firms section of your Legal Admin Page.
+              Your RFP will be sent to the designated RFP manager at each firm.
             </Text>
 
-            <Paper p="lg" withBorder mb="md">
-              <Text c="gray.5" ta="center">You have not added any law firms</Text>
-            </Paper>
+            {selectedFirms.length === 0 ? (
+              <Paper p="lg" withBorder mb="md">
+                <Text c="gray.5" ta="center">
+                  You have not added any law firms
+                </Text>
+              </Paper>
+            ) : (
+              <Stack gap="sm" mb="md">
+                {selectedFirms.map((firm) => {
+                  const logoUrl = getLogoUrl(firm)
+                  return (
+                    <Paper key={firm.id} p="md" withBorder>
+                      <Group justify="space-between" wrap="nowrap">
+                        <Group gap="sm" wrap="nowrap">
+                          {logoUrl ? (
+                            <Avatar
+                              src={logoUrl}
+                              size={40}
+                              radius="sm"
+                              alt={firm.name}
+                            />
+                          ) : (
+                            <Avatar
+                              size={40}
+                              radius="sm"
+                              color={getColorFromName(firm.name)}
+                            >
+                              {getInitials(firm.name)}
+                            </Avatar>
+                          )}
+                          <Box>
+                            <Text fw={500}>{firm.name}</Text>
+                            {firm.details?.lawfirmSize && (
+                              <Text size="xs" c="dimmed">
+                                {firm.details.lawfirmSize}
+                              </Text>
+                            )}
+                          </Box>
+                        </Group>
+                        <ActionIcon
+                          onClick={() => handleRemoveFirm(firm.id)}
+                          color="red"
+                          variant="subtle"
+                          size="lg"
+                        >
+                          <X size={18} />
+                        </ActionIcon>
+                      </Group>
+                    </Paper>
+                  )
+                })}
+              </Stack>
+            )}
 
             <Group gap="sm">
               <Button
@@ -519,19 +697,10 @@ function Step5({ errors }) {
                 + ADD SERVICE PROVIDER
               </Button>
               <Text c="dimmed">Or</Text>
-              <Button
-                variant="default"
-                size="md"
-                onClick={() => setSearchModalOpen(true)}
-              >
+              <Button variant="default" size="md" onClick={() => setSearchModalOpen(true)}>
                 SELECT FROM PANEL
               </Button>
-              <Button
-                variant="subtle"
-                size="md"
-                component="a"
-                style={{ marginLeft: 'auto' }}
-              >
+              <Button variant="subtle" size="md" component="a" style={{ marginLeft: 'auto' }}>
                 Manage My Panel
               </Button>
             </Group>
@@ -543,26 +712,29 @@ function Step5({ errors }) {
         <Text fw={700} c="grape.6" mb="sm">
           Expand your RFP to include our network for comparison
         </Text>
-        <Paper p="lg" withBorder style={{ borderWidth: 2, borderColor: 'var(--mantine-color-grape-4)' }}>
+        <Paper
+          p="lg"
+          withBorder
+          style={{ borderWidth: 2, borderColor: 'var(--mantine-color-grape-4)' }}
+        >
           <Group justify="space-between" mb="md">
             <Group gap="sm">
-              <Checkbox
-                {...register('useTheoremMarketplace')}
-              />
+              <Checkbox {...register('useTheoremMarketplace')} />
               <Box>
                 <Text fw={700} c="gray.9">
                   Theorem Marketplace Network (Recommended)
                 </Text>
               </Box>
             </Group>
-            <Box
-              component="svg"
-              style={{ height: 32, width: 32 }}
-              viewBox="0 0 40 40"
-              fill="none"
-            >
+            <Box component="svg" style={{ height: 32, width: 32 }} viewBox="0 0 40 40" fill="none">
               <rect width="40" height="40" rx="8" fill="url(#gradient)" />
-              <path d="M20 10L12 20H28L20 30" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path
+                d="M20 10L12 20H28L20 30"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
               <defs>
                 <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40">
                   <stop stopColor="#6366F1" />
@@ -572,7 +744,8 @@ function Step5({ errors }) {
             </Box>
           </Group>
           <Text size="sm" c="gray.7" ml={36}>
-            Send this RFP to Theorem's global legal marketplace of law firms, lawyers, and ALSPs to receive additional proposals to gain leverage in negotiations.
+            Send this RFP to Theorem's global legal marketplace of law firms, lawyers, and ALSPs to
+            receive additional proposals to gain leverage in negotiations.
           </Text>
         </Paper>
       </Box>
@@ -604,22 +777,14 @@ function Step5({ errors }) {
         size="lg"
       >
         <Stack gap="md">
-          <TextInput
-            placeholder="Search..."
-            leftSection={<Search size={16} />}
-            size="md"
+          <LawfirmAutocomplete
+            onSelect={handleFirmSelect}
+            placeholder="Search for a law firm..."
+            excludeIds={serviceProviders}
           />
-          <Group gap="sm" mb="md">
-            <Text fw={600}>My panel Firms</Text>
-            <Checkbox label="" />
-          </Group>
-          <Stack gap="sm">
-            {['Firm 1', 'Firm 2', 'Firm 4', 'firm 5', 'Firm 3'].map((firm) => (
-              <Paper key={firm} p="md" withBorder style={{ cursor: 'pointer' }}>
-                <Text>{firm}</Text>
-              </Paper>
-            ))}
-          </Stack>
+          <Text size="sm" c="dimmed" mt="md">
+            {lawfirmsData.length - serviceProviders.length} law firms available
+          </Text>
         </Stack>
       </Modal>
     </Stack>
@@ -642,15 +807,47 @@ function Step6({ errors }) {
 
   return (
     <Stack gap="xl">
-      <Title order={1} size="1.75rem" c="gray.9">Finishing Touches</Title>
+      <Title order={1} size="1.75rem" c="gray.9">
+        Finishing Touches
+      </Title>
       <Text c="gray.6">
         These questions will help suppliers give you a timely and accurate response
       </Text>
 
       <Box>
         <Title order={2} size="lg" c="gray.9" mb="sm">
-          Expected Project Date Range - Required* {(errors.projectStartDate || errors.projectEndDate) && <Text component="span" c="red.6">*</Text>}
+          Proposal Submission Deadline - Required*{' '}
+          {errors.deadline && (
+            <Text component="span" c="red.6">
+              *
+            </Text>
+          )}
         </Title>
+        <Text c="gray.6" size="sm" mb="sm">
+          When do you need suppliers to submit their proposals BY? This is the last date vendors can
+          apply to this RFP.
+        </Text>
+        <TextInput
+          type="date"
+          {...register('deadline')}
+          error={errors.deadline?.message}
+          size="md"
+        />
+      </Box>
+
+      <Box>
+        <Title order={2} size="lg" c="gray.9" mb="sm">
+          Expected Project Timeline - Required*{' '}
+          {(errors.projectStartDate || errors.projectEndDate) && (
+            <Text component="span" c="red.6">
+              *
+            </Text>
+          )}
+        </Title>
+        <Text c="gray.6" size="sm" mb="sm">
+          When do you expect the actual legal work to begin and end? This is when the selected
+          provider will perform the services.
+        </Text>
         <Group gap="md" align="flex-start">
           <Box style={{ flex: 1 }}>
             <TextInput
@@ -661,7 +858,9 @@ function Step6({ errors }) {
               size="md"
             />
           </Box>
-          <Text size="2xl" c="gray.4" mt="xs">—</Text>
+          <Text size="2xl" c="gray.4" mt="xs">
+            —
+          </Text>
           <Box style={{ flex: 1 }}>
             <TextInput
               type="date"
@@ -691,22 +890,12 @@ function Step6({ errors }) {
                 style={{ flex: 1 }}
               />
               {customQuestions.length > 1 && (
-                <ActionIcon
-                  onClick={() => removeQuestion(index)}
-                  color="red"
-                  size="lg"
-                  radius="xl"
-                >
+                <ActionIcon onClick={() => removeQuestion(index)} color="red" size="lg" radius="xl">
                   <Text size="xl">−</Text>
                 </ActionIcon>
               )}
               {index === customQuestions.length - 1 && (
-                <ActionIcon
-                  onClick={addQuestion}
-                  color="blue"
-                  size="lg"
-                  radius="xl"
-                >
+                <ActionIcon onClick={addQuestion} color="blue" size="lg" radius="xl">
                   <Text size="xl">+</Text>
                 </ActionIcon>
               )}
@@ -728,7 +917,7 @@ function Step6({ errors }) {
           style={{
             borderWidth: 2,
             borderStyle: 'dashed',
-            borderColor: 'var(--mantine-color-gray-3)'
+            borderColor: 'var(--mantine-color-gray-3)',
           }}
         >
           <Stack align="center" gap="md">
@@ -739,11 +928,22 @@ function Step6({ errors }) {
               stroke="var(--mantine-color-indigo-5)"
               viewBox="0 0 24 24"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+              />
             </Box>
             <Text c="gray.7">
               Drag & drop files or{' '}
-              <Text component="span" c="blue.6" style={{ cursor: 'pointer', textDecoration: 'underline' }}>Browse</Text>
+              <Text
+                component="span"
+                c="blue.6"
+                style={{ cursor: 'pointer', textDecoration: 'underline' }}
+              >
+                Browse
+              </Text>
             </Text>
             <Text size="xs" c="gray.5" ta="center">
               Press Enter
@@ -772,16 +972,27 @@ function Step7({ errors }) {
       </Title>
 
       <Alert color="grape" variant="light">
-        <Text fw={700} c="gray.9" mb="xs">What information do we share?</Text>
+        <Text fw={700} c="gray.9" mb="xs">
+          What information do we share?
+        </Text>
         <Stack gap={4} component="ul" style={{ listStylePosition: 'inside', paddingLeft: 0 }}>
-          <Text component="li" size="sm" c="gray.7">We NEVER share your email address. No spam or cold calls as a result of bids!</Text>
-          <Text component="li" size="sm" c="gray.7">We do share your company description to improve the quality and likelihood of an offer</Text>
+          <Text component="li" size="sm" c="gray.7">
+            We NEVER share your email address. No spam or cold calls as a result of bids!
+          </Text>
+          <Text component="li" size="sm" c="gray.7">
+            We do share your company description to improve the quality and likelihood of an offer
+          </Text>
         </Stack>
       </Alert>
 
       <Box>
         <Text fw={700} c="gray.9" mb="sm">
-          Add your email to notify you when sellers respond back* {errors.email && <Text component="span" c="red.6">*</Text>}
+          Add your email to notify you when sellers respond back*{' '}
+          {errors.email && (
+            <Text component="span" c="red.6">
+              *
+            </Text>
+          )}
         </Text>
         <TextInput
           type="email"
@@ -794,21 +1005,18 @@ function Step7({ errors }) {
 
       <Box>
         <Group gap="xs" align="flex-start">
-          <Checkbox
-            id="terms"
-            {...register('acceptedTerms')}
-            mt={2}
-          />
+          <Checkbox id="terms" {...register('acceptedTerms')} mt={2} />
           <Text size="sm" c="gray.7" component="label" htmlFor="terms">
             I accept. By hitting "I accept," you agree to be bound by the{' '}
-            <Text component="span" c="blue.6" style={{ textDecoration: 'underline', cursor: 'pointer' }}>
+            <Text
+              component="span"
+              c="blue.6"
+              style={{ textDecoration: 'underline', cursor: 'pointer' }}
+            >
               Theorem Bids Terms of Use.
             </Text>
           </Text>
         </Group>
-        {errors.acceptedTerms && (
-          <Text size="sm" c="red.6" mt="xs">{errors.acceptedTerms.message}</Text>
-        )}
       </Box>
     </Stack>
   )

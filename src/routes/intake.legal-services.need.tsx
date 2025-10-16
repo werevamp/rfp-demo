@@ -17,11 +17,17 @@ function LegalServicesNeed() {
     saveDraft({
       ...draft,
       serviceType: 'legal-services',
-      legalNeed
+      legalNeed,
+      deliveryModel: legalNeed === 'people' ? 'lawfirm' : draft.deliveryModel
     })
 
-    // Navigate to delivery model selection
-    navigate({ to: '/intake/legal-services/delivery' })
+    // If "People" is selected, skip delivery model and go directly to lawfirm intake
+    if (legalNeed === 'people') {
+      navigate({ to: '/intake/lawfirm', search: { step: 1 } })
+    } else {
+      // Navigate to delivery model selection for "Project"
+      navigate({ to: '/intake/legal-services/delivery' })
+    }
   }
 
   return (

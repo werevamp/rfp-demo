@@ -1,0 +1,1582 @@
+[
+  {
+    "id": 750,
+    "name": "Access to Justice",
+    "slug": "access-to-justice"
+  },
+  {
+    "id": 861,
+    "name": "Accounting",
+    "slug": "accounting"
+  },
+  {
+    "id": 1776,
+    "name": "AI Agents",
+    "slug": "ai-agents"
+  },
+  {
+    "id": 1779,
+    "name": "AI Agent Workflows",
+    "slug": "ai-agent-workflows"
+  },
+  {
+    "id": 1816,
+    "name": "AI Audit Tools",
+    "slug": "ai-audit-tools"
+  },
+  {
+    "id": 1822,
+    "name": "AI Business Intelligence & Analytics",
+    "slug": "ai-business-intelligence-analytics"
+  },
+  {
+    "id": 1831,
+    "name": "AI Client Development",
+    "slug": "ai-client-development"
+  },
+  {
+    "id": 1827,
+    "name": "AI Code Tools",
+    "slug": "ai-code-tools"
+  },
+  {
+    "id": 1792,
+    "name": "AI Compliance",
+    "slug": "ai-compliance"
+  },
+  {
+    "id": 1791,
+    "name": "AI Contract Analysis",
+    "slug": "ai-contract-analysis"
+  },
+  {
+    "id": 1804,
+    "name": "AI Contract Drafting",
+    "slug": "ai-contract-drafting"
+  },
+  {
+    "id": 1801,
+    "name": "AI Corporate Governance",
+    "slug": "ai-corporate-governance"
+  },
+  {
+    "id": 1823,
+    "name": "AI Customer Experience Tools",
+    "slug": "ai-customer-experience-tools"
+  },
+  {
+    "id": 1813,
+    "name": "AI Data Labeling & Annotation",
+    "slug": "ai-data-labeling-annotation"
+  },
+  {
+    "id": 1819,
+    "name": "AI Design Tools",
+    "slug": "ai-design-tools"
+  },
+  {
+    "id": 1793,
+    "name": "AI Discovery",
+    "slug": "ai-discovery"
+  },
+  {
+    "id": 1829,
+    "name": "AI Documentation Generation",
+    "slug": "ai-documentation-generation"
+  },
+  {
+    "id": 1797,
+    "name": "AI Document Automation",
+    "slug": "ai-document-automation"
+  },
+  {
+    "id": 1794,
+    "name": "AI Due Diligence",
+    "slug": "ai-due-diligence"
+  },
+  {
+    "id": 1832,
+    "name": "AI Education",
+    "slug": "ai-education"
+  },
+  {
+    "id": 1825,
+    "name": "AI Email & Communication",
+    "slug": "ai-email-communication"
+  },
+  {
+    "id": 1799,
+    "name": "AI Employment & Labor",
+    "slug": "ai-employment-labor"
+  },
+  {
+    "id": 1802,
+    "name": "AI Expert Systems",
+    "slug": "ai-expert-systems"
+  },
+  {
+    "id": 1817,
+    "name": "AI Image Generation",
+    "slug": "ai-image-generation"
+  },
+  {
+    "id": 1812,
+    "name": "AI Infrastructure & Platforms",
+    "slug": "ai-infrastructure-platforms"
+  },
+  {
+    "id": 1839,
+    "name": "AI Intake & Triage",
+    "slug": "ai-intake-triage"
+  },
+  {
+    "id": 1795,
+    "name": "AI Intellectual Property (IP)",
+    "slug": "ai-intellectual-property"
+  },
+  {
+    "id": 1803,
+    "name": "AI Knowledge Management",
+    "slug": "ai-knowledge-management"
+  },
+  {
+    "id": 1834,
+    "name": "AI Learning & Development",
+    "slug": "ai-learning-development"
+  },
+  {
+    "id": 1826,
+    "name": "AI Legal Assistant",
+    "slug": "ai-legal-assistant"
+  },
+  {
+    "id": 1796,
+    "name": "AI Legal Chatbots",
+    "slug": "ai-legal-chatbots"
+  },
+  {
+    "id": 1790,
+    "name": "AI Legal Research",
+    "slug": "ai-legal-research"
+  },
+  {
+    "id": 1830,
+    "name": "AI Model Marketplaces",
+    "slug": "ai-model-marketplaces"
+  },
+  {
+    "id": 1777,
+    "name": "AI Model Security",
+    "slug": "ai-model-security"
+  },
+  {
+    "id": 1815,
+    "name": "AI Monitoring & Evaluation",
+    "slug": "ai-monitoring-evaluation"
+  },
+  {
+    "id": 1836,
+    "name": "AI Presentation Tools",
+    "slug": "ai-presentation"
+  },
+  {
+    "id": 1798,
+    "name": "AI Privacy & Data Protection",
+    "slug": "ai-privacy-data-protection"
+  },
+  {
+    "id": 1800,
+    "name": "AI Real Estate & Property",
+    "slug": "ai-real-estate-property"
+  },
+  {
+    "id": 1806,
+    "name": "AI Redaction",
+    "slug": "ai-redaction"
+  },
+  {
+    "id": 1824,
+    "name": "AI Sales Enablement Tools",
+    "slug": "ai-sales-enablement-tools"
+  },
+  {
+    "id": 1814,
+    "name": "AI Security & Governance",
+    "slug": "ai-security-governance"
+  },
+  {
+    "id": 1828,
+    "name": "AI Software Development",
+    "slug": "ai-software-development"
+  },
+  {
+    "id": 1838,
+    "name": "AI Subtitling & Captioning",
+    "slug": "ai-subtitling-captioning"
+  },
+  {
+    "id": 1805,
+    "name": "AI Summarization",
+    "slug": "ai-summarization"
+  },
+  {
+    "id": 1835,
+    "name": "AI Talent Acquisition",
+    "slug": "ai-talent-acquisition"
+  },
+  {
+    "id": 1840,
+    "name": "AI Timekeeping",
+    "slug": "ai-timekeeping"
+  },
+  {
+    "id": 1833,
+    "name": "AI Training",
+    "slug": "ai-training"
+  },
+  {
+    "id": 1807,
+    "name": "AI Transcription",
+    "slug": "ai-transcription"
+  },
+  {
+    "id": 1837,
+    "name": "AI Video Editing",
+    "slug": "ai-video-editing"
+  },
+  {
+    "id": 1818,
+    "name": "AI Video Generation",
+    "slug": "ai-video-generation"
+  },
+  {
+    "id": 1811,
+    "name": "AI Voice & Speech Generation",
+    "slug": "ai-voice-speech-generation"
+  },
+  {
+    "id": 889,
+    "name": "ALSP",
+    "slug": "alsp"
+  },
+  {
+    "id": 770,
+    "name": "Alternative Legal Services",
+    "slug": "alternative-legal-services"
+  },
+  {
+    "id": 791,
+    "name": "Anti-Piracy",
+    "slug": "anti-piracy"
+  },
+  {
+    "id": 816,
+    "name": "App Development",
+    "slug": "app-development"
+  },
+  {
+    "id": 1783,
+    "name": "Applicant Tracking System (ATS)",
+    "slug": "applicant-tracking-system-ats"
+  },
+  {
+    "id": 815,
+    "name": "Artificial Intelligence (AI)",
+    "slug": "artificial-intelligence-ai"
+  },
+  {
+    "id": 894,
+    "name": "Attorney Network",
+    "slug": "attorney-network"
+  },
+  {
+    "id": 895,
+    "name": "Attorney Staffing",
+    "slug": "attorney-staffing"
+  },
+  {
+    "id": 942,
+    "name": "Auditing Collaboration",
+    "slug": "auditing-collaboration"
+  },
+  {
+    "id": 768,
+    "name": "Background Check Software",
+    "slug": "background-check-software"
+  },
+  {
+    "id": 891,
+    "name": "Bankruptcy",
+    "slug": "bankruptcy"
+  },
+  {
+    "id": 1091,
+    "name": "Bankruptcy & Insolvency",
+    "slug": "bankruptcy-insolvency"
+  },
+  {
+    "id": 935,
+    "name": "Billing and Invoicing",
+    "slug": "billing-and-invoicing"
+  },
+  {
+    "id": 850,
+    "name": "Billing & Invoicing",
+    "slug": "billing-invoicing"
+  },
+  {
+    "id": 769,
+    "name": "Blockchain",
+    "slug": "blockchain"
+  },
+  {
+    "id": 766,
+    "name": "Brief Analysis",
+    "slug": "brief-analysis"
+  },
+  {
+    "id": 751,
+    "name": "Business Intelligence",
+    "slug": "business-intelligence"
+  },
+  {
+    "id": 1371,
+    "name": "Business Process Outsourcing BPO",
+    "slug": "bpo"
+  },
+  {
+    "id": 776,
+    "name": "Business Tools",
+    "slug": "business-tools"
+  },
+  {
+    "id": 851,
+    "name": "Calendar Management",
+    "slug": "calendar-management"
+  },
+  {
+    "id": 817,
+    "name": "Cap Tables",
+    "slug": "cap-tables"
+  },
+  {
+    "id": 830,
+    "name": "Case Assessment",
+    "slug": "case-assessment"
+  },
+  {
+    "id": 754,
+    "name": "Case Management",
+    "slug": "case-management"
+  },
+  {
+    "id": 819,
+    "name": "Case Tracking",
+    "slug": "case-tracking"
+  },
+  {
+    "id": 818,
+    "name": "Chatbots",
+    "slug": "chatbots"
+  },
+  {
+    "id": 820,
+    "name": "Citation Checker",
+    "slug": "citation-checker"
+  },
+  {
+    "id": 812,
+    "name": "Clause Library",
+    "slug": "clause-library"
+  },
+  {
+    "id": 1123,
+    "name": "Client Collections",
+    "slug": "client-collections"
+  },
+  {
+    "id": 908,
+    "name": "Client Intake",
+    "slug": "client-intake"
+  },
+  {
+    "id": 877,
+    "name": "Client Portal",
+    "slug": "client-portal"
+  },
+  {
+    "id": 821,
+    "name": "Closing Management",
+    "slug": "closing-management"
+  },
+  {
+    "id": 757,
+    "name": "Communication & Collaboration",
+    "slug": "communication-collaboration"
+  },
+  {
+    "id": 822,
+    "name": "Compliance",
+    "slug": "compliance-1"
+  },
+  {
+    "id": 823,
+    "name": "Conflicts",
+    "slug": "conflicts"
+  },
+  {
+    "id": 898,
+    "name": "Consulting",
+    "slug": "consulting"
+  },
+  {
+    "id": 906,
+    "name": "Consumer Privacy",
+    "slug": "consumer-privacy"
+  },
+  {
+    "id": 1145,
+    "name": "Contact Management",
+    "slug": "contact-management"
+  },
+  {
+    "id": 915,
+    "name": "Contract Analysis",
+    "slug": "contract-analysis"
+  },
+  {
+    "id": 1129,
+    "name": "Contract Analytics",
+    "slug": "contract-analytics"
+  },
+  {
+    "id": 824,
+    "name": "Contract Automation",
+    "slug": "contract-automation"
+  },
+  {
+    "id": 880,
+    "name": "Contract Compliance",
+    "slug": "contract-compliance"
+  },
+  {
+    "id": 885,
+    "name": "Contract Drafting",
+    "slug": "contract-drafting"
+  },
+  {
+    "id": 753,
+    "name": "Contract Due Diligence",
+    "slug": "contract-due-diligence"
+  },
+  {
+    "id": 771,
+    "name": "Contract Lifecycle Management",
+    "slug": "contract-lifecycle-management"
+  },
+  {
+    "id": 917,
+    "name": "Contract Management",
+    "slug": "contract-management"
+  },
+  {
+    "id": 825,
+    "name": "Contract Negotiation",
+    "slug": "contract-negotiation"
+  },
+  {
+    "id": 779,
+    "name": "Contract Review",
+    "slug": "contract-review"
+  },
+  {
+    "id": 1095,
+    "name": "Corporate Filings",
+    "slug": "corporate-filings"
+  },
+  {
+    "id": 805,
+    "name": "Corporate Governance",
+    "slug": "corporate-governance"
+  },
+  {
+    "id": 806,
+    "name": "Corporate Secretarial",
+    "slug": "corporate-secretarial"
+  },
+  {
+    "id": 826,
+    "name": "Court Calendaring",
+    "slug": "court-calendaring"
+  },
+  {
+    "id": 1100,
+    "name": "Court Filings",
+    "slug": "court-filings"
+  },
+  {
+    "id": 797,
+    "name": "Court Reporting",
+    "slug": "court-reporting"
+  },
+  {
+    "id": 783,
+    "name": "CRM",
+    "slug": "crm"
+  },
+  {
+    "id": 784,
+    "name": "Cyber Security",
+    "slug": "cyber-security"
+  },
+  {
+    "id": 777,
+    "name": "Data Analytics",
+    "slug": "data-analytics"
+  },
+  {
+    "id": 827,
+    "name": "Data Extraction",
+    "slug": "data-extraction"
+  },
+  {
+    "id": 914,
+    "name": "Data Management",
+    "slug": "data-management"
+  },
+  {
+    "id": 1136,
+    "name": "Data Migration",
+    "slug": "data-migration"
+  },
+  {
+    "id": 809,
+    "name": "Data Privacy",
+    "slug": "data-privacy"
+  },
+  {
+    "id": 1144,
+    "name": "Data Processing",
+    "slug": "data-processing"
+  },
+  {
+    "id": 852,
+    "name": "Data Protection",
+    "slug": "data-protection"
+  },
+  {
+    "id": 746,
+    "name": "Data Room",
+    "slug": "data-room"
+  },
+  {
+    "id": 944,
+    "name": "Data Storage Management",
+    "slug": "data-storage-management"
+  },
+  {
+    "id": 828,
+    "name": "Data Visualization",
+    "slug": "data-visualization"
+  },
+  {
+    "id": 853,
+    "name": "Deadline Management",
+    "slug": "deadline-management"
+  },
+  {
+    "id": 1094,
+    "name": "Deal Room",
+    "slug": "deal-room"
+  },
+  {
+    "id": 879,
+    "name": "Decision Automation",
+    "slug": "decision-automation"
+  },
+  {
+    "id": 956,
+    "name": "Deposition",
+    "slug": "deposition"
+  },
+  {
+    "id": 764,
+    "name": "Deposition Software",
+    "slug": "deposition-software"
+  },
+  {
+    "id": 1107,
+    "name": "Design Software",
+    "slug": "design-software"
+  },
+  {
+    "id": 1131,
+    "name": "Dictation",
+    "slug": "dictation"
+  },
+  {
+    "id": 1114,
+    "name": "Digital Risk",
+    "slug": "digital-risk"
+  },
+  {
+    "id": 854,
+    "name": "Discovery Analysis",
+    "slug": "discovery-analysis"
+  },
+  {
+    "id": 787,
+    "name": "Dispute Resolution",
+    "slug": "dispute-resolution"
+  },
+  {
+    "id": 1356,
+    "name": "Diversity Software",
+    "slug": "diversity-software"
+  },
+  {
+    "id": 1359,
+    "name": "Diversity Software (DE&I)",
+    "slug": "diversity-software-de-i-"
+  },
+  {
+    "id": 810,
+    "name": "Docketing",
+    "slug": "docketing"
+  },
+  {
+    "id": 774,
+    "name": "Docket Management",
+    "slug": "docket-management"
+  },
+  {
+    "id": 829,
+    "name": "Document Assembly",
+    "slug": "document-assembly"
+  },
+  {
+    "id": 755,
+    "name": "Document Automation",
+    "slug": "document-automation"
+  },
+  {
+    "id": 811,
+    "name": "Document Comparison",
+    "slug": "document-comparison"
+  },
+  {
+    "id": 962,
+    "name": "Document Formatting",
+    "slug": "document-formatting"
+  },
+  {
+    "id": 744,
+    "name": "Document Management",
+    "slug": "document-management"
+  },
+  {
+    "id": 745,
+    "name": "Document Review & Analysis",
+    "slug": "document-review-analysis"
+  },
+  {
+    "id": 1370,
+    "name": "Document Storage",
+    "slug": "document-storage"
+  },
+  {
+    "id": 855,
+    "name": "Document Tagging",
+    "slug": "document-tagging"
+  },
+  {
+    "id": 761,
+    "name": "Drafting",
+    "slug": "drafting"
+  },
+  {
+    "id": 856,
+    "name": "Due Diligence Management",
+    "slug": "due-diligence-management"
+  },
+  {
+    "id": 912,
+    "name": "eBilling",
+    "slug": "ebilling"
+  },
+  {
+    "id": 748,
+    "name": "eDiscovery",
+    "slug": "ediscovery"
+  },
+  {
+    "id": 780,
+    "name": "Education Software",
+    "slug": "education-software"
+  },
+  {
+    "id": 902,
+    "name": "Electronic Court Filing",
+    "slug": "electronic-court-filing"
+  },
+  {
+    "id": 890,
+    "name": "ELM",
+    "slug": "elm"
+  },
+  {
+    "id": 798,
+    "name": "Email Management",
+    "slug": "email-management"
+  },
+  {
+    "id": 903,
+    "name": "Email Security",
+    "slug": "email-security"
+  },
+  {
+    "id": 1781,
+    "name": "Enterprise Content Management",
+    "slug": "enterprise-content-management"
+  },
+  {
+    "id": 773,
+    "name": "Enterprise Information Management",
+    "slug": "enterprise-information-management"
+  },
+  {
+    "id": 892,
+    "name": "Enterprise Legal Management",
+    "slug": "enterprise-legal-management"
+  },
+  {
+    "id": 875,
+    "name": "Enterprise Search",
+    "slug": "enterprise-search"
+  },
+  {
+    "id": 831,
+    "name": "Entity Management",
+    "slug": "entity-management"
+  },
+  {
+    "id": 916,
+    "name": "Equity Management",
+    "slug": "equity-management"
+  },
+  {
+    "id": 1355,
+    "name": "ESG Software",
+    "slug": "esg-software"
+  },
+  {
+    "id": 756,
+    "name": "eSignature",
+    "slug": "esignature"
+  },
+  {
+    "id": 911,
+    "name": "Expense Reporting",
+    "slug": "expense-reporting"
+  },
+  {
+    "id": 857,
+    "name": "Expense Tracking",
+    "slug": "expense-tracking"
+  },
+  {
+    "id": 758,
+    "name": "Expertise Automation",
+    "slug": "expertise-automation"
+  },
+  {
+    "id": 832,
+    "name": "Expert Systems",
+    "slug": "expert-systems"
+  },
+  {
+    "id": 833,
+    "name": "Extranet",
+    "slug": "extranet"
+  },
+  {
+    "id": 1369,
+    "name": "File Sharing",
+    "slug": "file-sharing"
+  },
+  {
+    "id": 1121,
+    "name": "Financial Management",
+    "slug": "financial-management"
+  },
+  {
+    "id": 1106,
+    "name": "Financial Planning",
+    "slug": "financial-planning"
+  },
+  {
+    "id": 1119,
+    "name": "Financial Reporting",
+    "slug": "financial-reporting"
+  },
+  {
+    "id": 909,
+    "name": "Firm Analytics",
+    "slug": "firm-analytics"
+  },
+  {
+    "id": 1135,
+    "name": "Forms Builder",
+    "slug": "forms-builder"
+  },
+  {
+    "id": 896,
+    "name": "Forms Library",
+    "slug": "forms-library"
+  },
+  {
+    "id": 1808,
+    "name": "Foundational Models",
+    "slug": "foundational-models"
+  },
+  {
+    "id": 1809,
+    "name": "General Purpose Chatbots",
+    "slug": "general-purpose-chatbots"
+  },
+  {
+    "id": 1774,
+    "name": "Generative AI",
+    "slug": "generative-ai"
+  },
+  {
+    "id": 1841,
+    "name": "Governance, Risk and Compliance",
+    "slug": "governance-risk-and-compliance"
+  },
+  {
+    "id": 1104,
+    "name": "HR Software",
+    "slug": "hr-software"
+  },
+  {
+    "id": 1784,
+    "name": "Human Resources Information System (HRIS)",
+    "slug": "human-resources-information-system-hris"
+  },
+  {
+    "id": 1112,
+    "name": "Identity Theft",
+    "slug": "identity-theft"
+  },
+  {
+    "id": 1113,
+    "name": "Identity Theft Protection",
+    "slug": "identity-theft-protection"
+  },
+  {
+    "id": 849,
+    "name": "Identity Verification",
+    "slug": "identity-verification"
+  },
+  {
+    "id": 1843,
+    "name": "Immigration",
+    "slug": "immigration-1"
+  },
+  {
+    "id": 834,
+    "name": "Indentity Verification",
+    "slug": "indentity-verification"
+  },
+  {
+    "id": 963,
+    "name": "Industry Report / Survey",
+    "slug": "industry-report-survey"
+  },
+  {
+    "id": 858,
+    "name": "Information Disclosure",
+    "slug": "information-disclosure"
+  },
+  {
+    "id": 924,
+    "name": "Information Disclosure Management",
+    "slug": "information-disclosure-management"
+  },
+  {
+    "id": 897,
+    "name": "Information Governance",
+    "slug": "information-governance"
+  },
+  {
+    "id": 778,
+    "name": "Intellectual Property",
+    "slug": "intellectual-property"
+  },
+  {
+    "id": 835,
+    "name": "Intranet Portal",
+    "slug": "intranet-portal"
+  },
+  {
+    "id": 859,
+    "name": "Invention Disclosure",
+    "slug": "invention-disclosure"
+  },
+  {
+    "id": 860,
+    "name": "Invention Management",
+    "slug": "invention-management"
+  },
+  {
+    "id": 1122,
+    "name": "Investigations",
+    "slug": "investigations"
+  },
+  {
+    "id": 1090,
+    "name": "Investigative Reporting",
+    "slug": "investigative-reporting"
+  },
+  {
+    "id": 905,
+    "name": "Investigative Research",
+    "slug": "investigative-research"
+  },
+  {
+    "id": 1118,
+    "name": "IP Docketing",
+    "slug": "ip-docketing"
+  },
+  {
+    "id": 1117,
+    "name": "IP Filings",
+    "slug": "ip-filings"
+  },
+  {
+    "id": 795,
+    "name": "IP Portfolio Management",
+    "slug": "ip-portfolio-management"
+  },
+  {
+    "id": 836,
+    "name": "Judicial Analytics",
+    "slug": "judicial-analytics"
+  },
+  {
+    "id": 837,
+    "name": "Knowledge Management",
+    "slug": "knowledge-management"
+  },
+  {
+    "id": 1775,
+    "name": "Large Language Models (LLM)",
+    "slug": "large-language-models-llm-"
+  },
+  {
+    "id": 747,
+    "name": "Law Firm Marketing",
+    "slug": "law-firm-marketing"
+  },
+  {
+    "id": 763,
+    "name": "Law Practice Management",
+    "slug": "law-practice-management"
+  },
+  {
+    "id": 801,
+    "name": "Lead Generator",
+    "slug": "lead-generator"
+  },
+  {
+    "id": 1785,
+    "name": "Learning Management System (LMS)",
+    "slug": "learning-management-system-lms"
+  },
+  {
+    "id": 1139,
+    "name": "Lease Abstraction",
+    "slug": "lease-abstraction"
+  },
+  {
+    "id": 775,
+    "name": "Legal Analytics",
+    "slug": "legal-analytics"
+  },
+  {
+    "id": 792,
+    "name": "Legal Bots",
+    "slug": "legal-bots"
+  },
+  {
+    "id": 925,
+    "name": "Legal Case Management",
+    "slug": "legal-case-management"
+  },
+  {
+    "id": 804,
+    "name": "Legal Entity Management",
+    "slug": "legal-entity-management"
+  },
+  {
+    "id": 1142,
+    "name": "Legal Hold",
+    "slug": "legal-hold"
+  },
+  {
+    "id": 1687,
+    "name": "Legal Intake & Triage",
+    "slug": "legal-intake-triage"
+  },
+  {
+    "id": 1842,
+    "name": "Legal Operations",
+    "slug": "legal-ops"
+  },
+  {
+    "id": 1372,
+    "name": "Legal Process Outsourcing",
+    "slug": "LPO"
+  },
+  {
+    "id": 782,
+    "name": "Legal Project Management",
+    "slug": "legal-project-management"
+  },
+  {
+    "id": 794,
+    "name": "Legal Research",
+    "slug": "legal-research"
+  },
+  {
+    "id": 1373,
+    "name": "Legal Services",
+    "slug": "legal-services"
+  },
+  {
+    "id": 767,
+    "name": "Legal Spend Management",
+    "slug": "legal-spend-management"
+  },
+  {
+    "id": 1381,
+    "name": "Legal Staffing",
+    "slug": "legal-staffing"
+  },
+  {
+    "id": 785,
+    "name": "Legal Technology Marketplace",
+    "slug": "legal-technology-marketplace"
+  },
+  {
+    "id": 893,
+    "name": "Litigation",
+    "slug": "litigation"
+  },
+  {
+    "id": 1788,
+    "name": "Litigation AI",
+    "slug": "litigation-ai"
+  },
+  {
+    "id": 788,
+    "name": "Litigation Analytics",
+    "slug": "litigation-analytics"
+  },
+  {
+    "id": 886,
+    "name": "Litigation Finance",
+    "slug": "litigation-finance"
+  },
+  {
+    "id": 760,
+    "name": "Litigation Management",
+    "slug": "litigation-management"
+  },
+  {
+    "id": 789,
+    "name": "Litigation Support",
+    "slug": "litigation-support-1"
+  },
+  {
+    "id": 1789,
+    "name": "Litigation Support AI",
+    "slug": "litigation-support-ai"
+  },
+  {
+    "id": 1126,
+    "name": "Machine Learning",
+    "slug": "machine-learning"
+  },
+  {
+    "id": 847,
+    "name": "Machine Translation",
+    "slug": "machine-translation"
+  },
+  {
+    "id": 887,
+    "name": "Managed Review",
+    "slug": "managed-review"
+  },
+  {
+    "id": 888,
+    "name": "Managed Services",
+    "slug": "managed-services"
+  },
+  {
+    "id": 762,
+    "name": "Marketing Software",
+    "slug": "marketing-software"
+  },
+  {
+    "id": 913,
+    "name": "Market Intelligence",
+    "slug": "market-intelligence"
+  },
+  {
+    "id": 838,
+    "name": "Matter Management",
+    "slug": "matter-management"
+  },
+  {
+    "id": 882,
+    "name": "Mergers & Acquisitions (M&A)",
+    "slug": "mergers-acquisitions-m-a-"
+  },
+  {
+    "id": 876,
+    "name": "Metadata",
+    "slug": "metadata"
+  },
+  {
+    "id": 961,
+    "name": "Metadata Extract/Scrub",
+    "slug": "metadata-extract-scrub"
+  },
+  {
+    "id": 1810,
+    "name": "Multimodal Models",
+    "slug": "multimodal-models"
+  },
+  {
+    "id": 1102,
+    "name": "NLP",
+    "slug": "nlp"
+  },
+  {
+    "id": 1096,
+    "name": "No-code",
+    "slug": "no-code"
+  },
+  {
+    "id": 931,
+    "name": "Non-disclosure Agreements",
+    "slug": "non-disclosure-agreements"
+  },
+  {
+    "id": 881,
+    "name": "Non-Disclosure Agreements (NDA)",
+    "slug": "non-disclosure-agreements-nda-"
+  },
+  {
+    "id": 904,
+    "name": "Online Payments",
+    "slug": "online-payments"
+  },
+  {
+    "id": 839,
+    "name": "Outside Counsel Management",
+    "slug": "outside-counsel-management"
+  },
+  {
+    "id": 1098,
+    "name": "PACER",
+    "slug": "pacer"
+  },
+  {
+    "id": 790,
+    "name": "Patent Analysis",
+    "slug": "patent-analysis"
+  },
+  {
+    "id": 958,
+    "name": "Patent Applications",
+    "slug": "patent-applications"
+  },
+  {
+    "id": 883,
+    "name": "Patent Automation",
+    "slug": "patent-automation"
+  },
+  {
+    "id": 800,
+    "name": "Patent Drafting",
+    "slug": "patent-drafting"
+  },
+  {
+    "id": 884,
+    "name": "Patent Prosecution",
+    "slug": "patent-prosecution"
+  },
+  {
+    "id": 862,
+    "name": "Patents",
+    "slug": "patents"
+  },
+  {
+    "id": 840,
+    "name": "Patent Search",
+    "slug": "patent-search"
+  },
+  {
+    "id": 863,
+    "name": "Patent Tracking",
+    "slug": "patent-tracking"
+  },
+  {
+    "id": 907,
+    "name": "Payment Processing",
+    "slug": "payment-processing"
+  },
+  {
+    "id": 1085,
+    "name": "Payments",
+    "slug": "payments"
+  },
+  {
+    "id": 1105,
+    "name": "Payroll Software",
+    "slug": "payroll-software"
+  },
+  {
+    "id": 796,
+    "name": "Personal Injury",
+    "slug": "personal-injury"
+  },
+  {
+    "id": 802,
+    "name": "Phone & Voice Services",
+    "slug": "phone-voice-services"
+  },
+  {
+    "id": 960,
+    "name": "PII Discovery",
+    "slug": "pii-discovery"
+  },
+  {
+    "id": 841,
+    "name": "Platform",
+    "slug": "platform"
+  },
+  {
+    "id": 1137,
+    "name": "Practical Guidance",
+    "slug": "practical-guidance"
+  },
+  {
+    "id": 759,
+    "name": "Predictive Technology",
+    "slug": "predictive-technology"
+  },
+  {
+    "id": 1344,
+    "name": "Presentation Software",
+    "slug": "presentation-software"
+  },
+  {
+    "id": 910,
+    "name": "Pricing & Scoping",
+    "slug": "pricing-scoping"
+  },
+  {
+    "id": 1124,
+    "name": "Privacy Rights",
+    "slug": "privacy-rights"
+  },
+  {
+    "id": 864,
+    "name": "Probono",
+    "slug": "probono"
+  },
+  {
+    "id": 1110,
+    "name": "Process Serving",
+    "slug": "process-serving"
+  },
+  {
+    "id": 865,
+    "name": "Procurement",
+    "slug": "procurement-1"
+  },
+  {
+    "id": 947,
+    "name": "Procurement Management",
+    "slug": "procurement-management"
+  },
+  {
+    "id": 948,
+    "name": "Project Management",
+    "slug": "project-management"
+  },
+  {
+    "id": 1778,
+    "name": "Prompt Management",
+    "slug": "prompt-management"
+  },
+  {
+    "id": 1109,
+    "name": "Prototyping",
+    "slug": "prototyping"
+  },
+  {
+    "id": 765,
+    "name": "Real Estate Portfolio Management",
+    "slug": "real-estate-portfolio-management"
+  },
+  {
+    "id": 808,
+    "name": "Redaction Software",
+    "slug": "redaction-software"
+  },
+  {
+    "id": 1127,
+    "name": "Redlining",
+    "slug": "redlining"
+  },
+  {
+    "id": 1146,
+    "name": "Referral Tracking",
+    "slug": "referral-tracking"
+  },
+  {
+    "id": 901,
+    "name": "Regulatory Compliance",
+    "slug": "regulatory-compliance"
+  },
+  {
+    "id": 900,
+    "name": "Regulatory Monitoring",
+    "slug": "regulatory-monitoring"
+  },
+  {
+    "id": 921,
+    "name": "Renewal Management",
+    "slug": "renewal-management"
+  },
+  {
+    "id": 813,
+    "name": "Reports & Surveys",
+    "slug": "reports-surveys"
+  },
+  {
+    "id": 781,
+    "name": "RFP / Procurement",
+    "slug": "rfp-procurement"
+  },
+  {
+    "id": 799,
+    "name": "Risk Management",
+    "slug": "risk-management"
+  },
+  {
+    "id": 842,
+    "name": "Robotic Process Automation",
+    "slug": "robotic-process-automation"
+  },
+  {
+    "id": 752,
+    "name": "Security & Compliance",
+    "slug": "security-compliance"
+  },
+  {
+    "id": 814,
+    "name": "Smart Charts",
+    "slug": "smart-charts"
+  },
+  {
+    "id": 843,
+    "name": "Smart Contracts",
+    "slug": "smart-contracts"
+  },
+  {
+    "id": 1111,
+    "name": "Social Media",
+    "slug": "social-media"
+  },
+  {
+    "id": 1130,
+    "name": "Speech Recognition",
+    "slug": "speech-recognition"
+  },
+  {
+    "id": 923,
+    "name": "Spend Management",
+    "slug": "spend-management"
+  },
+  {
+    "id": 1688,
+    "name": "State Trial Court Research",
+    "slug": "state-trial-court-research"
+  },
+  {
+    "id": 844,
+    "name": "Structure / Process Map",
+    "slug": "structure-process-map"
+  },
+  {
+    "id": 878,
+    "name": "Task Management",
+    "slug": "task-management"
+  },
+  {
+    "id": 866,
+    "name": "Tax",
+    "slug": "tax"
+  },
+  {
+    "id": 845,
+    "name": "Taxonomy/Categorization",
+    "slug": "taxonomy-categorization"
+  },
+  {
+    "id": 1141,
+    "name": "Template Creation",
+    "slug": "template-creation"
+  },
+  {
+    "id": 803,
+    "name": "Third-Party Risk Management",
+    "slug": "third-party-risk-management"
+  },
+  {
+    "id": 749,
+    "name": "Time & Billing",
+    "slug": "time-billing"
+  },
+  {
+    "id": 1335,
+    "name": "Timeline Software",
+    "slug": "timeline-software"
+  },
+  {
+    "id": 867,
+    "name": "Time Tracking",
+    "slug": "time-tracking"
+  },
+  {
+    "id": 959,
+    "name": "TPRM",
+    "slug": "tprm"
+  },
+  {
+    "id": 807,
+    "name": "Trademark",
+    "slug": "trademark"
+  },
+  {
+    "id": 869,
+    "name": "Trademark Docketing",
+    "slug": "trademark-docketing"
+  },
+  {
+    "id": 868,
+    "name": "Trademark Management",
+    "slug": "trademark-management"
+  },
+  {
+    "id": 874,
+    "name": "Trademark Search",
+    "slug": "trademark-search"
+  },
+  {
+    "id": 870,
+    "name": "Trademark Tracking",
+    "slug": "trademark-tracking"
+  },
+  {
+    "id": 1147,
+    "name": "Training Software",
+    "slug": "training-software"
+  },
+  {
+    "id": 772,
+    "name": "Transaction Management",
+    "slug": "transaction-management"
+  },
+  {
+    "id": 955,
+    "name": "Transcription",
+    "slug": "transcription"
+  },
+  {
+    "id": 873,
+    "name": "Transcription ",
+    "slug": "transcription-"
+  },
+  {
+    "id": 846,
+    "name": "Translation",
+    "slug": "translation"
+  },
+  {
+    "id": 1336,
+    "name": "Trial Software",
+    "slug": "trial-software"
+  },
+  {
+    "id": 957,
+    "name": "Trial Support",
+    "slug": "trial-support"
+  },
+  {
+    "id": 871,
+    "name": "Trust Accounting",
+    "slug": "trust-accounting"
+  },
+  {
+    "id": 918,
+    "name": "User Onboarding",
+    "slug": "user-onboarding"
+  },
+  {
+    "id": 872,
+    "name": "Video Conferencing",
+    "slug": "video-conferencing"
+  },
+  {
+    "id": 1337,
+    "name": "Virtual Meeting",
+    "slug": "virtual-meeting"
+  },
+  {
+    "id": 1120,
+    "name": "Virtual Receptionist",
+    "slug": "virtual-receptionist"
+  },
+  {
+    "id": 793,
+    "name": "VoIP",
+    "slug": "voip"
+  },
+  {
+    "id": 899,
+    "name": "Web Capture",
+    "slug": "web-capture"
+  },
+  {
+    "id": 1108,
+    "name": "Whiteboard Software",
+    "slug": "whiteboard-software"
+  },
+  {
+    "id": 848,
+    "name": "Workflow Automation",
+    "slug": "workflow-automation"
+  },
+  {
+    "id": 786,
+    "name": "Workflow Tools",
+    "slug": "workflow-tools"
+  }
+]

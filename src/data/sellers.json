@@ -1,0 +1,142 @@
+[
+  {
+    "id": "vendor-001",
+    "companyName": "ACME Legal LLP",
+    "shortName": "ACME",
+    "type": "lawfirm",
+    "location": "New York, NY",
+    "headquarters": "New York, NY",
+    "founded": 1995,
+    "employeeCount": "500+",
+    "specialties": [
+      "Corporate Law",
+      "Mergers & Acquisitions",
+      "Securities Law",
+      "Intellectual Property"
+    ],
+    "rating": 4.8,
+    "description": "Premier full-service law firm specializing in complex corporate transactions and high-stakes litigation.",
+    "website": "www.acmelegal.com",
+    "isIncumbent": false
+  },
+  {
+    "id": "vendor-002",
+    "companyName": "NorthBridge Law",
+    "shortName": "NorthBridge",
+    "type": "lawfirm",
+    "location": "Chicago, IL",
+    "headquarters": "Chicago, IL",
+    "founded": 2008,
+    "employeeCount": "200+",
+    "specialties": [
+      "Employment Law",
+      "Labor Relations",
+      "Class Action Defense",
+      "HR Compliance"
+    ],
+    "rating": 4.6,
+    "description": "Leading employment and labor law firm with extensive experience in defending class action lawsuits.",
+    "website": "www.northbridgelaw.com",
+    "isIncumbent": false
+  },
+  {
+    "id": "vendor-003",
+    "companyName": "Harbor & Moss",
+    "shortName": "H&M",
+    "type": "lawfirm",
+    "location": "San Francisco, CA",
+    "headquarters": "San Francisco, CA",
+    "founded": 2012,
+    "employeeCount": "150+",
+    "specialties": [
+      "Intellectual Property",
+      "Patent Prosecution",
+      "Technology Law",
+      "Startup Counsel"
+    ],
+    "rating": 4.7,
+    "description": "Innovative IP and technology law firm serving startups and high-growth tech companies.",
+    "website": "www.harborandmoss.com",
+    "isIncumbent": false
+  },
+  {
+    "id": "vendor-004",
+    "companyName": "TechLegal Solutions",
+    "shortName": "TechLegal",
+    "type": "vendor",
+    "location": "Austin, TX",
+    "headquarters": "Austin, TX",
+    "founded": 2015,
+    "employeeCount": "75+",
+    "specialties": [
+      "Legal Tech Software",
+      "Contract Management",
+      "E-Discovery",
+      "Compliance Automation"
+    ],
+    "rating": 4.5,
+    "description": "Cutting-edge legal technology provider helping law firms and legal departments modernize their operations.",
+    "website": "www.techlegalsolutions.com",
+    "isIncumbent": false
+  },
+  {
+    "id": "vendor-005",
+    "companyName": "GlobalLegal ALSP",
+    "shortName": "GlobalLegal",
+    "type": "alsp",
+    "location": "Boston, MA",
+    "headquarters": "Boston, MA",
+    "founded": 2010,
+    "employeeCount": "300+",
+    "specialties": [
+      "Document Review",
+      "Contract Analysis",
+      "Legal Research",
+      "Managed Services"
+    ],
+    "rating": 4.4,
+    "description": "Alternative Legal Service Provider offering scalable, cost-effective legal support services.",
+    "website": "www.globallegalsp.com",
+    "isIncumbent": false
+  },
+  {
+    "id": "vendor-006",
+    "companyName": "Prestige Partners LLP",
+    "shortName": "Prestige",
+    "type": "lawfirm",
+    "location": "Washington, DC",
+    "headquarters": "Washington, DC",
+    "founded": 1988,
+    "employeeCount": "800+",
+    "specialties": [
+      "Regulatory Compliance",
+      "Government Relations",
+      "Antitrust",
+      "White Collar Defense"
+    ],
+    "rating": 4.9,
+    "description": "Elite law firm with deep expertise in regulatory matters and government investigations.",
+    "website": "www.prestigepartners.com",
+    "isIncumbent": false
+  },
+  {
+    "id": "vendor-007",
+    "companyName": "LegalTech Innovations",
+    "shortName": "LTI",
+    "type": "vendor",
+    "location": "Seattle, WA",
+    "headquarters": "Seattle, WA",
+    "founded": 2018,
+    "employeeCount": "50+",
+    "specialties": [
+      "AI-Powered Legal Research",
+      "Contract Intelligence",
+      "Legal Analytics",
+      "Practice Management"
+    ],
+    "rating": 4.6,
+    "description": "Next-generation legal tech company leveraging AI to transform legal workflows and decision-making.",
+    "website": "www.legaltechinnovations.com",
+    "isIncumbent": false
+  }
+]

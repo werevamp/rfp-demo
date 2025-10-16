@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "postgres": {
+      "command": "postgres-mcp",
+      "args": ["--access-mode=unrestricted"],
+      "env": {
+        "DATABASE_URI": "postgresql://CSBMuRSrmK:T2b8rkLtrbzEZtEf@theorem.cvjr50y57yre.us-west-2.rds.amazonaws.com:5432/theorem"
+      }
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "vendors": [
+    {
+      "id": "vendor-1",
+      "name": "ACME Legal LLP",
+      "shortName": "ACME",
+      "isCurrentSupplier": true,
+      "stage": "Shortlisted",
+      "score": 88,
+      "completion": 100,
+      "matchPercentage": 88,
+      "responses": {
+        "experience": "Represented 30+ Chicago leases >50k sq ft in last 3 yrs; specialized TI allowance negotiations.",
+        "teamComposition": "Partner-led team with 1 Counsel, 2 Sr Assoc, 1 Jr Assoc.",
+        "pricingModel": "Blended rate with 5% volume discount; success fee on savings."
+      }
+    },
+    {
+      "id": "vendor-2",
+      "name": "NorthBridge Law",
+      "shortName": "NB",
+      "isCurrentSupplier": false,
+      "stage": "Responded",
+      "score": 79,
+      "completion": 100,
+      "matchPercentage": 79,
+      "responses": {
+        "experience": "Focus on tenant-side rep; 18 comparable matters since 2023.",
+        "teamComposition": "2 Partners, 1 Sr Assoc, 1 Paralegal.",
+        "pricingModel": "Alt-fee cap + collar; 10% early-payment discount."
+      }
+    },
+    {
+      "id": "vendor-3",
+      "name": "Harbor & Moss",
+      "shortName": "H&M",
+      "isCurrentSupplier": false,
+      "stage": "Responded",
+      "score": 68,
+      "completion": 92,
+      "matchPercentage": 68,
+      "responses": {
+        "experience": "12 commercial lease negotiations in Illinois; mixed tenant/landlord representation.",
+        "teamComposition": "1 Partner, 2 Associates, 1 Contract Attorney.",
+        "pricingModel": "Hourly with not-to-exceed cap; monthly billing."
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "text": "Relevant experience with commercial leasing?",
+      "weight": 33
+    },
+    {
+      "id": "q2",
+      "text": "Team composition & seniority mix",
+      "weight": 22
+    },
+    {
+      "id": "q3",
+      "text": "Proposed pricing model & discounts",
+      "weight": 33
+    }
+  ],
+  "documents": {
+    "buyerAttachments": [
+      {
+        "id": "doc-1",
+        "name": "RFP_Specs.pdf",
+        "type": "PDF",
+        "size": "1.2 MB"
+      },
+      {
+        "id": "doc-2",
+        "name": "Lease_Sample.docx",
+        "type": "DOCX",
+        "size": "340 KB"
+      }
+    ],
+    "providerUploads": []
+  },
+  "milestones": {
+    "posted": "2025-09-10",
+    "due": "2025-10-31",
+    "avgResponseTime": "3.2 days",
+    "bidRange": "$$ - $$$"
+  }
+}

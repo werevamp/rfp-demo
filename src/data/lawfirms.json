@@ -1,0 +1,162 @@
+[
+  {
+    "id": "4ba860ec-57f3-4f68-bd5a-b84285bf4b7a",
+    "name": "Bird & Bird",
+    "details": {
+      "logo": "https://res.cloudinary.com/dh1giwabb/image/upload/v1717555395/wicxjcprq6jl1mcf8fvx.jpg",
+      "phone": "",
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/bird-and-bird.png",
+      "twitter": "",
+      "website": "https://www.twobirds.com/",
+      "facebook": "",
+      "linkedin": "",
+      "wideLogo": "https://res.cloudinary.com/dh1giwabb/image/upload/v1717555394/j3cd9c8utjombeil9v8v.jpg",
+      "demoVideo": "https://www.youtube.com/@BirdBirdLLP",
+      "signInUrl": "",
+      "bannerImage": "https://res.cloudinary.com/dh1giwabb/image/upload/v1717560913/hmbvwzadoxpxd4ilkcpp.jpg",
+      "lawfirmSize": "1000+",
+      "lawfirmType": "Law Firm",
+      "emailInquiry": "",
+      "emailSupport": ""
+    }
+  },
+  {
+    "id": "b690ea0f-6473-4055-a81a-dfcdf8598b83",
+    "name": "Cooley LLP",
+    "details": {
+      "logo": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/cooley-llp.png",
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/cooley-llp.png",
+      "website": "https://www.cooley.com/",
+      "lawfirmSize": "1000+",
+      "lawfirmType": "Law Firm"
+    }
+  },
+  {
+    "id": "40a8b01b-d6e5-4cd6-8ff2-e60dae4a4678",
+    "name": "Dentons",
+    "details": {
+      "logo": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Dentons.png",
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Dentons.png",
+      "website": "https://www.dentons.com/en",
+      "lawfirmSize": "1000+",
+      "lawfirmType": "Law Firm"
+    }
+  },
+  {
+    "id": "46348746-3bf0-4b81-b75f-938f61eb4943",
+    "name": "DLA Piper",
+    "details": {
+      "logo": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/dla-piper.png",
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/dla-piper.png",
+      "website": "https://www.dlapiper.com/en/us/",
+      "lawfirmSize": "1000+",
+      "lawfirmType": "Law Firm"
+    }
+  },
+  {
+    "id": "06bc2d3f-b2f3-4c9a-8c3b-c34efd00e74d",
+    "name": "Greenberg Traurig",
+    "details": {
+      "logo": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Greenberg%20Traurig.png",
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Greenberg%20Traurig.png",
+      "website": "https://www.gtlaw.com/en",
+      "wideLogo": "",
+      "lawfirmSize": "1000+",
+      "lawfirmType": "Law Firm"
+    }
+  },
+  {
+    "id": "ee51a061-8e8a-4d3b-a174-7977fe7c66b1",
+    "name": "Jackson Lewis P.C.",
+    "details": {
+      "logo": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/jackson-lewis-pc.png",
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/jackson-lewis-pc.png",
+      "website": "https://www.jacksonlewis.com/",
+      "lawfirmSize": "500+",
+      "lawfirmType": "Law Firm"
+    }
+  },
+  {
+    "id": "20004225-e742-41d8-af17-6f7539c87b07",
+    "name": "Littler Mendelson P.C.",
+    "details": {
+      "logo": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/littler-mendelson-pc.png",
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/littler-mendelson-pc.png",
+      "mainCta": {
+        "link": "https://www.littler.com/innovation",
+        "text": "Learn About Our Innovative Products & Services",
+        "type": "custom",
+        "privacyPolicy": "https://www.littler.com/privacy-policy"
+      },
+      "website": "https://www.littler.com/",
+      "wideLogo": "",
+      "lawfirmSize": "1000+",
+      "lawfirmType": "Law Firm"
+    }
+  },
+  {
+    "id": "8576bcb4-63f1-4501-ac6f-d43abfc1ecac",
+    "name": "Morgan, Lewis & Bockius, L.L.P.",
+    "details": {
+      "logo": "https://res.cloudinary.com/dh1giwabb/image/upload/v1727744121/d3xhcpysognkiqbgzkbp.png",
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Morgan%2C%20Lewis%20%26%20Bockius%2C%20L.L.P..png",
+      "website": "https://www.morganlewis.com/",
+      "wideLogo": "",
+      "lawfirmSize": "1000+",
+      "lawfirmType": "Law Firm"
+    }
+  },
+  {
+    "id": "a94bc4f1-face-442e-bc18-17f7a6418f54",
+    "name": "Ogletree Deakins",
+    "details": {
+      "logo": "https://res.cloudinary.com/dh1giwabb/image/upload/v1718112645/zqt8z52rtq02yqotznmz.jpg",
+      "mainCta": {
+        "link": "https://ogletree.com/",
+        "text": "Visit Website",
+        "type": "custom",
+        "privacyPolicy": ""
+      },
+      "website": "https://ogletree.com/",
+      "wideLogo": "",
+      "lawfirmSize": "1000+",
+      "jurisdictionRegion": "US"
+    }
+  },
+  {
+    "id": "2f3397bc-5c6f-4a57-b109-95a7b80eb414",
+    "name": "Orrick, Herrington & Sutcliffe LLP",
+    "details": {
+      "logo": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Orrick%2C%20Herrington%20%26%20Sutcliffe%20LLP.png",
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Orrick%2C%20Herrington%20%26%20Sutcliffe%20LLP.png",
+      "mainCta": {
+        "text": "Contact Us",
+        "type": "contact",
+        "privacyPolicy": ""
+      },
+      "website": "https://www.orrick.com/",
+      "lawfirmSize": "1000+",
+      "lawfirmType": "Law Firm"
+    }
+  },
+  {
+    "id": "0fa28221-6b37-4ec6-88de-1d39c0df7591",
+    "name": "Seyfarth Shaw",
+    "details": {
+      "logo": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/seyfarth-shaw.png",
+      "logoUrl": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/seyfarth-shaw.png",
+      "website": "https://www.seyfarth.com/",
+      "lawfirmSize": "1000+",
+      "lawfirmType": "Law Firm"
+    }
+  },
+  {
+    "id": "ee4c1023-caef-403f-8d4a-13264f77424d",
+    "name": "Troutman Peppers LLP",
+    "details": {
+      "logo": "https://theorem-public-files.s3.us-west-2.amazonaws.com/vendors/Troutman%20Peppers%20LLP.png",
+      "lawfirmSize": "1000+",
+      "jurisdictionRegion": "US"
+    }
+  }
+]

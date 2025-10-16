@@ -19,30 +19,24 @@ import {
   ActionIcon,
   ThemeIcon,
   Radio,
-  Autocomplete,
-  Avatar,
-  SegmentedControl,
-  Modal
+  Avatar
 } from '@mantine/core'
-import { Search, Star, Package, FolderTree, X } from 'lucide-react'
+import { Search, Star } from 'lucide-react'
 import IntakeLayout from '../components/IntakeLayout'
 import StepIndicator from '../components/StepIndicator'
 import { BackButton, NextButton } from '../components/IntakeNavButtons'
 import ProductAutocomplete from '../components/ProductAutocomplete'
-import TechStackAutocomplete from '../components/TechStackAutocomplete'
 import { saveDraft, getDraft, saveBuyerIntake } from '../utils/buyerIntakeStorage'
-import { techIntakeSchema, stepSchemas } from '../schemas/techIntakeSchema'
+import { techReplaceIntakeSchema, stepSchemas } from '../schemas/techReplaceIntakeSchema'
 import {
-  purchaseFactors,
-  budgetStatus,
+  replacementReasons,
+  currentToolStatus,
   featurePriority,
   signTimeline,
   contractTerms,
   billingTerms,
   paymentTerms
 } from '../data/intakeOptions'
-import productsData from '../data/products.json'
-import categoriesData from '../data/categories.json'
 import {
   getRecommendedProducts,
   formatProductForDisplay,
@@ -51,14 +45,14 @@ import {
   getProductColor
 } from '../utils/productRecommendations'
 
-export const Route = createFileRoute('/intake/tech-new')({
-  component: TechNewIntake,
+export const Route = createFileRoute('/intake/tech-replace')({
+  component: TechReplaceIntake,
   validateSearch: (search) => ({
     step: Number(search?.step) || 1
   })
 })
 
-function TechNewIntake() {
+function TechReplaceIntake() {
   const navigate = useNavigate()
   const { step } = Route.useSearch()
 
@@ -73,18 +67,17 @@ function TechNewIntake() {
 
   // Default values
   const defaultValues = {
-    serviceType: 'legal-tech-new',
-    rfpType: 'legal-tech-new',
-    deliveryModel: null, // Explicitly clear deliveryModel to prevent conflicts with legal services forms
+    serviceType: 'legal-tech-replace',
+    rfpType: 'legal-tech-replace',
+    deliveryModel: null,
     title: '',
     companyDescription: '',
-    productSearch: '',
-    categorySearch: '',
+    productToReplace: '',
+    replacementReasons: [],
+    replacementReasonsOther: '',
+    currentStatus: '',
+    currentStatusOther: '',
     useCaseDescription: '',
-    purchaseFactors: [],
-    purchaseFactorsOther: '',
-    budgetStatus: '',
-    budgetStatusOther: '',
     coreFeatures: [{ feature: '', priority: '' }],
     featureFiles: [],
     existingTechStack: [],
@@ -104,10 +97,10 @@ function TechNewIntake() {
   }
 
   // Initialize form with draft data or defaults
-  const draft = getDraft('tech-new')
+  const draft = getDraft('tech-replace')
   const methods = useForm({
     defaultValues: draft ? { ...defaultValues, ...draft } : defaultValues,
-    resolver: yupResolver(techIntakeSchema),
+    resolver: yupResolver(techReplaceIntakeSchema),
     mode: 'onChange'
   })
 
@@ -118,7 +111,7 @@ function TechNewIntake() {
 
   // Auto-save draft
   useEffect(() => {
-    saveDraft(formValues, 'tech-new')
+    saveDraft(formValues, 'tech-replace')
   }, [formValues])
 
   // Reset acceptedTerms when reaching final step to prevent auto-submission
@@ -129,7 +122,7 @@ function TechNewIntake() {
   }, [step, setValue])
 
   const goToStep = (newStep) => {
-    navigate({ to: '/intake/tech-new', search: { step: newStep } })
+    navigate({ to: '/intake/tech-replace', search: { step: newStep } })
   }
 
   const handleNext = async () => {
@@ -259,7 +252,7 @@ function Step1({ errors }) {
 
   return (
     <Stack gap="xl">
-      <Title order={1} size="2.5rem" c="gray.9">New Purchase RFP</Title>
+      <Title order={1} size="2.5rem" c="gray.9">Tool Replacement RFP</Title>
 
       <Box>
         <Title order={2} size="xl" c="gray.9" mb="sm">
@@ -298,132 +291,148 @@ function Step1({ errors }) {
   )
 }
 
-// Step 2: Product Search
+// Step 2: Product to Replace
 function Step2({ errors }) {
-  const { watch, setValue } = useFormContext()
-  const [searchType, setSearchType] = useState('product')
-  const [categorySearchValue, setCategorySearchValue] = useState('')
-  const companyDescription = watch('companyDescription') || 'Company Description'
-
-  // Prepare category data for autocomplete
-  const categoryOptions = categoriesData.map(category => ({
-    value: category.name,
-    label: category.name,
-    id: category.id,
-    slug: category.slug
-  }))
-
-  const handleSearchTypeChange = (value) => {
-    setSearchType(value)
-    // Clear the opposite field when switching
-    if (value === 'product') {
-      setCategorySearchValue('')
-      setValue('categorySearch', '')
-    } else {
-      setValue('productSearch', '')
-    }
-  }
-
-  const handleCategorySelect = (value) => {
-    setValue('categorySearch', value)
-    setCategorySearchValue(value)
-  }
-
-  const handleCategoryChange = (value) => {
-    setCategorySearchValue(value)
-  }
+  const { watch } = useFormContext()
+  const companyDescription = watch('companyDescription')
 
   return (
     <Stack gap="xl">
-      <Title order={1} size="2.5rem" c="gray.9">New Purchase RFP</Title>
-
       <Box>
         <Text c="gray.9" size="lg" mb="sm" ta="center">
           From here you will remain anonymous as:
         </Text>
         <Text c="gray.9" fw={600} ta="center" mb="xl">
-          {companyDescription}
+          {companyDescription || 'Company Description'}
         </Text>
       </Box>
 
       <Box>
         <Title order={2} size="xl" c="gray.9" mb="sm" ta="center">
-          What are you looking for?
+          What software are you thinking of replacing?
         </Title>
-        <Text c="gray.6" size="md" mb="lg" ta="center">
-          Search by a specific product or a product category
-        </Text>
 
-        <Box mb="xl">
-          <SegmentedControl
-            value={searchType}
-            onChange={handleSearchTypeChange}
-            data={[
-              {
-                label: (
-                  <Group gap="xs" justify="center">
-                    <Package size={16} />
-                    <span>Specific Product</span>
-                  </Group>
-                ),
-                value: 'product'
-              },
-              {
-                label: (
-                  <Group gap="xs" justify="center">
-                    <FolderTree size={16} />
-                    <span>Product Category</span>
-                  </Group>
-                ),
-                value: 'category'
-              }
-            ]}
-            fullWidth
-            size="md"
-          />
-        </Box>
-
-        {searchType === 'product' && (
-          <ProductAutocomplete
-            fieldName="productSearch"
-            label="Product Name"
-            placeholder="Search for a product"
-            error={errors.productSearch}
-            size="md"
-          />
-        )}
-
-        {searchType === 'category' && (
-          <Autocomplete
-            value={categorySearchValue}
-            onChange={handleCategoryChange}
-            onOptionSubmit={handleCategorySelect}
-            data={categoryOptions}
-            label="Category Name"
-            placeholder="Search for a product category"
-            leftSection={<Search size={16} />}
-            size="md"
-            maxDropdownHeight={300}
-            filter={({ options, search }) => {
-              return options.filter((option) =>
-                option.label.toLowerCase().includes(search.toLowerCase().trim())
-              )
-            }}
-          />
-        )}
+        <ProductAutocomplete
+          fieldName="productToReplace"
+          label="Product Name"
+          placeholder="Search for a product"
+          error={errors.productToReplace}
+          size="md"
+        />
       </Box>
     </Stack>
   )
 }
 
-// Step 3: Use Case Description
+// Step 3: Replacement Reasons
 function Step3({ errors }) {
+  const { watch, setValue, register } = useFormContext()
+  const selectedReasons = watch('replacementReasons') || []
+  const showOther = selectedReasons.includes('other')
+  const productToReplace = watch('productToReplace') || '{ Tool Selected }'
+
+  const toggleReason = (reason) => {
+    if (selectedReasons.includes(reason)) {
+      setValue('replacementReasons', selectedReasons.filter(r => r !== reason))
+    } else {
+      setValue('replacementReasons', [...selectedReasons, reason])
+    }
+  }
+
+  return (
+    <Stack gap="xl">
+      <Box>
+        <Title order={1} size="2rem" c="gray.9" mb="sm">
+          Why are you considering replacing {productToReplace}?
+        </Title>
+        <Text c="gray.6" size="md">
+          Select all applicable
+        </Text>
+      </Box>
+
+      <Group gap="sm">
+        {replacementReasons.map((reason) => (
+          <Button
+            key={reason.value}
+            onClick={() => toggleReason(reason.value)}
+            variant={selectedReasons.includes(reason.value) ? 'filled' : 'outline'}
+            color={selectedReasons.includes(reason.value) ? 'violet' : 'gray'}
+            size="md"
+          >
+            {reason.label}
+          </Button>
+        ))}
+      </Group>
+
+      {showOther && (
+        <TextInput
+          {...register('replacementReasonsOther')}
+          placeholder="Text in here"
+          size="md"
+        />
+      )}
+
+      {errors.replacementReasons && (
+        <Text size="sm" c="red.6">{errors.replacementReasons.message}</Text>
+      )}
+    </Stack>
+  )
+}
+
+// Step 4: Current Status
+function Step4({ errors }) {
+  const { watch, setValue, register } = useFormContext()
+  const selectedStatus = watch('currentStatus')
+  const showOther = selectedStatus === 'other'
+  const productToReplace = watch('productToReplace') || '{ Tool Selected }'
+
+  return (
+    <Stack gap="xl">
+      <Box>
+        <Title order={1} size="2rem" c="gray.9" mb="sm">
+          What best describes your status with {productToReplace}?
+        </Title>
+        <Text c="gray.6" size="md">
+          Select one
+        </Text>
+      </Box>
+
+      <Radio.Group
+        value={selectedStatus}
+        onChange={(value) => setValue('currentStatus', value)}
+      >
+        <Stack gap="sm">
+          {currentToolStatus.map((status) => (
+            <Paper key={status.value} p="md" withBorder style={{ cursor: 'pointer' }}>
+              <Radio value={status.value} label={status.label} />
+            </Paper>
+          ))}
+        </Stack>
+      </Radio.Group>
+
+      {showOther && (
+        <TextInput
+          {...register('currentStatusOther')}
+          placeholder="Text in here"
+          size="md"
+        />
+      )}
+
+      {errors.currentStatus && (
+        <Text size="sm" c="red.6">{errors.currentStatus.message}</Text>
+      )}
+    </Stack>
+  )
+}
+
+// Step 5: Use Case Description
+function Step5({ errors }) {
   const { register, watch } = useFormContext()
   const useCaseDescription = watch('useCaseDescription') || ''
 
   return (
     <Stack gap="xl">
-      <Title order={1} size="2.5rem" c="gray.9">Describe your use case and pain points</Title>
+      <Title order={1} size="2rem" c="gray.9">Describe your use case and pain points</Title>
       <Text c="gray.6" size="lg">
         Please describe the use case and feel free to provide any additional info you think will be helpful
       </Text>
@@ -441,105 +450,6 @@ function Step3({ errors }) {
           {useCaseDescription.length}/500
         </Text>
       </Box>
-    </Stack>
-  )
-}
-
-// Step 4: Purchase Factors
-function Step4({ errors }) {
-  const { watch, setValue, register } = useFormContext()
-  const selectedFactors = watch('purchaseFactors') || []
-  const showOther = selectedFactors.includes('other')
-
-  const toggleFactor = (factor) => {
-    if (selectedFactors.includes(factor)) {
-      setValue('purchaseFactors', selectedFactors.filter(f => f !== factor))
-    } else {
-      setValue('purchaseFactors', [...selectedFactors, factor])
-    }
-  }
-
-  return (
-    <Stack gap="xl">
-      <Box>
-        <Title order={1} size="2rem" c="gray.9" mb="sm">
-          What is the most important factor in your purchase?
-        </Title>
-        <Text c="gray.6" size="md">
-          Select all applicable
-        </Text>
-      </Box>
-
-      <Group gap="sm">
-        {purchaseFactors.map((factor) => (
-          <Button
-            key={factor.value}
-            onClick={() => toggleFactor(factor.value)}
-            variant={selectedFactors.includes(factor.value) ? 'filled' : 'outline'}
-            color={selectedFactors.includes(factor.value) ? 'violet' : 'gray'}
-            size="md"
-          >
-            {factor.label}
-          </Button>
-        ))}
-      </Group>
-
-      {showOther && (
-        <TextInput
-          {...register('purchaseFactorsOther')}
-          placeholder="Text in here"
-          size="md"
-        />
-      )}
-
-      {errors.purchaseFactors && (
-        <Text size="sm" c="red.6">{errors.purchaseFactors.message}</Text>
-      )}
-    </Stack>
-  )
-}
-
-// Step 5: Budget Status
-function Step5({ errors }) {
-  const { watch, setValue, register } = useFormContext()
-  const selectedStatus = watch('budgetStatus')
-  const showOther = selectedStatus === 'other'
-
-  return (
-    <Stack gap="xl">
-      <Box>
-        <Title order={1} size="2rem" c="gray.9" mb="sm">
-          What is the status of your new purchase?
-        </Title>
-        <Text c="gray.6" size="md">
-          Select one
-        </Text>
-      </Box>
-
-      <Radio.Group
-        value={selectedStatus}
-        onChange={(value) => setValue('budgetStatus', value)}
-      >
-        <Stack gap="sm">
-          {budgetStatus.map((status) => (
-            <Paper key={status.value} p="md" withBorder style={{ cursor: 'pointer' }}>
-              <Radio value={status.value} label={status.label} />
-            </Paper>
-          ))}
-        </Stack>
-      </Radio.Group>
-
-      {showOther && (
-        <TextInput
-          {...register('budgetStatusOther')}
-          placeholder="Other text in here"
-          size="md"
-        />
-      )}
-
-      {errors.budgetStatus && (
-        <Text size="sm" c="red.6">{errors.budgetStatus.message}</Text>
-      )}
     </Stack>
   )
 }
@@ -651,51 +561,7 @@ function Step6({ errors }) {
 
 // Step 7: Existing Technology
 function Step7({ errors }) {
-  const { watch, setValue } = useFormContext()
-  const [stackModalOpen, setStackModalOpen] = useState(false)
-  const existingTechStack = watch('existingTechStack') || []
-
-  // Helper function to get product initials
-  const getInitials = (name) => {
-    return name
-      .split(' ')
-      .slice(0, 2)
-      .map(word => word[0])
-      .join('')
-      .toUpperCase()
-  }
-
-  // Helper function to generate consistent color based on name
-  const getColorFromName = (name) => {
-    const colors = [
-      'blue', 'cyan', 'teal', 'green', 'lime',
-      'yellow', 'orange', 'red', 'pink', 'grape',
-      'violet', 'indigo'
-    ]
-    const charSum = name.split('').reduce((sum, char) => sum + char.charCodeAt(0), 0)
-    return colors[charSum % colors.length]
-  }
-
-  // Helper function to get logo URL
-  const getLogoUrl = (product) => {
-    return product.details?.squareLogoUrl || product.details?.logoUrl || ''
-  }
-
-  // Get selected products data
-  const selectedProducts = existingTechStack
-    .map(productId => productsData.find(p => p.id === productId))
-    .filter(Boolean)
-
-  const handleProductSelect = (product) => {
-    if (!existingTechStack.includes(product.id)) {
-      setValue('existingTechStack', [...existingTechStack, product.id])
-    }
-    setStackModalOpen(false)
-  }
-
-  const handleRemoveProduct = (productId) => {
-    setValue('existingTechStack', existingTechStack.filter(id => id !== productId))
-  }
+  const { register } = useFormContext()
 
   return (
     <Stack gap="xl">
@@ -708,89 +574,30 @@ function Step7({ errors }) {
         </Text>
       </Box>
 
-      {selectedProducts.length === 0 ? (
-        <Paper p="lg" withBorder>
-          <Text c="gray.5" ta="center">
-            You have not added any tools to your existing technology stack
-          </Text>
-        </Paper>
-      ) : (
-        <Stack gap="sm">
-          {selectedProducts.map((product) => {
-            const logoUrl = getLogoUrl(product)
-            return (
-              <Paper key={product.id} p="md" withBorder>
-                <Group justify="space-between" wrap="nowrap">
-                  <Group gap="sm" wrap="nowrap">
-                    {logoUrl ? (
-                      <Avatar
-                        src={logoUrl}
-                        size={32}
-                        radius="sm"
-                        alt={product.name}
-                      />
-                    ) : (
-                      <Avatar
-                        size={32}
-                        radius="sm"
-                        color={getColorFromName(product.name)}
-                      >
-                        {getInitials(product.name)}
-                      </Avatar>
-                    )}
-                    <Text fw={500}>{product.name}</Text>
-                  </Group>
-                  <ActionIcon
-                    onClick={() => handleRemoveProduct(product.id)}
-                    color="red"
-                    variant="subtle"
-                    size="lg"
-                  >
-                    <X size={18} />
-                  </ActionIcon>
-                </Group>
-              </Paper>
-            )
-          })}
-        </Stack>
-      )}
+      <Paper p="lg" withBorder>
+        <Text c="gray.5" ta="center">
+          You have not added any tools to your existing technology stack
+        </Text>
+      </Paper>
 
       <Group gap="sm">
         <Button
           variant="outline"
           color="blue"
           size="md"
-          onClick={() => setStackModalOpen(true)}
         >
           + ADD TO STACK
         </Button>
         <Text c="dimmed">Or</Text>
         <Button
-          variant="default"
+          variant="subtle"
           size="md"
+          c="dimmed"
+          style={{ textDecoration: 'underline' }}
         >
           Manage My Stack
         </Button>
       </Group>
-
-      {/* Tech Stack Modal */}
-      <Modal
-        opened={stackModalOpen}
-        onClose={() => setStackModalOpen(false)}
-        title="Add to Tech Stack"
-        size="lg"
-      >
-        <Stack gap="md">
-          <TechStackAutocomplete
-            onSelect={handleProductSelect}
-            placeholder="Search for a product..."
-            excludeIds={existingTechStack}
-          />
-          <Text size="sm" c="dimmed" mt="md">
-            Select products from your existing technology stack
-          </Text>
-        </Stack>
-      </Modal>
     </Stack>
   )
 }
@@ -1089,7 +896,8 @@ function Step11({ errors }) {
 
 // Step 12: Submit
 function Step12({ errors }) {
-  const { register } = useFormContext()
+  const { register, watch } = useFormContext()
+  const acceptedTerms = watch('acceptedTerms')
 
   return (
     <Stack gap="xl">

@@ -74,6 +74,7 @@ function ALSPIntake() {
     useTheoremMarketplace: true,
     serviceProviders: [],
     maxResponses: '',
+    deadline: '',
     projectStartDate: '',
     projectEndDate: '',
     customQuestions: [''],
@@ -90,7 +91,7 @@ function ALSPIntake() {
     mode: 'onChange'
   })
 
-  const { watch, trigger, formState: { errors, isValid } } = methods
+  const { watch, trigger, setValue, formState: { errors, isValid } } = methods
 
   // Watch all form values for auto-save
   const formValues = watch()
@@ -99,6 +100,13 @@ function ALSPIntake() {
   useEffect(() => {
     saveDraft(formValues, 'alsp')
   }, [formValues])
+
+  // Reset acceptedTerms when reaching final step to prevent auto-submission
+  useEffect(() => {
+    if (step === 7) {
+      setValue('acceptedTerms', false)
+    }
+  }, [step, setValue])
 
   const goToStep = (newStep) => {
     navigate({ to: '/intake/alsp', search: { step: newStep } })
@@ -110,6 +118,7 @@ function ALSPIntake() {
     const isStepValid = await trigger(Object.keys(currentStepSchema.fields))
 
     if (isStepValid && step < 7) {
+      window.scrollTo(0, 0)
       goToStep(step + 1)
     }
   }
@@ -123,6 +132,12 @@ function ALSPIntake() {
   }
 
   const handleSubmit = methods.handleSubmit((data) => {
+    // Only submit if on final step
+    if (step !== 7) {
+      console.log('Attempted submission on step', step, '- blocking')
+      return
+    }
+
     // Save to localStorage
     const rfpId = saveBuyerIntake(data)
 
@@ -146,8 +161,14 @@ function ALSPIntake() {
     return stepErrors
   }
 
+  const getDisplayableStepErrors = () => {
+    const stepErrors = getStepErrors()
+    const { acceptedTerms, ...otherErrors } = stepErrors
+    return otherErrors
+  }
+
   const hasStepErrors = () => {
-    return Object.keys(getStepErrors()).length > 0
+    return Object.keys(getDisplayableStepErrors()).length > 0
   }
 
   return (
@@ -156,7 +177,7 @@ function ALSPIntake() {
         <form onSubmit={handleSubmit}>
           <Group align="flex-start" gap="xl" py="lg" style={{ minHeight: '100vh' }}>
             {/* Left Sidebar - Step Indicator */}
-            <Box style={{ width: 64, flexShrink: 0, position: 'sticky', top: 32 }}>
+            <Box style={{ width: 64, flexShrink: 0, position: 'sticky', top: 32, paddingTop: 8 }}>
               <StepIndicator currentStep={step} totalSteps={7} />
             </Box>
 
@@ -182,6 +203,7 @@ function ALSPIntake() {
                   <NextButton
                     type="submit"
                     isSubmit={true}
+                    disabled={!formValues.acceptedTerms}
                   />
                 )}
               </Group>
@@ -191,7 +213,7 @@ function ALSPIntake() {
                 <Alert color="red" mt="md">
                   <Text size="sm" fw={600} c="red.8" mb="xs">Please fix the following errors:</Text>
                   <Stack gap={4} component="ul" style={{ listStylePosition: 'inside', paddingLeft: 0 }}>
-                    {Object.entries(getStepErrors()).map(([field, error]) => (
+                    {Object.entries(getDisplayableStepErrors()).map(([field, error]) => (
                       <Text key={field} component="li" size="sm" c="red.7">{error.message}</Text>
                     ))}
                   </Stack>
@@ -207,7 +229,8 @@ function ALSPIntake() {
 
 // Step 1: Title & Company Description
 function Step1({ errors }) {
-  const { register } = useFormContext()
+  const { register, watch } = useFormContext()
+  const companyDescription = watch('companyDescription') || ''
 
   return (
     <Stack gap="xl">
@@ -234,13 +257,17 @@ function Step1({ errors }) {
             <Text size="xs" c="white">i</Text>
           </ThemeIcon>
         </Group>
-        <TextInput
+        <Textarea
           {...register('companyDescription')}
           placeholder='e.g. "Am law 200 firm, software company, consultancy (limit: 100 characters)'
           maxLength={100}
+          rows={4}
           error={errors.companyDescription?.message}
           size="md"
         />
+        <Text size="sm" c="gray.5" ta="right" mt="xs">
+          {companyDescription.length}/100
+        </Text>
       </Box>
     </Stack>
   )
@@ -590,8 +617,26 @@ function Step6({ errors }) {
 
       <Box>
         <Title order={2} size="lg" c="gray.9" mb="sm">
-          Expected Project Date Range - Required* {(errors.projectStartDate || errors.projectEndDate) && <Text component="span" c="red.6">*</Text>}
+          Proposal Submission Deadline - Required* {errors.deadline && <Text component="span" c="red.6">*</Text>}
         </Title>
+        <Text c="gray.6" size="sm" mb="sm">
+          When do you need suppliers to submit their proposals BY? This is the last date vendors can apply to this RFP.
+        </Text>
+        <TextInput
+          type="date"
+          {...register('deadline')}
+          error={errors.deadline?.message}
+          size="md"
+        />
+      </Box>
+
+      <Box>
+        <Title order={2} size="lg" c="gray.9" mb="sm">
+          Expected Project Timeline - Required* {(errors.projectStartDate || errors.projectEndDate) && <Text component="span" c="red.6">*</Text>}
+        </Title>
+        <Text c="gray.6" size="sm" mb="sm">
+          When do you expect the actual legal work to begin and end? This is when the selected provider will perform the services.
+        </Text>
         <Group gap="md" align="flex-start">
           <Box style={{ flex: 1 }}>
             <TextInput
@@ -739,9 +784,6 @@ function Step7({ errors }) {
             </Text>
           </Text>
         </Group>
-        {errors.acceptedTerms && (
-          <Text size="sm" c="red.6" mt="xs">{errors.acceptedTerms.message}</Text>
-        )}
       </Box>
     </Stack>
   )

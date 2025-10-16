@@ -68,7 +68,16 @@ function Navigation() {
         fw={500}
         size="sm"
       >
-        Inbox
+        Seller Inbox
+      </Anchor>
+      <Anchor
+        component={Link}
+        to="/buyer-inbox"
+        c="dimmed"
+        fw={500}
+        size="sm"
+      >
+        Buyer Inbox
       </Anchor>
     </Group>
   )

@@ -1,13 +1,16 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { useState } from 'react'
-import { Briefcase, TrendingUp, ArrowUpDown, Eye, EyeOff, Heart, FileEdit, ArrowRight, Clock, CheckCircle, Filter } from 'lucide-react'
-import { Tabs, Select, SimpleGrid, Text, Title, Group, Stack, Badge, Button, Paper, Progress, Box, Flex } from '@mantine/core'
+import { useState, useMemo } from 'react'
+import { Briefcase, TrendingUp, ArrowUpDown, Eye, EyeOff, Heart, FileEdit, ArrowRight, Clock, CheckCircle, Filter, Trash2, Database } from 'lucide-react'
+import { Tabs, Select, SimpleGrid, Text, Title, Group, Stack, Badge, Button, Paper, Progress, Box, Flex, Modal } from '@mantine/core'
+import { notifications } from '@mantine/notifications'
 import { mockRFPs } from '../data/mockRFPs'
 import RFPCard from '../components/RFPCard'
 import TailwindTest from '../components/TailwindTest'
 import { isRFPViewed, getInterestedCount, isRFPInterested, getRFPInterest } from '../utils/rfpStorage'
 import { getGlobalAnswers, getQuestionResponses } from '../utils/questionStorage'
 import { defaultRFPQuestions } from '../data/questionTemplates'
+import { getAllBuyerIntakesArray, clearAllBuyerIntakes } from '../utils/buyerIntakeStorage'
+import { transformAllIntakesToRFPs } from '../utils/intakeToRFP'
 
 export const Route = createFileRoute('/')({
   component: RFPInbox,
@@ -25,6 +28,30 @@ function RFPInbox() {
   const [sortOption, setSortOption] = useState('newest-posted')
   const [viewFilter, setViewFilter] = useState('all') // 'all' or 'unviewed'
   const [rfpTypeFilter, setRfpTypeFilter] = useState('all') // 'all', 'legal-tech', or 'legal-services'
+  const [cacheRefresh, setCacheRefresh] = useState(0) // Used to trigger re-render after cache clear
+  const [clearCacheModalOpened, setClearCacheModalOpened] = useState(false)
+
+  // Merge mock RFPs with buyer intake submissions
+  const allRFPs = useMemo(() => {
+    const buyerIntakes = getAllBuyerIntakesArray()
+    const transformedIntakes = transformAllIntakesToRFPs(buyerIntakes)
+    return [...transformedIntakes, ...mockRFPs]
+  }, [cacheRefresh]) // Re-compute when cache is cleared
+
+  const buyerIntakeCount = getAllBuyerIntakesArray().length
+
+  const handleClearCache = () => {
+    clearAllBuyerIntakes()
+    setCacheRefresh(prev => prev + 1) // Trigger re-render
+    setClearCacheModalOpened(false)
+    notifications.show({
+      title: 'Cache Cleared',
+      message: `Successfully cleared ${buyerIntakeCount} buyer intake RFP${buyerIntakeCount !== 1 ? 's' : ''} from cache`,
+      color: 'green',
+      icon: <Trash2 size={16} />,
+      autoClose: 5000,
+    })
+  }
 
   // Sorting function
   const sortRFPs = (rfps, option) => {
@@ -66,7 +93,7 @@ function RFPInbox() {
   }
 
   // Filter RFPs based on active tab
-  const tabFilteredRFPs = mockRFPs.filter(rfp => {
+  const tabFilteredRFPs = allRFPs.filter(rfp => {
     const interested = isRFPInterested(rfp.id)
     const started = hasStartedRFP(rfp.id)
 
@@ -98,14 +125,14 @@ function RFPInbox() {
   const sortedRFPs = activeTab === 'available' ? sortRFPs(filteredRFPs, sortOption) : filteredRFPs
 
   // Calculate tab counts
-  const availableCount = mockRFPs.filter(rfp => !hasStartedRFP(rfp.id) && !isRFPInterested(rfp.id)).length
-  const pendingCount = mockRFPs.filter(rfp => hasStartedRFP(rfp.id) && !isRFPInterested(rfp.id)).length
-  const completedCount = mockRFPs.filter(rfp => isRFPInterested(rfp.id)).length
+  const availableCount = allRFPs.filter(rfp => !hasStartedRFP(rfp.id) && !isRFPInterested(rfp.id)).length
+  const pendingCount = allRFPs.filter(rfp => hasStartedRFP(rfp.id) && !isRFPInterested(rfp.id)).length
+  const completedCount = allRFPs.filter(rfp => isRFPInterested(rfp.id)).length
 
-  const totalRFPs = mockRFPs.length
-  const unviewedRFPs = mockRFPs.filter(rfp => !isRFPViewed(rfp.id)).length
+  const totalRFPs = allRFPs.length
+  const unviewedRFPs = allRFPs.filter(rfp => !isRFPViewed(rfp.id)).length
   const interestedRFPs = getInterestedCount()
-  const highValueRFPs = mockRFPs.filter(rfp => {
+  const highValueRFPs = allRFPs.filter(rfp => {
     const amount = parseInt(rfp.budget.replace(/[^\d]/g, ''))
     return amount >= 100000
   }).length
@@ -140,30 +167,84 @@ function RFPInbox() {
           </Text>
         </Box>
 
-        {/* Pre-fill Answers Card - Compact */}
-        <Paper bg="indigo.0" withBorder p="sm" style={{ borderColor: 'var(--mantine-color-indigo-2)' }}>
-          <Group justify="space-between" gap="xs" mb="xs">
-            <Group gap="xs">
-              <FileEdit style={{ width: 16, height: 16, color: 'var(--mantine-color-indigo-6)' }} />
-              <Text size="sm" fw={600}>Pre-fill Answers</Text>
+        <Group gap="md">
+          {/* Cache Info & Clear Button */}
+          {buyerIntakeCount > 0 && (
+            <Paper bg="orange.0" withBorder p="sm" style={{ borderColor: 'var(--mantine-color-orange-2)' }}>
+              <Group justify="space-between" gap="xs" mb="xs">
+                <Group gap="xs">
+                  <Database style={{ width: 16, height: 16, color: 'var(--mantine-color-orange-6)' }} />
+                  <Text size="sm" fw={600}>Buyer Cache</Text>
+                </Group>
+                <Badge size="sm" color="orange">{buyerIntakeCount}</Badge>
+              </Group>
+              <Text size="xs" c="dimmed" mb="xs">
+                {buyerIntakeCount} RFP{buyerIntakeCount !== 1 ? 's' : ''} in localStorage
+              </Text>
+              <Button
+                fullWidth
+                size="xs"
+                color="orange"
+                variant="light"
+                leftSection={<Trash2 style={{ width: 12, height: 12 }} />}
+                onClick={() => setClearCacheModalOpened(true)}
+              >
+                Clear Cache
+              </Button>
+            </Paper>
+          )}
+
+          {/* Pre-fill Answers Card - Compact */}
+          <Paper bg="indigo.0" withBorder p="sm" style={{ borderColor: 'var(--mantine-color-indigo-2)' }}>
+            <Group justify="space-between" gap="xs" mb="xs">
+              <Group gap="xs">
+                <FileEdit style={{ width: 16, height: 16, color: 'var(--mantine-color-indigo-6)' }} />
+                <Text size="sm" fw={600}>Pre-fill Answers</Text>
+              </Group>
+              <Text size="sm" fw={700} c="indigo.6">{completionPercentage}%</Text>
             </Group>
-            <Text size="sm" fw={700} c="indigo.6">{completionPercentage}%</Text>
-          </Group>
-          <Text size="xs" c="dimmed" mb="xs">
-            {answeredQuestions} of {totalQuestions} questions
-          </Text>
-          <Button
-            component={Link}
-            to="/my-answers"
-            fullWidth
-            size="xs"
-            color="indigo"
-            rightSection={<ArrowRight style={{ width: 12, height: 12 }} />}
-          >
-            {completionPercentage === 0 ? 'Get Started' : 'Edit Answers'}
-          </Button>
-        </Paper>
+            <Text size="xs" c="dimmed" mb="xs">
+              {answeredQuestions} of {totalQuestions} questions
+            </Text>
+            <Button
+              component={Link}
+              to="/my-answers"
+              fullWidth
+              size="xs"
+              color="indigo"
+              rightSection={<ArrowRight style={{ width: 12, height: 12 }} />}
+            >
+              {completionPercentage === 0 ? 'Get Started' : 'Edit Answers'}
+            </Button>
+          </Paper>
+        </Group>
       </Flex>
+
+      {/* Clear Cache Confirmation Modal */}
+      <Modal
+        opened={clearCacheModalOpened}
+        onClose={() => setClearCacheModalOpened(false)}
+        title="Clear Buyer RFP Cache?"
+        centered
+      >
+        <Stack gap="md">
+          <Text size="sm">
+            This will remove <Text component="span" fw={600}>{buyerIntakeCount} buyer intake RFP{buyerIntakeCount !== 1 ? 's' : ''}</Text> from localStorage.
+            Mock RFPs will not be affected.
+          </Text>
+          <Text size="sm" c="dimmed">
+            This action cannot be undone. You'll need to resubmit intake forms to recreate these RFPs.
+          </Text>
+          <Group justify="flex-end" gap="xs">
+            <Button variant="default" onClick={() => setClearCacheModalOpened(false)}>
+              Cancel
+            </Button>
+            <Button color="red" leftSection={<Trash2 size={16} />} onClick={handleClearCache}>
+              Clear Cache
+            </Button>
+          </Group>
+        </Stack>
+      </Modal>
 
       {/* Stats Cards */}
       {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

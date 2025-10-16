@@ -11,11 +11,13 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as MyAnswersRouteImport } from './routes/my-answers'
 import { Route as IntakeRouteImport } from './routes/intake'
+import { Route as BuyerInboxRouteImport } from './routes/buyer-inbox'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as IntakeIndexRouteImport } from './routes/intake.index'
 import { Route as RfpRfpIdRouteImport } from './routes/rfp.$rfpId'
 import { Route as IntakeThankYouRouteImport } from './routes/intake.thank-you'
 import { Route as IntakeTechnologyRouteImport } from './routes/intake.technology'
+import { Route as IntakeTechReplaceRouteImport } from './routes/intake.tech-replace'
 import { Route as IntakeTechNewRouteImport } from './routes/intake.tech-new'
 import { Route as IntakeLawfirmRouteImport } from './routes/intake.lawfirm'
 import { Route as IntakeAlspRouteImport } from './routes/intake.alsp'
@@ -33,6 +35,11 @@ const MyAnswersRoute = MyAnswersRouteImport.update({
 const IntakeRoute = IntakeRouteImport.update({
   id: '/intake',
   path: '/intake',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BuyerInboxRoute = BuyerInboxRouteImport.update({
+  id: '/buyer-inbox',
+  path: '/buyer-inbox',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -58,6 +65,11 @@ const IntakeThankYouRoute = IntakeThankYouRouteImport.update({
 const IntakeTechnologyRoute = IntakeTechnologyRouteImport.update({
   id: '/technology',
   path: '/technology',
+  getParentRoute: () => IntakeRoute,
+} as any)
+const IntakeTechReplaceRoute = IntakeTechReplaceRouteImport.update({
+  id: '/tech-replace',
+  path: '/tech-replace',
   getParentRoute: () => IntakeRoute,
 } as any)
 const IntakeTechNewRoute = IntakeTechNewRouteImport.update({
@@ -104,11 +116,13 @@ const IntakeLegalServicesDeliveryRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/buyer-inbox': typeof BuyerInboxRoute
   '/intake': typeof IntakeRouteWithChildren
   '/my-answers': typeof MyAnswersRoute
   '/intake/alsp': typeof IntakeAlspRoute
   '/intake/lawfirm': typeof IntakeLawfirmRoute
   '/intake/tech-new': typeof IntakeTechNewRoute
+  '/intake/tech-replace': typeof IntakeTechReplaceRoute
   '/intake/technology': typeof IntakeTechnologyRoute
   '/intake/thank-you': typeof IntakeThankYouRoute
   '/rfp/$rfpId': typeof RfpRfpIdRouteWithChildren
@@ -121,10 +135,12 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/buyer-inbox': typeof BuyerInboxRoute
   '/my-answers': typeof MyAnswersRoute
   '/intake/alsp': typeof IntakeAlspRoute
   '/intake/lawfirm': typeof IntakeLawfirmRoute
   '/intake/tech-new': typeof IntakeTechNewRoute
+  '/intake/tech-replace': typeof IntakeTechReplaceRoute
   '/intake/technology': typeof IntakeTechnologyRoute
   '/intake/thank-you': typeof IntakeThankYouRoute
   '/intake': typeof IntakeIndexRoute
@@ -137,11 +153,13 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/buyer-inbox': typeof BuyerInboxRoute
   '/intake': typeof IntakeRouteWithChildren
   '/my-answers': typeof MyAnswersRoute
   '/intake/alsp': typeof IntakeAlspRoute
   '/intake/lawfirm': typeof IntakeLawfirmRoute
   '/intake/tech-new': typeof IntakeTechNewRoute
+  '/intake/tech-replace': typeof IntakeTechReplaceRoute
   '/intake/technology': typeof IntakeTechnologyRoute
   '/intake/thank-you': typeof IntakeThankYouRoute
   '/rfp/$rfpId': typeof RfpRfpIdRouteWithChildren
@@ -156,11 +174,13 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/buyer-inbox'
     | '/intake'
     | '/my-answers'
     | '/intake/alsp'
     | '/intake/lawfirm'
     | '/intake/tech-new'
+    | '/intake/tech-replace'
     | '/intake/technology'
     | '/intake/thank-you'
     | '/rfp/$rfpId'
@@ -173,10 +193,12 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/buyer-inbox'
     | '/my-answers'
     | '/intake/alsp'
     | '/intake/lawfirm'
     | '/intake/tech-new'
+    | '/intake/tech-replace'
     | '/intake/technology'
     | '/intake/thank-you'
     | '/intake'
@@ -188,11 +210,13 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/buyer-inbox'
     | '/intake'
     | '/my-answers'
     | '/intake/alsp'
     | '/intake/lawfirm'
     | '/intake/tech-new'
+    | '/intake/tech-replace'
     | '/intake/technology'
     | '/intake/thank-you'
     | '/rfp/$rfpId'
@@ -206,6 +230,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BuyerInboxRoute: typeof BuyerInboxRoute
   IntakeRoute: typeof IntakeRouteWithChildren
   MyAnswersRoute: typeof MyAnswersRoute
   RfpRfpIdRoute: typeof RfpRfpIdRouteWithChildren
@@ -225,6 +250,13 @@ declare module '@tanstack/react-router' {
       path: '/intake'
       fullPath: '/intake'
       preLoaderRoute: typeof IntakeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/buyer-inbox': {
+      id: '/buyer-inbox'
+      path: '/buyer-inbox'
+      fullPath: '/buyer-inbox'
+      preLoaderRoute: typeof BuyerInboxRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -260,6 +292,13 @@ declare module '@tanstack/react-router' {
       path: '/technology'
       fullPath: '/intake/technology'
       preLoaderRoute: typeof IntakeTechnologyRouteImport
+      parentRoute: typeof IntakeRoute
+    }
+    '/intake/tech-replace': {
+      id: '/intake/tech-replace'
+      path: '/tech-replace'
+      fullPath: '/intake/tech-replace'
+      preLoaderRoute: typeof IntakeTechReplaceRouteImport
       parentRoute: typeof IntakeRoute
     }
     '/intake/tech-new': {
@@ -325,6 +364,7 @@ interface IntakeRouteChildren {
   IntakeAlspRoute: typeof IntakeAlspRoute
   IntakeLawfirmRoute: typeof IntakeLawfirmRoute
   IntakeTechNewRoute: typeof IntakeTechNewRoute
+  IntakeTechReplaceRoute: typeof IntakeTechReplaceRoute
   IntakeTechnologyRoute: typeof IntakeTechnologyRoute
   IntakeThankYouRoute: typeof IntakeThankYouRoute
   IntakeIndexRoute: typeof IntakeIndexRoute
@@ -336,6 +376,7 @@ const IntakeRouteChildren: IntakeRouteChildren = {
   IntakeAlspRoute: IntakeAlspRoute,
   IntakeLawfirmRoute: IntakeLawfirmRoute,
   IntakeTechNewRoute: IntakeTechNewRoute,
+  IntakeTechReplaceRoute: IntakeTechReplaceRoute,
   IntakeTechnologyRoute: IntakeTechnologyRoute,
   IntakeThankYouRoute: IntakeThankYouRoute,
   IntakeIndexRoute: IntakeIndexRoute,
@@ -364,6 +405,7 @@ const RfpRfpIdRouteWithChildren = RfpRfpIdRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BuyerInboxRoute: BuyerInboxRoute,
   IntakeRoute: IntakeRouteWithChildren,
   MyAnswersRoute: MyAnswersRoute,
   RfpRfpIdRoute: RfpRfpIdRouteWithChildren,

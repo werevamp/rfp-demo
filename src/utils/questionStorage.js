@@ -28,10 +28,18 @@ export const saveQuestionResponse = (rfpId, questionId, response) => {
   try {
     // Save to RFP-specific storage
     const responses = getQuestionResponses(rfpId)
+
+    // Preserve the existing status if the question is already marked as completed
+    const existingStatus = responses[questionId]?.status
+    const newStatus = existingStatus === 'completed'
+      ? 'completed'
+      : (response ? 'in_progress' : 'not_started')
+
     responses[questionId] = {
       value: response,
       timestamp: Date.now(),
-      status: response ? 'in_progress' : 'not_started'
+      status: newStatus,
+      ...(existingStatus === 'completed' && { completedAt: responses[questionId].completedAt })
     }
     localStorage.setItem(`${STORAGE_KEY}_${rfpId}`, JSON.stringify(responses))
 
@@ -57,8 +65,18 @@ export const markQuestionComplete = (rfpId, questionId) => {
     if (responses[questionId]) {
       responses[questionId].status = 'completed'
       responses[questionId].completedAt = Date.now()
-      localStorage.setItem(`${STORAGE_KEY}_${rfpId}`, JSON.stringify(responses))
+    } else {
+      // Create a new response entry if one doesn't exist
+      // This handles cases where questions are marked complete without having been answered
+      // (e.g., optional questions or multiselect with no selections)
+      responses[questionId] = {
+        value: null,
+        status: 'completed',
+        completedAt: Date.now(),
+        timestamp: Date.now()
+      }
     }
+    localStorage.setItem(`${STORAGE_KEY}_${rfpId}`, JSON.stringify(responses))
   } catch (error) {
     console.error('Error marking question complete:', error)
   }

@@ -57,22 +57,41 @@ import { markRFPAsViewed, getRFPInterest, markRFPInterest, removeRFPInterest } f
 import { getProgressStats } from '../utils/questionStorage'
 import QuestionsSection from '../components/QuestionsSection'
 import { generateBuyerSpecificQuestions } from '../data/questionTemplates'
+import { getAllBuyerIntakesArray } from '../utils/buyerIntakeStorage'
+import { transformAllIntakesToRFPs } from '../utils/intakeToRFP'
+
+// Helper to get all RFPs (mock + buyer intakes)
+const getAllRFPs = () => {
+  const buyerIntakes = getAllBuyerIntakesArray()
+  const transformedIntakes = transformAllIntakesToRFPs(buyerIntakes)
+  return [...transformedIntakes, ...mockRFPs]
+}
+
+// Helper to find RFP by ID
+const findRFPById = (rfpId) => {
+  const allRFPs = getAllRFPs()
+
+  // Try to find by string ID first (buyer intake RFPs use string IDs like "rfp_123...")
+  let rfp = allRFPs.find(r => r.id === rfpId)
+
+  // If not found, try parsing as integer (mock RFPs use integer IDs)
+  if (!rfp) {
+    rfp = allRFPs.find(r => r.id === parseInt(rfpId))
+  }
+
+  return rfp
+}
 
 export const Route = createFileRoute('/rfp/$rfpId')({
   component: RFPDetail,
-  beforeLoad: ({ params }) => {
-    const rfp = mockRFPs.find(r => r.id === parseInt(params.rfpId))
-    if (!rfp) {
-      throw notFound()
-    }
-  }
+  // Removed beforeLoad check to allow component to handle not-found case with better debugging
 })
 
 function RFPDetail() {
   const { rfpId } = Route.useParams()
   const navigate = useNavigate()
 
-  const rfp = mockRFPs.find(r => r.id === parseInt(rfpId))
+  const rfp = findRFPById(rfpId)
 
   const [interestStatus, setInterestStatus] = useState(null)
   const matchRoute = useMatchRoute()
@@ -111,8 +130,55 @@ function RFPDetail() {
     }
   }
 
+  // Show detailed error if RFP not found
   if (!rfp) {
-    return <div>RFP not found</div>
+    const allRFPs = getAllRFPs()
+    const availableIds = allRFPs.map(r => r.id).join(', ')
+    const buyerIntakeCount = getAllBuyerIntakesArray().length
+
+    return (
+      <Container size="lg" py="xl">
+        <Paper withBorder p="xl" radius="md">
+          <Stack gap="lg" align="center">
+            <ThemeIcon size="xl" radius="xl" color="red" variant="light">
+              <XCircle size={32} />
+            </ThemeIcon>
+            <Title order={2}>RFP Not Found</Title>
+            <Text c="dimmed" ta="center">
+              The RFP with ID <Text component="span" fw={600} c="blue">{rfpId}</Text> could not be found.
+            </Text>
+
+            {/* Debug Info */}
+            <Paper bg="gray.0" p="md" w="100%">
+              <Stack gap="xs">
+                <Text size="sm" fw={600}>Debug Information:</Text>
+                <Text size="xs" c="dimmed">
+                  • Total RFPs available: {allRFPs.length} ({buyerIntakeCount} from submissions, {mockRFPs.length} mock)
+                </Text>
+                <Text size="xs" c="dimmed">
+                  • Requested ID: {rfpId}
+                </Text>
+                <Text size="xs" c="dimmed">
+                  • ID type: {typeof rfpId}
+                </Text>
+                {availableIds && (
+                  <Box>
+                    <Text size="xs" fw={600} mb={4}>Available IDs:</Text>
+                    <Text size="xs" c="dimmed" style={{ wordBreak: 'break-all' }}>
+                      {availableIds}
+                    </Text>
+                  </Box>
+                )}
+              </Stack>
+            </Paper>
+
+            <Button onClick={handleBack} leftSection={<ChevronLeft size={16} />}>
+              Back to Opportunities
+            </Button>
+          </Stack>
+        </Paper>
+      </Container>
+    )
   }
 
   const formatDate = (dateString) => {

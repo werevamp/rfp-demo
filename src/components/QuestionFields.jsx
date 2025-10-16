@@ -56,6 +56,7 @@ export default function QuestionFields({ question, value, onChange }) {
       const isObjectFormat = value && typeof value === 'object' && !Array.isArray(value)
       const selectedValues = isObjectFormat ? (value.selected || []) : (value || [])
       const showOtherText = selectedValues.includes('Other')
+      const otherTextValue = isObjectFormat ? (value.otherText || '') : ''
 
       return (
         <Stack gap="xs">
@@ -70,8 +71,8 @@ export default function QuestionFields({ question, value, onChange }) {
           ))}
           {showOtherText && (
             <TextInput
-              value={value?.otherText || ''}
-              onChange={(e) => onChange({ ...value, otherText: e.target.value })}
+              value={otherTextValue}
+              onChange={(e) => onChange({ selected: selectedValues, otherText: e.target.value })}
               placeholder="Please specify..."
               mt="xs"
             />

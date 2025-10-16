@@ -1,0 +1,22 @@
+[
+  {
+    "id": "buyer-001",
+    "companyName": "TechStyle Inc.",
+    "location": "Los Angeles, CA",
+    "workLocation": "Remote",
+    "headquarters": "Los Angeles, CA",
+    "industry": "Fashion & Apparel Retail",
+    "companySize": "250+ employees",
+    "revenue": "$45M (2024)",
+    "publicPrivate": "Private",
+    "jurisdictions": ["California", "New York", "Texas", "United States"],
+    "geographicPresence": "North America, UK",
+    "preferredLanguages": ["English"],
+    "timezone": "America/Los_Angeles",
+    "companyType": "E-commerce Retailer",
+    "foundedYear": 2016,
+    "description": "Fast-growing fashion and apparel retail company focused on delivering exceptional online shopping experiences",
+    "website": "www.techstyle.com",
+    "linkedin": "linkedin.com/company/techstyle-inc"
+  }
+]

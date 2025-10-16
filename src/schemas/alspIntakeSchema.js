@@ -75,6 +75,11 @@ export const alspIntakeSchema = yup.object().shape({
     .notRequired(),
 
   // Step 6
+  deadline: yup
+    .date()
+    .typeError('Deadline is required')
+    .required('Application deadline is required')
+    .min(new Date(), 'Deadline must be in the future'),
   projectStartDate: yup
     .date()
     .typeError('Start date is required')
@@ -133,6 +138,7 @@ export const stepSchemas = {
     maxResponses: alspIntakeSchema.fields.maxResponses,
   }),
   6: yup.object().shape({
+    deadline: alspIntakeSchema.fields.deadline,
     projectStartDate: alspIntakeSchema.fields.projectStartDate,
     projectEndDate: alspIntakeSchema.fields.projectEndDate,
     customQuestions: alspIntakeSchema.fields.customQuestions,
