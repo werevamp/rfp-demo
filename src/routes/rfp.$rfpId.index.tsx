@@ -46,6 +46,21 @@ const findRFPById = (rfpId) => {
   return rfp
 }
 
+// Helper to format location - handle both string and object formats
+const formatLocation = (location) => {
+  if (!location) return null
+  if (typeof location === 'string') return location
+  if (typeof location === 'object') {
+    // Handle {state, country} or similar object formats
+    const parts = []
+    if (location.city) parts.push(location.city)
+    if (location.state) parts.push(location.state)
+    if (location.country) parts.push(location.country)
+    return parts.length > 0 ? parts.join(', ') : null
+  }
+  return null
+}
+
 export const Route = createFileRoute('/rfp/$rfpId/')({
   component: RFPOverview,
 })
@@ -128,7 +143,7 @@ function LegalTechLayout({ rfp, formatDate }) {
           {(rfp.location || rfp.headquarters) && (
             <Box>
               <Text size="sm" fw={500} c="gray.6" mb={4}>Region / Location</Text>
-              <Text size="sm" c="gray.9">{rfp.headquarters || rfp.location}</Text>
+              <Text size="sm" c="gray.9">{rfp.headquarters || formatLocation(rfp.location) || 'Not specified'}</Text>
             </Box>
           )}
         </SimpleGrid>

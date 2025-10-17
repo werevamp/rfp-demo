@@ -95,6 +95,23 @@ export default function RFPCard({ rfp, showProgress }) {
 
   const TypeIcon = typeInfo.icon
 
+  // Format location - handle both string and object formats
+  const formatLocation = (location) => {
+    if (!location) return 'Not specified'
+    if (typeof location === 'string') return location
+    if (typeof location === 'object') {
+      // Handle {state, country} or similar object formats
+      const parts = []
+      if (location.state) parts.push(location.state)
+      if (location.country) parts.push(location.country)
+      if (location.city) parts.push(location.city)
+      return parts.length > 0 ? parts.join(', ') : 'Not specified'
+    }
+    return 'Not specified'
+  }
+
+  const displayLocation = formatLocation(rfp.location)
+
   return (
     <Card
       shadow="sm"
@@ -170,7 +187,7 @@ export default function RFPCard({ rfp, showProgress }) {
             </Group>
             <Group gap={4}>
               <MapPin size={16} color="var(--mantine-color-dimmed)" />
-              <Text size="sm">{rfp.location}</Text>
+              <Text size="sm">{displayLocation}</Text>
             </Group>
           </Group>
 
