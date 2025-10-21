@@ -21,11 +21,17 @@ import { Route as IntakeTechReplaceRouteImport } from './routes/intake.tech-repl
 import { Route as IntakeTechNewRouteImport } from './routes/intake.tech-new'
 import { Route as IntakeLawfirmRouteImport } from './routes/intake.lawfirm'
 import { Route as IntakeAlspRouteImport } from './routes/intake.alsp'
+import { Route as BuyerRfpRfpIdRouteImport } from './routes/buyer-rfp.$rfpId'
 import { Route as RfpRfpIdIndexRouteImport } from './routes/rfp.$rfpId.index'
+import { Route as BuyerRfpRfpIdIndexRouteImport } from './routes/buyer-rfp.$rfpId.index'
 import { Route as RfpRfpIdQuestionsRouteImport } from './routes/rfp.$rfpId.questions'
 import { Route as RfpRfpIdDocumentsRouteImport } from './routes/rfp.$rfpId.documents'
 import { Route as IntakeLegalServicesNeedRouteImport } from './routes/intake.legal-services.need'
 import { Route as IntakeLegalServicesDeliveryRouteImport } from './routes/intake.legal-services.delivery'
+import { Route as BuyerRfpRfpIdResponsesRouteImport } from './routes/buyer-rfp.$rfpId.responses'
+import { Route as BuyerRfpRfpIdDocumentsRouteImport } from './routes/buyer-rfp.$rfpId.documents'
+import { Route as BuyerRfpRfpIdCompareRouteImport } from './routes/buyer-rfp.$rfpId.compare'
+import { Route as BuyerRfpRfpIdAnalyticsRouteImport } from './routes/buyer-rfp.$rfpId.analytics'
 
 const MyAnswersRoute = MyAnswersRouteImport.update({
   id: '/my-answers',
@@ -87,10 +93,20 @@ const IntakeAlspRoute = IntakeAlspRouteImport.update({
   path: '/alsp',
   getParentRoute: () => IntakeRoute,
 } as any)
+const BuyerRfpRfpIdRoute = BuyerRfpRfpIdRouteImport.update({
+  id: '/buyer-rfp/$rfpId',
+  path: '/buyer-rfp/$rfpId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RfpRfpIdIndexRoute = RfpRfpIdIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => RfpRfpIdRoute,
+} as any)
+const BuyerRfpRfpIdIndexRoute = BuyerRfpRfpIdIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => BuyerRfpRfpIdRoute,
 } as any)
 const RfpRfpIdQuestionsRoute = RfpRfpIdQuestionsRouteImport.update({
   id: '/questions',
@@ -113,12 +129,33 @@ const IntakeLegalServicesDeliveryRoute =
     path: '/legal-services/delivery',
     getParentRoute: () => IntakeRoute,
   } as any)
+const BuyerRfpRfpIdResponsesRoute = BuyerRfpRfpIdResponsesRouteImport.update({
+  id: '/responses',
+  path: '/responses',
+  getParentRoute: () => BuyerRfpRfpIdRoute,
+} as any)
+const BuyerRfpRfpIdDocumentsRoute = BuyerRfpRfpIdDocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => BuyerRfpRfpIdRoute,
+} as any)
+const BuyerRfpRfpIdCompareRoute = BuyerRfpRfpIdCompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
+  getParentRoute: () => BuyerRfpRfpIdRoute,
+} as any)
+const BuyerRfpRfpIdAnalyticsRoute = BuyerRfpRfpIdAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => BuyerRfpRfpIdRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/buyer-inbox': typeof BuyerInboxRoute
   '/intake': typeof IntakeRouteWithChildren
   '/my-answers': typeof MyAnswersRoute
+  '/buyer-rfp/$rfpId': typeof BuyerRfpRfpIdRouteWithChildren
   '/intake/alsp': typeof IntakeAlspRoute
   '/intake/lawfirm': typeof IntakeLawfirmRoute
   '/intake/tech-new': typeof IntakeTechNewRoute
@@ -127,10 +164,15 @@ export interface FileRoutesByFullPath {
   '/intake/thank-you': typeof IntakeThankYouRoute
   '/rfp/$rfpId': typeof RfpRfpIdRouteWithChildren
   '/intake/': typeof IntakeIndexRoute
+  '/buyer-rfp/$rfpId/analytics': typeof BuyerRfpRfpIdAnalyticsRoute
+  '/buyer-rfp/$rfpId/compare': typeof BuyerRfpRfpIdCompareRoute
+  '/buyer-rfp/$rfpId/documents': typeof BuyerRfpRfpIdDocumentsRoute
+  '/buyer-rfp/$rfpId/responses': typeof BuyerRfpRfpIdResponsesRoute
   '/intake/legal-services/delivery': typeof IntakeLegalServicesDeliveryRoute
   '/intake/legal-services/need': typeof IntakeLegalServicesNeedRoute
   '/rfp/$rfpId/documents': typeof RfpRfpIdDocumentsRoute
   '/rfp/$rfpId/questions': typeof RfpRfpIdQuestionsRoute
+  '/buyer-rfp/$rfpId/': typeof BuyerRfpRfpIdIndexRoute
   '/rfp/$rfpId/': typeof RfpRfpIdIndexRoute
 }
 export interface FileRoutesByTo {
@@ -144,10 +186,15 @@ export interface FileRoutesByTo {
   '/intake/technology': typeof IntakeTechnologyRoute
   '/intake/thank-you': typeof IntakeThankYouRoute
   '/intake': typeof IntakeIndexRoute
+  '/buyer-rfp/$rfpId/analytics': typeof BuyerRfpRfpIdAnalyticsRoute
+  '/buyer-rfp/$rfpId/compare': typeof BuyerRfpRfpIdCompareRoute
+  '/buyer-rfp/$rfpId/documents': typeof BuyerRfpRfpIdDocumentsRoute
+  '/buyer-rfp/$rfpId/responses': typeof BuyerRfpRfpIdResponsesRoute
   '/intake/legal-services/delivery': typeof IntakeLegalServicesDeliveryRoute
   '/intake/legal-services/need': typeof IntakeLegalServicesNeedRoute
   '/rfp/$rfpId/documents': typeof RfpRfpIdDocumentsRoute
   '/rfp/$rfpId/questions': typeof RfpRfpIdQuestionsRoute
+  '/buyer-rfp/$rfpId': typeof BuyerRfpRfpIdIndexRoute
   '/rfp/$rfpId': typeof RfpRfpIdIndexRoute
 }
 export interface FileRoutesById {
@@ -156,6 +203,7 @@ export interface FileRoutesById {
   '/buyer-inbox': typeof BuyerInboxRoute
   '/intake': typeof IntakeRouteWithChildren
   '/my-answers': typeof MyAnswersRoute
+  '/buyer-rfp/$rfpId': typeof BuyerRfpRfpIdRouteWithChildren
   '/intake/alsp': typeof IntakeAlspRoute
   '/intake/lawfirm': typeof IntakeLawfirmRoute
   '/intake/tech-new': typeof IntakeTechNewRoute
@@ -164,10 +212,15 @@ export interface FileRoutesById {
   '/intake/thank-you': typeof IntakeThankYouRoute
   '/rfp/$rfpId': typeof RfpRfpIdRouteWithChildren
   '/intake/': typeof IntakeIndexRoute
+  '/buyer-rfp/$rfpId/analytics': typeof BuyerRfpRfpIdAnalyticsRoute
+  '/buyer-rfp/$rfpId/compare': typeof BuyerRfpRfpIdCompareRoute
+  '/buyer-rfp/$rfpId/documents': typeof BuyerRfpRfpIdDocumentsRoute
+  '/buyer-rfp/$rfpId/responses': typeof BuyerRfpRfpIdResponsesRoute
   '/intake/legal-services/delivery': typeof IntakeLegalServicesDeliveryRoute
   '/intake/legal-services/need': typeof IntakeLegalServicesNeedRoute
   '/rfp/$rfpId/documents': typeof RfpRfpIdDocumentsRoute
   '/rfp/$rfpId/questions': typeof RfpRfpIdQuestionsRoute
+  '/buyer-rfp/$rfpId/': typeof BuyerRfpRfpIdIndexRoute
   '/rfp/$rfpId/': typeof RfpRfpIdIndexRoute
 }
 export interface FileRouteTypes {
@@ -177,6 +230,7 @@ export interface FileRouteTypes {
     | '/buyer-inbox'
     | '/intake'
     | '/my-answers'
+    | '/buyer-rfp/$rfpId'
     | '/intake/alsp'
     | '/intake/lawfirm'
     | '/intake/tech-new'
@@ -185,10 +239,15 @@ export interface FileRouteTypes {
     | '/intake/thank-you'
     | '/rfp/$rfpId'
     | '/intake/'
+    | '/buyer-rfp/$rfpId/analytics'
+    | '/buyer-rfp/$rfpId/compare'
+    | '/buyer-rfp/$rfpId/documents'
+    | '/buyer-rfp/$rfpId/responses'
     | '/intake/legal-services/delivery'
     | '/intake/legal-services/need'
     | '/rfp/$rfpId/documents'
     | '/rfp/$rfpId/questions'
+    | '/buyer-rfp/$rfpId/'
     | '/rfp/$rfpId/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -202,10 +261,15 @@ export interface FileRouteTypes {
     | '/intake/technology'
     | '/intake/thank-you'
     | '/intake'
+    | '/buyer-rfp/$rfpId/analytics'
+    | '/buyer-rfp/$rfpId/compare'
+    | '/buyer-rfp/$rfpId/documents'
+    | '/buyer-rfp/$rfpId/responses'
     | '/intake/legal-services/delivery'
     | '/intake/legal-services/need'
     | '/rfp/$rfpId/documents'
     | '/rfp/$rfpId/questions'
+    | '/buyer-rfp/$rfpId'
     | '/rfp/$rfpId'
   id:
     | '__root__'
@@ -213,6 +277,7 @@ export interface FileRouteTypes {
     | '/buyer-inbox'
     | '/intake'
     | '/my-answers'
+    | '/buyer-rfp/$rfpId'
     | '/intake/alsp'
     | '/intake/lawfirm'
     | '/intake/tech-new'
@@ -221,10 +286,15 @@ export interface FileRouteTypes {
     | '/intake/thank-you'
     | '/rfp/$rfpId'
     | '/intake/'
+    | '/buyer-rfp/$rfpId/analytics'
+    | '/buyer-rfp/$rfpId/compare'
+    | '/buyer-rfp/$rfpId/documents'
+    | '/buyer-rfp/$rfpId/responses'
     | '/intake/legal-services/delivery'
     | '/intake/legal-services/need'
     | '/rfp/$rfpId/documents'
     | '/rfp/$rfpId/questions'
+    | '/buyer-rfp/$rfpId/'
     | '/rfp/$rfpId/'
   fileRoutesById: FileRoutesById
 }
@@ -233,6 +303,7 @@ export interface RootRouteChildren {
   BuyerInboxRoute: typeof BuyerInboxRoute
   IntakeRoute: typeof IntakeRouteWithChildren
   MyAnswersRoute: typeof MyAnswersRoute
+  BuyerRfpRfpIdRoute: typeof BuyerRfpRfpIdRouteWithChildren
   RfpRfpIdRoute: typeof RfpRfpIdRouteWithChildren
 }
 
@@ -322,12 +393,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IntakeAlspRouteImport
       parentRoute: typeof IntakeRoute
     }
+    '/buyer-rfp/$rfpId': {
+      id: '/buyer-rfp/$rfpId'
+      path: '/buyer-rfp/$rfpId'
+      fullPath: '/buyer-rfp/$rfpId'
+      preLoaderRoute: typeof BuyerRfpRfpIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/rfp/$rfpId/': {
       id: '/rfp/$rfpId/'
       path: '/'
       fullPath: '/rfp/$rfpId/'
       preLoaderRoute: typeof RfpRfpIdIndexRouteImport
       parentRoute: typeof RfpRfpIdRoute
+    }
+    '/buyer-rfp/$rfpId/': {
+      id: '/buyer-rfp/$rfpId/'
+      path: '/'
+      fullPath: '/buyer-rfp/$rfpId/'
+      preLoaderRoute: typeof BuyerRfpRfpIdIndexRouteImport
+      parentRoute: typeof BuyerRfpRfpIdRoute
     }
     '/rfp/$rfpId/questions': {
       id: '/rfp/$rfpId/questions'
@@ -356,6 +441,34 @@ declare module '@tanstack/react-router' {
       fullPath: '/intake/legal-services/delivery'
       preLoaderRoute: typeof IntakeLegalServicesDeliveryRouteImport
       parentRoute: typeof IntakeRoute
+    }
+    '/buyer-rfp/$rfpId/responses': {
+      id: '/buyer-rfp/$rfpId/responses'
+      path: '/responses'
+      fullPath: '/buyer-rfp/$rfpId/responses'
+      preLoaderRoute: typeof BuyerRfpRfpIdResponsesRouteImport
+      parentRoute: typeof BuyerRfpRfpIdRoute
+    }
+    '/buyer-rfp/$rfpId/documents': {
+      id: '/buyer-rfp/$rfpId/documents'
+      path: '/documents'
+      fullPath: '/buyer-rfp/$rfpId/documents'
+      preLoaderRoute: typeof BuyerRfpRfpIdDocumentsRouteImport
+      parentRoute: typeof BuyerRfpRfpIdRoute
+    }
+    '/buyer-rfp/$rfpId/compare': {
+      id: '/buyer-rfp/$rfpId/compare'
+      path: '/compare'
+      fullPath: '/buyer-rfp/$rfpId/compare'
+      preLoaderRoute: typeof BuyerRfpRfpIdCompareRouteImport
+      parentRoute: typeof BuyerRfpRfpIdRoute
+    }
+    '/buyer-rfp/$rfpId/analytics': {
+      id: '/buyer-rfp/$rfpId/analytics'
+      path: '/analytics'
+      fullPath: '/buyer-rfp/$rfpId/analytics'
+      preLoaderRoute: typeof BuyerRfpRfpIdAnalyticsRouteImport
+      parentRoute: typeof BuyerRfpRfpIdRoute
     }
   }
 }
@@ -387,6 +500,26 @@ const IntakeRouteChildren: IntakeRouteChildren = {
 const IntakeRouteWithChildren =
   IntakeRoute._addFileChildren(IntakeRouteChildren)
 
+interface BuyerRfpRfpIdRouteChildren {
+  BuyerRfpRfpIdAnalyticsRoute: typeof BuyerRfpRfpIdAnalyticsRoute
+  BuyerRfpRfpIdCompareRoute: typeof BuyerRfpRfpIdCompareRoute
+  BuyerRfpRfpIdDocumentsRoute: typeof BuyerRfpRfpIdDocumentsRoute
+  BuyerRfpRfpIdResponsesRoute: typeof BuyerRfpRfpIdResponsesRoute
+  BuyerRfpRfpIdIndexRoute: typeof BuyerRfpRfpIdIndexRoute
+}
+
+const BuyerRfpRfpIdRouteChildren: BuyerRfpRfpIdRouteChildren = {
+  BuyerRfpRfpIdAnalyticsRoute: BuyerRfpRfpIdAnalyticsRoute,
+  BuyerRfpRfpIdCompareRoute: BuyerRfpRfpIdCompareRoute,
+  BuyerRfpRfpIdDocumentsRoute: BuyerRfpRfpIdDocumentsRoute,
+  BuyerRfpRfpIdResponsesRoute: BuyerRfpRfpIdResponsesRoute,
+  BuyerRfpRfpIdIndexRoute: BuyerRfpRfpIdIndexRoute,
+}
+
+const BuyerRfpRfpIdRouteWithChildren = BuyerRfpRfpIdRoute._addFileChildren(
+  BuyerRfpRfpIdRouteChildren,
+)
+
 interface RfpRfpIdRouteChildren {
   RfpRfpIdDocumentsRoute: typeof RfpRfpIdDocumentsRoute
   RfpRfpIdQuestionsRoute: typeof RfpRfpIdQuestionsRoute
@@ -408,6 +541,7 @@ const rootRouteChildren: RootRouteChildren = {
   BuyerInboxRoute: BuyerInboxRoute,
   IntakeRoute: IntakeRouteWithChildren,
   MyAnswersRoute: MyAnswersRoute,
+  BuyerRfpRfpIdRoute: BuyerRfpRfpIdRouteWithChildren,
   RfpRfpIdRoute: RfpRfpIdRouteWithChildren,
 }
 export const routeTree = rootRouteImport

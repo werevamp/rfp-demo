@@ -82,6 +82,21 @@ const findRFPById = (rfpId) => {
   return rfp
 }
 
+// Helper to format location - handle both string and object formats
+const formatLocation = (location) => {
+  if (!location) return 'Not specified'
+  if (typeof location === 'string') return location
+  if (typeof location === 'object') {
+    // Handle {state, country} or similar object formats
+    const parts = []
+    if (location.city) parts.push(location.city)
+    if (location.state) parts.push(location.state)
+    if (location.country) parts.push(location.country)
+    return parts.length > 0 ? parts.join(', ') : 'Not specified'
+  }
+  return 'Not specified'
+}
+
 export const Route = createFileRoute('/rfp/$rfpId')({
   component: RFPDetail,
   // Removed beforeLoad check to allow component to handle not-found case with better debugging
@@ -640,6 +655,9 @@ function ContractTerms({ rfp }) {
 function CompanyOverview({ rfp }) {
   if (!rfp.industry) return null
 
+  console.log('CompanyOverview - headquarters:', rfp.headquarters, 'type:', typeof rfp.headquarters)
+  console.log('CompanyOverview - geographicPresence:', rfp.geographicPresence, 'type:', typeof rfp.geographicPresence)
+
   return (
     <Paper withBorder p="lg">
       <Title order={3} mb="md">Company Overview</Title>
@@ -650,7 +668,7 @@ function CompanyOverview({ rfp }) {
         </Box>
         <Box>
           <Text size="sm" fw={500} c="dimmed" mb={4}>Headquarters</Text>
-          <Text size="sm">{rfp.headquarters}</Text>
+          <Text size="sm">{formatLocation(rfp.headquarters)}</Text>
         </Box>
         <Box>
           <Text size="sm" fw={500} c="dimmed" mb={4}>Company Size</Text>
@@ -666,7 +684,7 @@ function CompanyOverview({ rfp }) {
         </Box>
         <Box>
           <Text size="sm" fw={500} c="dimmed" mb={4}>Geographic Presence</Text>
-          <Text size="sm">{rfp.geographicPresence}</Text>
+          <Text size="sm">{formatLocation(rfp.geographicPresence)}</Text>
         </Box>
       </SimpleGrid>
     </Paper>

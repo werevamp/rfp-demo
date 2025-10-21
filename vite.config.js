@@ -11,4 +11,7 @@ export default defineConfig({
   server: {
     allowedHosts: ['theoremwebhooks.ngrok.io'],
   },
+  build: {
+    sourcemap: true, // Enable source maps for production debugging - allows you to see original code in browser DevTools
+  },
 })

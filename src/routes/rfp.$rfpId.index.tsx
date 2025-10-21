@@ -69,6 +69,14 @@ function RFPOverview() {
   const { rfpId } = Route.useParams()
   const rfp = findRFPById(rfpId)
 
+  // Debug logging
+  console.log('RFP Overview - RFP Data:', rfp)
+  if (rfp) {
+    console.log('Location field:', rfp.location, 'Type:', typeof rfp.location)
+    console.log('Headquarters field:', rfp.headquarters, 'Type:', typeof rfp.headquarters)
+    console.log('Geographic Presence field:', rfp.geographicPresence, 'Type:', typeof rfp.geographicPresence)
+  }
+
   if (!rfp) {
     const allRFPs = getAllRFPs()
     const buyerIntakeCount = getAllBuyerIntakesArray().length
@@ -109,19 +117,22 @@ function RFPOverview() {
 
   // Render different layouts based on RFP type
   if (rfp.rfpType === "legal-services") {
-    return <LegalServicesLayout rfp={rfp} formatDate={formatDate} />
+    return <LegalServicesLayout rfp={rfp} formatDate={formatDate} formatLocation={formatLocation} />
   }
 
   // Default to legal-tech layout
-  return <LegalTechLayout rfp={rfp} formatDate={formatDate} />
+  return <LegalTechLayout rfp={rfp} formatDate={formatDate} formatLocation={formatLocation} />
 }
 
 // ============================================================================
 // LEGAL TECH LAYOUT
 // ============================================================================
-function LegalTechLayout({ rfp, formatDate }) {
-  return (
-    <Stack gap="lg">
+function LegalTechLayout({ rfp, formatDate, formatLocation }) {
+  console.log('LegalTechLayout rendering with RFP:', rfp)
+
+  try {
+    return (
+      <Stack gap="lg">
       {/* Quick Stats */}
       {rfp.requiredLicenses && <QuickStats rfp={rfp} />}
 
@@ -143,7 +154,7 @@ function LegalTechLayout({ rfp, formatDate }) {
           {(rfp.location || rfp.headquarters) && (
             <Box>
               <Text size="sm" fw={500} c="gray.6" mb={4}>Region / Location</Text>
-              <Text size="sm" c="gray.9">{rfp.headquarters || formatLocation(rfp.location) || 'Not specified'}</Text>
+              <Text size="sm" c="gray.9">{formatLocation(rfp.headquarters) || formatLocation(rfp.location) || 'Not specified'}</Text>
             </Box>
           )}
         </SimpleGrid>
@@ -294,17 +305,25 @@ function LegalTechLayout({ rfp, formatDate }) {
         </Section>
       )}
     </Stack>
-  )
+    )
+  } catch (error) {
+    console.error('Error in LegalTechLayout:', error)
+    console.error('RFP data at error:', rfp)
+    return <div>Error rendering legal tech layout: {error.message}</div>
+  }
 }
 
 // ============================================================================
 // LEGAL SERVICES LAYOUT
 // ============================================================================
-function LegalServicesLayout({ rfp, formatDate }) {
-  return (
-    <Stack gap="lg">
-      {/* Project Overview */}
-      <Section title="Project Overview" icon={<FileText size={20} />}>
+function LegalServicesLayout({ rfp, formatDate, formatLocation }) {
+  console.log('LegalServicesLayout rendering with RFP:', rfp)
+
+  try {
+    return (
+      <Stack gap="lg">
+        {/* Project Overview */}
+        <Section title="Project Overview" icon={<FileText size={20} />}>
         <Title order={3} size="xl" c="gray.9" mb="sm">{rfp.title}</Title>
         <Text c="gray.7" style={{ lineHeight: 1.6 }}>{rfp.description}</Text>
       </Section>
@@ -336,7 +355,7 @@ function LegalServicesLayout({ rfp, formatDate }) {
               <Group gap="xs">
                 {rfp.barLicenses.map((license, idx) => (
                   <Badge key={idx} color="green" variant="light">
-                    {license}
+                    {typeof license === 'string' ? license : `${license.state || ''}${license.state && license.country ? ', ' : ''}${license.country || ''}`}
                   </Badge>
                 ))}
               </Group>
@@ -409,8 +428,13 @@ function LegalServicesLayout({ rfp, formatDate }) {
           </Stack>
         </Section>
       )}
-    </Stack>
-  )
+      </Stack>
+    )
+  } catch (error) {
+    console.error('Error in LegalServicesLayout:', error)
+    console.error('RFP data at error:', rfp)
+    return <div>Error rendering legal services layout: {error.message}</div>
+  }
 }
 
 // ============================================================================
