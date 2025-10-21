@@ -1,6 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useParams } from '@tanstack/react-router'
 import { useState, useMemo } from 'react'
-import { Title, Text, Box, Stack, Group, Button, Badge, Checkbox, Table, NumberInput, Rating } from '@mantine/core'
+import { Title, Text, Box, Stack, Group, Button, Badge, Checkbox, Table, NumberInput, Rating, Accordion } from '@mantine/core'
+import { getBuyerIntake } from '../utils/buyerIntakeStorage'
+import { defaultRFPQuestions, legalServicesQuestions, alspQuestions } from '../data/questionTemplates'
 import fakeRFPDetails from '../data/fakeRFPDetails.json'
 
 export const Route = createFileRoute('/buyer-rfp/$rfpId/compare')({
@@ -8,6 +10,9 @@ export const Route = createFileRoute('/buyer-rfp/$rfpId/compare')({
 })
 
 function CompareTab() {
+  const { rfpId } = useParams({ from: '/buyer-rfp/$rfpId/compare' })
+  const rfp = getBuyerIntake(rfpId)
+
   const [selectedVendors, setSelectedVendors] = useState(['vendor-1', 'vendor-2'])
   const [vendorStages, setVendorStages] = useState({
     'vendor-1': 'Shortlisted',
@@ -15,12 +20,51 @@ function CompareTab() {
     'vendor-3': 'Responded'
   })
 
-  // Initialize weights from fakeRFPDetails
+  // Determine which questions to use based on RFP type
+  const getQuestionsForRFPType = (rfpType) => {
+    if (rfpType === 'legal-services') {
+      return legalServicesQuestions
+    } else if (rfpType === 'alsp') {
+      return alspQuestions
+    } else {
+      // Default to legal-tech questions for 'legal-tech' and any other type
+      return defaultRFPQuestions
+    }
+  }
+
+  const questions = rfp ? getQuestionsForRFPType(rfp.rfpType) : defaultRFPQuestions
+
+  // Group questions by section
+  const questionsBySection = useMemo(() => {
+    const sections = {}
+    questions.forEach(question => {
+      const section = question.section || 'Other'
+      if (!sections[section]) {
+        sections[section] = []
+      }
+      sections[section].push(question)
+    })
+    return sections
+  }, [questions])
+
+  const sectionNames = Object.keys(questionsBySection)
+
+  // Initialize weights evenly distributed per section (each section has 100 total)
   const [questionWeights, setQuestionWeights] = useState(() => {
     const weights = {}
-    fakeRFPDetails.questions.forEach(q => {
-      weights[q.id] = q.weight
+
+    // For each section, distribute 100 points evenly among questions in that section
+    sectionNames.forEach(sectionName => {
+      const sectionQuestions = questionsBySection[sectionName]
+      const numQuestions = sectionQuestions.length
+      const evenWeight = Math.floor(100 / numQuestions)
+      const remainder = 100 % numQuestions
+
+      sectionQuestions.forEach((q, index) => {
+        weights[q.id] = evenWeight + (index < remainder ? 1 : 0)
+      })
     })
+
     return weights
   })
 
@@ -29,7 +73,7 @@ function CompareTab() {
     const scores = {}
     fakeRFPDetails.vendors.forEach(vendor => {
       scores[vendor.id] = {}
-      fakeRFPDetails.questions.forEach(q => {
+      questions.forEach(q => {
         scores[vendor.id][q.id] = 0
       })
     })
@@ -44,20 +88,22 @@ function CompareTab() {
     )
   }
 
-  const handleWeightChange = (questionId, value) => {
-    const newValue = value || 0
-    const currentWeight = questionWeights[questionId] || 0
-    const otherWeightsTotal = Object.entries(questionWeights)
-      .filter(([id]) => id !== questionId)
-      .reduce((sum, [, weight]) => sum + weight, 0)
+  const handleWeightChange = (questionId, value, section) => {
+    setQuestionWeights(prev => ({
+      ...prev,
+      [questionId]: value || 0
+    }))
+  }
 
-    // Only allow change if total won't exceed 100
-    if (otherWeightsTotal + newValue <= 100) {
-      setQuestionWeights(prev => ({
-        ...prev,
-        [questionId]: newValue
-      }))
-    }
+  // Calculate max weight for a given question within its section
+  const getMaxWeight = (questionId, section) => {
+    const sectionQuestions = questionsBySection[section]
+    const currentWeight = questionWeights[questionId] || 0
+    const otherWeightsTotal = sectionQuestions
+      .filter(q => q.id !== questionId)
+      .reduce((sum, q) => sum + (questionWeights[q.id] || 0), 0)
+
+    return 100 - otherWeightsTotal
   }
 
   const handleScoreChange = (vendorId, questionId, value) => {
@@ -70,31 +116,39 @@ function CompareTab() {
     }))
   }
 
-  // Calculate total weight
-  const totalWeight = useMemo(() => {
-    return Object.values(questionWeights).reduce((sum, weight) => sum + weight, 0)
-  }, [questionWeights])
+  // Calculate section total weight (sum of question weights in that section)
+  const calculateSectionTotal = (section) => {
+    const sectionQuestions = questionsBySection[section]
+    return sectionQuestions.reduce((sum, q) => sum + (questionWeights[q.id] || 0), 0)
+  }
 
-  // Calculate vendor scores
-  const calculateVendorScore = useMemo(() => {
-    return (vendorId) => {
-      let totalScore = 0
+  // Calculate vendor section scores
+  const calculateVendorSectionScore = (vendorId, section) => {
+    const sectionQuestions = questionsBySection[section]
+    let totalScore = 0
 
-      fakeRFPDetails.questions.forEach(question => {
-        const stars = vendorScores[vendorId]?.[question.id] || 0
-        const weight = questionWeights[question.id] || 0
+    sectionQuestions.forEach(question => {
+      const stars = vendorScores[vendorId]?.[question.id] || 0
+      const weight = questionWeights[question.id] || 0
 
-        // Convert stars (0-5) to percentage (0-1) and apply weight
-        const questionScore = (stars / 5) * (weight / 100)
-        totalScore += questionScore
-      })
+      // Convert stars (0-5) to percentage (0-1) and apply weight
+      const questionScore = (stars / 5) * (weight / 100)
+      totalScore += questionScore
+    })
 
-      // Convert to percentage (0-100)
-      return (totalScore * 100).toFixed(1)
-    }
-  }, [vendorScores, questionWeights])
+    // Convert to percentage (0-100)
+    return (totalScore * 100).toFixed(1)
+  }
 
   const selectedVendorData = fakeRFPDetails.vendors.filter(v => selectedVendors.includes(v.id))
+
+  // Helper function to format response for display
+  const formatResponse = (response) => {
+    if (Array.isArray(response)) {
+      return response.join(', ')
+    }
+    return response || 'No response provided'
+  }
 
   return (
     <Stack gap="lg">
@@ -133,99 +187,141 @@ function CompareTab() {
         ))}
       </Group>
 
-      {/* Comparison Table */}
+      {/* Questions grouped by section */}
       <Box>
-        <Title order={4} mb="md">Side-by-side responses</Title>
+        <Title order={4} mb="md">Detailed Question Comparison by Section</Title>
         <Text size="sm" c="dimmed" mb="lg">
-          Assign weights (total 100) and score each vendor per question. Overall score shows at top; click to jump to bottom controls.
+          Expand each section to view questions, assign weights, and score vendors. Each section's weights should total 100.
         </Text>
 
-        <Table withTableBorder withColumnBorders style={{
-          backgroundColor: 'white',
-          borderRadius: '8px',
-          borderCollapse: 'separate',
-          borderSpacing: 0,
-          overflow: 'hidden'
+        <Accordion variant="separated" defaultValue={sectionNames[0]} styles={{
+          item: {
+            border: '1px solid var(--mantine-color-gray-4)',
+            borderRadius: '8px',
+            backgroundColor: 'white',
+            overflow: 'hidden',
+          },
+          control: {
+            backgroundColor: 'white',
+          }
         }}>
-          <Table.Thead>
-            <Table.Tr>
-              <Table.Th style={{ width: 250, borderBottom: '2px solid var(--mantine-color-gray-4)' }}></Table.Th>
-              <Table.Th style={{ width: 100, textAlign: 'center', borderBottom: '2px solid var(--mantine-color-gray-4)' }}>
-                <Text size="xs" c="dimmed" mb={4}>WEIGHT (OUT OF 100)</Text>
-              </Table.Th>
-              {selectedVendorData.map((vendor) => (
-                <Table.Th key={vendor.id} style={{ borderBottom: '2px solid var(--mantine-color-gray-4)' }}>
-                  <Box>
-                    <Text fw={600} mb={4}>{vendor.name}</Text>
-                    <Text size="xs" c="dimmed">Score: {calculateVendorScore(vendor.id)}%</Text>
-                  </Box>
-                </Table.Th>
-              ))}
-            </Table.Tr>
-          </Table.Thead>
-          <Table.Tbody>
-            {fakeRFPDetails.questions.map((question) => (
-              <Table.Tr key={question.id}>
-                <Table.Td style={{ borderBottom: '1px solid var(--mantine-color-gray-3)' }}>
-                  <Text size="sm" fw={500}>{question.text}</Text>
-                </Table.Td>
-                <Table.Td style={{ textAlign: 'center', borderBottom: '1px solid var(--mantine-color-gray-3)' }}>
-                  <NumberInput
-                    value={questionWeights[question.id]}
-                    onChange={(value) => handleWeightChange(question.id, value)}
-                    min={0}
-                    max={100}
-                    w={80}
-                    size="sm"
-                    styles={{
-                      input: {
-                        textAlign: 'center',
-                        fontWeight: 600
-                      }
-                    }}
-                  />
-                </Table.Td>
-                {selectedVendorData.map((vendor) => (
-                  <Table.Td key={vendor.id} style={{ borderBottom: '1px solid var(--mantine-color-gray-3)' }}>
-                    <Text size="sm" mb="xs">{vendor.responses[Object.keys(vendor.responses)[fakeRFPDetails.questions.indexOf(question)]]}</Text>
-                    <Box mt="sm">
-                      <Text size="xs" c="dimmed" mb={4}>Score</Text>
-                      <Rating
-                        value={vendorScores[vendor.id]?.[question.id] || 0}
-                        onChange={(value) => handleScoreChange(vendor.id, question.id, value)}
-                        fractions={2}
-                        size="md"
-                      />
+          {sectionNames.map((section) => {
+            const sectionQuestions = questionsBySection[section]
+            const sectionTotal = calculateSectionTotal(section)
+
+            return (
+              <Accordion.Item key={section} value={section}>
+                <Accordion.Control>
+                  <Group justify="space-between" pr="md" wrap="nowrap">
+                    <Box style={{ flex: 1, minWidth: 0 }}>
+                      <Text fw={600} mb={4}>{section}</Text>
+                      <Group gap="xs" wrap="nowrap">
+                        {selectedVendorData.map((vendor) => (
+                          <Text key={vendor.id} size="xs" c="dimmed" style={{ whiteSpace: 'nowrap' }}>
+                            {vendor.name}: <Text component="span" fw={600} c="blue">{calculateVendorSectionScore(vendor.id, section)}%</Text>
+                          </Text>
+                        ))}
+                      </Group>
                     </Box>
-                  </Table.Td>
-                ))}
-              </Table.Tr>
-            ))}
-            {/* Totals Row */}
-            <Table.Tr>
-              <Table.Td style={{ borderTop: '2px solid var(--mantine-color-gray-4)' }}>
-                <Text fw={700}>Totals</Text>
-              </Table.Td>
-              <Table.Td style={{ textAlign: 'center', borderTop: '2px solid var(--mantine-color-gray-4)' }}>
-                <Text
-                  size="xl"
-                  fw={700}
-                  c={totalWeight === 100 ? 'green' : 'red'}
-                  style={{ whiteSpace: 'nowrap' }}
-                >
-                  {totalWeight} / 100
-                </Text>
-              </Table.Td>
-              {selectedVendorData.map((vendor) => (
-                <Table.Td key={vendor.id} style={{ textAlign: 'center', borderTop: '2px solid var(--mantine-color-gray-4)' }}>
-                  <Text size="xl" fw={700} c="blue">
-                    {calculateVendorScore(vendor.id)}%
-                  </Text>
-                </Table.Td>
-              ))}
-            </Table.Tr>
-          </Table.Tbody>
-        </Table>
+                    <Badge color={sectionTotal === 100 ? 'green' : 'red'} variant="light" style={{ flexShrink: 0 }}>
+                      {sectionQuestions.length} questions • Weight: {sectionTotal}/100
+                    </Badge>
+                  </Group>
+                </Accordion.Control>
+                <Accordion.Panel>
+                  <Table withTableBorder withColumnBorders style={{
+                    backgroundColor: 'white',
+                    borderRadius: '8px',
+                    borderCollapse: 'separate',
+                    borderSpacing: 0,
+                    overflow: 'hidden'
+                  }}>
+                    <Table.Thead>
+                      <Table.Tr>
+                        <Table.Th style={{ width: 250, borderBottom: '2px solid var(--mantine-color-gray-4)' }}>Question</Table.Th>
+                        <Table.Th style={{ width: 100, textAlign: 'center', borderBottom: '2px solid var(--mantine-color-gray-4)' }}>
+                          <Text size="xs" c="dimmed" mb={4}>WEIGHT (OUT OF 100)</Text>
+                        </Table.Th>
+                        {selectedVendorData.map((vendor) => (
+                          <Table.Th key={vendor.id} style={{ borderBottom: '2px solid var(--mantine-color-gray-4)' }}>
+                            <Box>
+                              <Text fw={600} mb={4}>{vendor.name}</Text>
+                              <Text size="xs" c="dimmed">Section Score: {calculateVendorSectionScore(vendor.id, section)}%</Text>
+                            </Box>
+                          </Table.Th>
+                        ))}
+                      </Table.Tr>
+                    </Table.Thead>
+                    <Table.Tbody>
+                      {sectionQuestions.map((question) => (
+                        <Table.Tr key={question.id}>
+                          <Table.Td style={{ borderBottom: '1px solid var(--mantine-color-gray-3)' }}>
+                            <Text size="sm" fw={500}>{question.text}</Text>
+                          </Table.Td>
+                          <Table.Td style={{ textAlign: 'center', borderBottom: '1px solid var(--mantine-color-gray-3)' }}>
+                            <NumberInput
+                              value={questionWeights[question.id]}
+                              onChange={(value) => handleWeightChange(question.id, value, section)}
+                              min={0}
+                              max={getMaxWeight(question.id, section)}
+                              w={80}
+                              size="sm"
+                              styles={{
+                                input: {
+                                  textAlign: 'center',
+                                  fontWeight: 600
+                                }
+                              }}
+                            />
+                          </Table.Td>
+                          {selectedVendorData.map((vendor) => (
+                            <Table.Td key={vendor.id} style={{ borderBottom: '1px solid var(--mantine-color-gray-3)' }}>
+                              <Text size="sm" mb="xs">
+                                {formatResponse(vendor.responses[question.id])}
+                              </Text>
+                              <Box mt="sm">
+                                <Text size="xs" c="dimmed" mb={4}>Score</Text>
+                                <Rating
+                                  value={vendorScores[vendor.id]?.[question.id] || 0}
+                                  onChange={(value) => handleScoreChange(vendor.id, question.id, value)}
+                                  fractions={2}
+                                  size="md"
+                                />
+                              </Box>
+                            </Table.Td>
+                          ))}
+                        </Table.Tr>
+                      ))}
+                      {/* Section Totals Row */}
+                      <Table.Tr>
+                        <Table.Td style={{ borderTop: '2px solid var(--mantine-color-gray-4)' }}>
+                          <Text fw={700}>Section Totals</Text>
+                        </Table.Td>
+                        <Table.Td style={{ textAlign: 'center', borderTop: '2px solid var(--mantine-color-gray-4)' }}>
+                          <Text
+                            size="xl"
+                            fw={700}
+                            c={sectionTotal === 100 ? 'green' : 'red'}
+                            style={{ whiteSpace: 'nowrap' }}
+                          >
+                            {sectionTotal} / 100
+                          </Text>
+                        </Table.Td>
+                        {selectedVendorData.map((vendor) => (
+                          <Table.Td key={vendor.id} style={{ textAlign: 'center', borderTop: '2px solid var(--mantine-color-gray-4)' }}>
+                            <Text size="xl" fw={700} c="blue">
+                              {calculateVendorSectionScore(vendor.id, section)}%
+                            </Text>
+                          </Table.Td>
+                        ))}
+                      </Table.Tr>
+                    </Table.Tbody>
+                  </Table>
+                </Accordion.Panel>
+              </Accordion.Item>
+            )
+          })}
+        </Accordion>
       </Box>
     </Stack>
   )

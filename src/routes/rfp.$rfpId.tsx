@@ -216,14 +216,15 @@ function RFPDetail() {
   }
 
   const getRFPTypeInfo = (rfpType) => {
-    if (rfpType === 'legal-services') {
+    // Check for legal services types
+    if (rfpType === 'lawfirm' || rfpType === 'alsp' || rfpType === 'legal-services') {
       return {
         label: 'Legal Services',
         icon: <Scale size={16} />,
         color: 'violet'
       }
     }
-    // Default to legal-tech
+    // Default to legal-tech for legal-tech-new, legal-tech-replace, and legacy legal-tech
     return {
       label: 'Legal Tech',
       icon: <Monitor size={16} />,

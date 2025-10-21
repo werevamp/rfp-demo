@@ -309,6 +309,24 @@ export default function QuestionsSection({ rfp, isTemplate = false }) {
 
   const buttonState = getButtonState()
 
+  // Get RFP type display label
+  const getRFPTypeLabel = () => {
+    switch (rfp.rfpType) {
+      case 'lawfirm':
+        return 'Law Firm RFP'
+      case 'alsp':
+        return 'ALSP (Alternative Legal Service Provider) RFP'
+      case 'legal-tech-new':
+        return 'Legal Tech - New Product RFP'
+      case 'legal-tech-replace':
+        return 'Legal Tech - Replacement RFP'
+      default:
+        return null
+    }
+  }
+
+  const rfpTypeLabel = getRFPTypeLabel()
+
   if (!currentQuestion) {
     return (
       <Box py="xl" style={{ textAlign: 'center' }}>
@@ -321,6 +339,23 @@ export default function QuestionsSection({ rfp, isTemplate = false }) {
     <SimpleGrid cols={4} breakpoints={[{ maxWidth: 'lg', cols: 1 }]} spacing="lg">
       {/* Main Question Area - 3/4 width */}
       <Box style={{ gridColumn: 'span 3' }}>
+        {/* RFP Type Badge */}
+        {rfpTypeLabel && (
+          <Paper withBorder p="sm" mb="md" style={{ background: 'linear-gradient(to right, #f8fafc, #f1f5f9)' }}>
+            <Group gap="xs">
+              <Badge size="lg" color="indigo" variant="filled">
+                {rfpTypeLabel}
+              </Badge>
+              <Text size="sm" c="dimmed">
+                {rfp.rfpType === 'lawfirm' && 'Legal services provided by a law firm'}
+                {rfp.rfpType === 'alsp' && 'Legal services provided by an alternative legal service provider'}
+                {rfp.rfpType === 'legal-tech-new' && 'Purchasing new legal technology product'}
+                {rfp.rfpType === 'legal-tech-replace' && 'Replacing existing legal technology solution'}
+              </Text>
+            </Group>
+          </Paper>
+        )}
+
         <Paper withBorder p="md">
 
           {/* Question Header */}

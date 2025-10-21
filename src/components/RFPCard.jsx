@@ -43,14 +43,15 @@ export default function RFPCard({ rfp, showProgress }) {
   }
 
   const getRFPTypeInfo = (rfpType) => {
-    if (rfpType === 'legal-services') {
+    // Check for legal services types
+    if (rfpType === 'lawfirm' || rfpType === 'alsp' || rfpType === 'legal-services') {
       return {
         label: 'Legal Services',
         icon: Scale,
         color: 'grape'
       }
     }
-    // Default to legal-tech
+    // Default to legal-tech for legal-tech-new, legal-tech-replace, and legacy legal-tech
     return {
       label: 'Legal Tech',
       icon: Monitor,
@@ -195,7 +196,7 @@ export default function RFPCard({ rfp, showProgress }) {
             {rfp.description}
           </Text>
 
-          {rfp.rfpType === 'legal-tech' && rfp.solutionCategory && (
+          {(rfp.rfpType === 'legal-tech' || rfp.rfpType === 'legal-tech-new' || rfp.rfpType === 'legal-tech-replace') && rfp.solutionCategory && (
             <Group gap="xs">
               <Text size="xs" fw={500} c="dimmed">Solution:</Text>
               <Badge color="blue" variant="light" size="sm">

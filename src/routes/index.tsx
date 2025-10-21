@@ -119,7 +119,15 @@ function RFPInbox() {
 
   // Filter RFPs based on type (only for Available tab)
   const filteredRFPs = activeTab === 'available' && rfpTypeFilter !== 'all'
-    ? viewFilteredRFPs.filter(rfp => rfp.rfpType === rfpTypeFilter)
+    ? viewFilteredRFPs.filter(rfp => {
+        if (rfpTypeFilter === 'legal-tech') {
+          return rfp.rfpType === 'legal-tech-new' || rfp.rfpType === 'legal-tech-replace'
+        }
+        if (rfpTypeFilter === 'legal-services') {
+          return rfp.rfpType === 'lawfirm' || rfp.rfpType === 'alsp'
+        }
+        return rfp.rfpType === rfpTypeFilter
+      })
     : viewFilteredRFPs
 
   const sortedRFPs = activeTab === 'available' ? sortRFPs(filteredRFPs, sortOption) : filteredRFPs

@@ -28,8 +28,10 @@ export const transformIntakeToRFP = (intake) => {
   // Determine RFP type and add type-specific fields
   if (intake.rfpType === 'legal-tech-new' || intake.rfpType === 'legal-tech-replace') {
     return transformTechIntake(intake, baseRFP)
-  } else if (intake.rfpType === 'lawfirm' || intake.rfpType === 'alsp') {
-    return transformLegalServicesIntake(intake, baseRFP)
+  } else if (intake.rfpType === 'lawfirm') {
+    return transformLegalServicesIntake(intake, baseRFP, 'lawfirm')
+  } else if (intake.rfpType === 'alsp') {
+    return transformLegalServicesIntake(intake, baseRFP, 'alsp')
   }
 
   return baseRFP
@@ -83,7 +85,7 @@ const transformTechIntake = (intake, baseRFP) => {
 
   return {
     ...baseRFP,
-    rfpType: 'legal-tech',
+    rfpType: intake.rfpType, // Preserve specific type: legal-tech-new or legal-tech-replace
     budget,
     description: intake.useCaseDescription || intake.companyDescription || '',
 
@@ -114,14 +116,14 @@ const transformTechIntake = (intake, baseRFP) => {
 /**
  * Transform legal services intake (lawfirm or ALSP) into RFP format
  */
-const transformLegalServicesIntake = (intake, baseRFP) => {
+const transformLegalServicesIntake = (intake, baseRFP, serviceType) => {
   // Format budget from budgetFrom/To
   const budget = (intake.budgetFrom && intake.budgetTo)
     ? formatBudget(intake.budgetFrom, intake.budgetTo)
     : 'Budget not specified'
 
   // Build questions array: use ALSP-specific questions for ALSPs, law firm questions for law firms
-  const baseQuestions = intake.deliveryModel === 'alsp' ? alspQuestions : legalServicesQuestions
+  const baseQuestions = (serviceType === 'alsp' || intake.deliveryModel === 'alsp') ? alspQuestions : legalServicesQuestions
   const questions = [...baseQuestions]
 
   // Parse custom questions string into proper question objects
@@ -132,7 +134,7 @@ const transformLegalServicesIntake = (intake, baseRFP) => {
 
   return {
     ...baseRFP,
-    rfpType: 'legal-services',
+    rfpType: intake.rfpType, // Preserve specific type: lawfirm or alsp
     budget,
     description: intake.workDescription || intake.companyDescription || '',
 

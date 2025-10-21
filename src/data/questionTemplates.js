@@ -1375,6 +1375,191 @@ export const legalServicesQuestions = [
 export const generateBuyerSpecificQuestions = (rfp) => {
   const buyerQuestions = []
 
+  // LAWFIRM RFP TYPE - Buyer-specific questions
+  if (rfp.rfpType === 'lawfirm') {
+    // Q1: Practice areas
+    const practiceAreas = (rfp.practiceGroups && rfp.practiceGroups.length > 0)
+      ? rfp.practiceGroups
+      : ['Corporate Law', 'Litigation', 'Employment Law', 'Intellectual Property'] // Fallback
+
+    buyerQuestions.push({
+      id: 'buyer-lawfirm-1',
+      section: 'Buyer-Specific Requirements',
+      text: 'Please confirm which of our required practice areas your firm can support.',
+      fieldType: 'multiselect',
+      priority: 'urgent',
+      options: practiceAreas,
+      required: true,
+      supportingDocs: false,
+      helpText: 'Select all practice areas your firm can support for this matter',
+      buyerSpecific: true
+    })
+
+    // Q2: Jurisdictions/regions
+    const jurisdictions = rfp.barLicenses || ['the required jurisdictions']
+    const jurisdictionText = Array.isArray(jurisdictions) ? jurisdictions.join(', ') : jurisdictions
+
+    buyerQuestions.push({
+      id: 'buyer-lawfirm-2',
+      section: 'Buyer-Specific Requirements',
+      text: `Can your firm provide coverage for ${jurisdictionText}?`,
+      fieldType: 'singleselect',
+      priority: 'urgent',
+      options: ['Yes', 'No', 'With conditions'],
+      conditionalText: 'With conditions',
+      required: true,
+      supportingDocs: false,
+      helpText: 'If "With conditions", please explain in the text field',
+      buyerSpecific: true
+    })
+
+    // Q3: Experience with buyer's size/segment/industry
+    const companySize = rfp.companySize || 'our organization'
+    const industry = rfp.industry || 'our industry'
+
+    buyerQuestions.push({
+      id: 'buyer-lawfirm-3',
+      section: 'Buyer-Specific Requirements',
+      text: `Do you have prior experience with clients of similar size (${companySize}) or industry (${industry})?`,
+      fieldType: 'singleselect',
+      priority: 'urgent',
+      options: ['Yes', 'No'],
+      conditionalText: 'Yes',
+      required: true,
+      supportingDocs: false,
+      helpText: 'If yes, please provide details about your experience in the text field',
+      buyerSpecific: true
+    })
+
+    // Q4: Service model meets requirements
+    const serviceRequirements = rfp.demoRequirements || 'our service-level and turnaround requirements'
+
+    buyerQuestions.push({
+      id: 'buyer-lawfirm-4',
+      section: 'Buyer-Specific Requirements',
+      text: 'Can you demonstrate that your service model meets our service-level or turnaround requirements?',
+      fieldType: 'textarea',
+      priority: 'urgent',
+      rows: 6,
+      placeholder: `Please explain how your service model addresses: ${serviceRequirements}`,
+      required: true,
+      supportingDocs: true,
+      helpText: 'Describe your approach to meeting our service requirements',
+      supportingDocsLabel: 'Optional: Client SLA or service playbook',
+      buyerSpecific: true
+    })
+
+    // Q5: Integration with legal ops/billing systems
+    buyerQuestions.push({
+      id: 'buyer-lawfirm-5',
+      section: 'Buyer-Specific Requirements',
+      text: 'Do you integrate with our legal ops or billing systems (e.g., CounselLink, TyMetrix, SimpleLegal)?',
+      fieldType: 'singleselect',
+      priority: 'normal',
+      options: ['Yes', 'No', 'Partially'],
+      conditionalText: 'Yes',
+      required: true,
+      supportingDocs: false,
+      helpText: 'If yes or partially, please specify which systems you integrate with in the text field',
+      buyerSpecific: true
+    })
+
+    return buyerQuestions
+  }
+
+  // ALSP RFP TYPE - Buyer-specific questions
+  if (rfp.rfpType === 'alsp') {
+    // Q1: Service areas
+    const serviceAreas = (rfp.practiceGroups && rfp.practiceGroups.length > 0)
+      ? rfp.practiceGroups
+      : ['Contract Management', 'eDiscovery', 'Compliance', 'Legal Operations', 'Document Review'] // Fallback
+
+    buyerQuestions.push({
+      id: 'buyer-alsp-1',
+      section: 'Buyer-Specific Requirements',
+      text: 'Please confirm which of our required service areas your team can support.',
+      fieldType: 'multiselect',
+      priority: 'urgent',
+      options: serviceAreas,
+      required: true,
+      supportingDocs: false,
+      helpText: 'Select all service areas your team can support for this engagement',
+      buyerSpecific: true
+    })
+
+    // Q2: Jurisdictions/regions
+    const jurisdictions = rfp.barLicenses || ['the required jurisdictions/regions']
+    const jurisdictionText = Array.isArray(jurisdictions) ? jurisdictions.join(', ') : jurisdictions
+
+    buyerQuestions.push({
+      id: 'buyer-alsp-2',
+      section: 'Buyer-Specific Requirements',
+      text: `Can you support operations in ${jurisdictionText}?`,
+      fieldType: 'singleselect',
+      priority: 'urgent',
+      options: ['Yes', 'No', 'With conditions'],
+      conditionalText: 'With conditions',
+      required: true,
+      supportingDocs: false,
+      helpText: 'If "With conditions", please explain in the text field',
+      buyerSpecific: true
+    })
+
+    // Q3: Experience with buyer's industry
+    const industry = rfp.industry || 'our industry'
+
+    buyerQuestions.push({
+      id: 'buyer-alsp-3',
+      section: 'Buyer-Specific Requirements',
+      text: `Do you have experience delivering services for clients in ${industry}?`,
+      fieldType: 'singleselect',
+      priority: 'urgent',
+      options: ['Yes', 'No'],
+      conditionalText: 'Yes',
+      required: true,
+      supportingDocs: false,
+      helpText: 'If yes, please provide details about your industry experience in the text field',
+      buyerSpecific: true
+    })
+
+    // Q4: Service-level requirements
+    const serviceRequirements = rfp.demoRequirements || 'our service-level and turnaround requirements'
+
+    buyerQuestions.push({
+      id: 'buyer-alsp-4',
+      section: 'Buyer-Specific Requirements',
+      text: 'Can you demonstrate your ability to meet our service-level or turnaround requirements?',
+      fieldType: 'textarea',
+      priority: 'urgent',
+      rows: 6,
+      placeholder: `Please explain how you would meet: ${serviceRequirements}`,
+      required: true,
+      supportingDocs: true,
+      helpText: 'Describe your approach to meeting our service-level requirements',
+      supportingDocsLabel: 'Optional: SLA sample or client reference',
+      buyerSpecific: true
+    })
+
+    // Q5: Integration with legal systems/vendors
+    buyerQuestions.push({
+      id: 'buyer-alsp-5',
+      section: 'Buyer-Specific Requirements',
+      text: 'Do you integrate or work alongside our legal systems or vendors (e.g., SAP, Relativity, iManage, ServiceNow)?',
+      fieldType: 'singleselect',
+      priority: 'normal',
+      options: ['Yes', 'No', 'Partially'],
+      conditionalText: 'Yes',
+      required: true,
+      supportingDocs: false,
+      helpText: 'If yes or partially, please specify which systems you integrate with in the text field',
+      buyerSpecific: true
+    })
+
+    return buyerQuestions
+  }
+
+  // LEGAL TECH RFP TYPES - Existing buyer-specific questions
+
   // Q1: Must-have requirements
   const coreRequirements = (rfp.coreRequirements && rfp.coreRequirements.length > 0)
     ? rfp.coreRequirements

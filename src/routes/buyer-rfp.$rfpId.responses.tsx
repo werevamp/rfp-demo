@@ -1,21 +1,53 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useParams } from '@tanstack/react-router'
 import { useState } from 'react'
 import { Title, Text, Box, Stack, Paper, Group, Avatar, Badge, Select, Button, Progress } from '@mantine/core'
 import fakeRFPDetails from '../data/fakeRFPDetails.json'
+import { getBuyerIntake } from '../utils/buyerIntakeStorage'
+import { defaultRFPQuestions, legalServicesQuestions, alspQuestions } from '../data/questionTemplates'
+import ReviewModal from '../components/ReviewModal'
 
 export const Route = createFileRoute('/buyer-rfp/$rfpId/responses')({
   component: ResponsesTab,
 })
 
 function ResponsesTab() {
+  const { rfpId } = useParams({ from: '/buyer-rfp/$rfpId/responses' })
+  const rfp = getBuyerIntake(rfpId)
+
   const [vendorStages, setVendorStages] = useState({
     'vendor-1': 'Shortlisted',
     'vendor-2': 'Responded',
     'vendor-3': 'Responded'
   })
 
+  const [reviewModalOpen, setReviewModalOpen] = useState(false)
+  const [selectedVendor, setSelectedVendor] = useState(null)
+
+  // Determine which questions to use based on RFP type
+  const getQuestionsForRFPType = (rfpType) => {
+    if (rfpType === 'legal-services') {
+      return legalServicesQuestions
+    } else if (rfpType === 'alsp') {
+      return alspQuestions
+    } else {
+      return defaultRFPQuestions
+    }
+  }
+
+  const questions = rfp ? getQuestionsForRFPType(rfp.rfpType) : defaultRFPQuestions
+
   const handleStageChange = (vendorId, newStage) => {
     setVendorStages(prev => ({ ...prev, [vendorId]: newStage }))
+  }
+
+  const handleReviewClick = (vendor) => {
+    setSelectedVendor(vendor)
+    setReviewModalOpen(true)
+  }
+
+  const handleCloseReviewModal = () => {
+    setReviewModalOpen(false)
+    setSelectedVendor(null)
   }
 
   return (
@@ -64,7 +96,7 @@ function ResponsesTab() {
                 </Box>
 
                 <Group gap="xs">
-                  <Button variant="light" size="sm">Review</Button>
+                  <Button variant="light" size="sm" onClick={() => handleReviewClick(vendor)}>Review</Button>
                   <Button variant="filled" size="sm" color="dark">Shortlist</Button>
                   <Button variant="subtle" size="sm" color="red">Decline</Button>
                 </Group>
@@ -73,6 +105,13 @@ function ResponsesTab() {
           </Paper>
         ))}
       </Stack>
+
+      <ReviewModal
+        isOpen={reviewModalOpen}
+        onClose={handleCloseReviewModal}
+        vendor={selectedVendor}
+        questions={questions}
+      />
     </Stack>
   )
 }

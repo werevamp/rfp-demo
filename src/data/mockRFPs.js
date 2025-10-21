@@ -1,9 +1,9 @@
-import { defaultRFPQuestions } from './questionTemplates'
+import { defaultRFPQuestions, legalServicesQuestions, alspQuestions } from './questionTemplates'
 
 export const mockRFPs = [
   {
     id: 1,
-    rfpType: "legal-tech",
+    rfpType: "legal-tech-replace",
     title: "E-commerce Website Redesign",
     company: "TechStyle Inc.",
     budget: "$75,000 - $100,000",
@@ -200,7 +200,7 @@ export const mockRFPs = [
   },
   {
     id: 2,
-    rfpType: "legal-tech",
+    rfpType: "legal-tech-new",
     title: "Mobile App Development - FinTech Startup",
     company: "FinanceFlow Solutions",
     budget: "$50,000 - $75,000",
@@ -233,7 +233,7 @@ export const mockRFPs = [
   },
   {
     id: 3,
-    rfpType: "legal-tech",
+    rfpType: "legal-tech-new",
     title: "Healthcare Management System",
     company: "MedTech Innovations",
     budget: "$100,000 - $150,000",
@@ -262,7 +262,7 @@ export const mockRFPs = [
   },
   {
     id: 4,
-    rfpType: "legal-tech",
+    rfpType: "legal-tech-replace",
     title: "AI-Powered Analytics Dashboard",
     company: "DataVision Analytics",
     budget: "$60,000 - $90,000",
@@ -291,7 +291,7 @@ export const mockRFPs = [
   },
   {
     id: 5,
-    rfpType: "legal-tech",
+    rfpType: "legal-tech-new",
     title: "Educational Platform Development",
     company: "EduTech Solutions",
     budget: "$40,000 - $65,000",
@@ -320,12 +320,12 @@ export const mockRFPs = [
   },
   {
     id: 6,
-    rfpType: "legal-tech",
+    rfpType: "lawfirm",
     title: "Real Estate Management Platform",
     company: "PropertyTech Pro",
     budget: "$80,000 - $120,000",
     deadline: "2025-10-07T23:59:59.000Z",
-    postedDate: "2025-09-20T13:45:00.000Z",
+    postedDate: "2025-10-18T13:45:00.000Z",
     status: "reviewed",
     location: "Hybrid - Denver",
     description: "Develop a comprehensive property management platform for real estate agencies. The system should handle property listings, client management, transaction tracking, and document management. Integration with MLS systems and virtual tour capabilities are essential.",
@@ -345,11 +345,11 @@ export const mockRFPs = [
       "Virtual tour capabilities",
       "Training and support documentation"
     ],
-    questions: defaultRFPQuestions
+    questions: legalServicesQuestions
   },
   {
     id: 7,
-    rfpType: "legal-tech",
+    rfpType: "legal-tech-new",
     title: "Inventory Management System for Retail",
     company: "RetailFlow Technologies",
     budget: "$35,000 - $50,000",
@@ -378,12 +378,12 @@ export const mockRFPs = [
   },
   {
     id: 8,
-    rfpType: "legal-tech",
+    rfpType: "alsp",
     title: "Social Media Marketing Automation Tool",
     company: "SocialBoost Digital",
     budget: "$45,000 - $70,000",
     deadline: "2025-10-18T23:59:59.000Z",
-    postedDate: "2025-09-28T12:00:00.000Z",
+    postedDate: "2025-10-19T12:00:00.000Z",
     status: "reviewed",
     location: "Remote",
     description: "Build a comprehensive social media management and automation platform. The tool should support scheduling, content creation, analytics, and engagement tracking across multiple social media platforms. AI-powered content suggestions are a plus.",
@@ -403,11 +403,11 @@ export const mockRFPs = [
       "Team collaboration tools",
       "API documentation and training"
     ],
-    questions: defaultRFPQuestions
+    questions: alspQuestions
   },
   {
     id: 9,
-    rfpType: "legal-tech",
+    rfpType: "legal-tech-new",
     title: "Fleet Management Solution",
     company: "TransportTech Solutions",
     budget: "$90,000 - $130,000",
@@ -436,12 +436,12 @@ export const mockRFPs = [
   },
   {
     id: 10,
-    rfpType: "legal-tech",
+    rfpType: "lawfirm",
     title: "Customer Support Ticketing System",
     company: "SupportFlow Inc.",
     budget: "$30,000 - $45,000",
     deadline: "2025-11-10T23:59:59.000Z",
-    postedDate: "2025-09-29T09:15:00.000Z",
+    postedDate: "2025-10-20T09:15:00.000Z",
     status: "reviewed",
     location: "Remote",
     description: "Create a modern customer support ticketing system with automation features. The system should handle multi-channel support (email, chat, phone), automatic ticket routing, SLA management, and customer satisfaction tracking. Integration with existing CRM is required.",
@@ -461,11 +461,11 @@ export const mockRFPs = [
       "Knowledge base system",
       "Analytics and reporting tools"
     ],
-    questions: defaultRFPQuestions
+    questions: legalServicesQuestions
   },
   {
     id: 11,
-    rfpType: "legal-tech",
+    rfpType: "legal-tech-new",
     title: "Restaurant Management Platform",
     company: "FoodTech Innovations",
     budget: "$55,000 - $80,000",
@@ -494,12 +494,12 @@ export const mockRFPs = [
   },
   {
     id: 12,
-    rfpType: "legal-tech",
+    rfpType: "alsp",
     title: "Construction Project Management Tool",
     company: "BuildTech Solutions",
     budget: "$70,000 - $100,000",
     deadline: "2026-01-31T23:59:59.000Z",
-    postedDate: "2025-09-25T14:45:00.000Z",
+    postedDate: "2025-10-17T14:45:00.000Z",
     status: "reviewed",
     location: "On-site - Phoenix",
     description: "Develop a project management platform specifically for construction companies. The system should handle project planning, resource allocation, progress tracking, budget management, and compliance documentation. Mobile access for field workers is essential.",
@@ -519,11 +519,11 @@ export const mockRFPs = [
       "Compliance tracking module",
       "Training and implementation support"
     ],
-    questions: defaultRFPQuestions
+    questions: alspQuestions
   },
   {
     id: 13,
-    rfpType: "legal-tech",
+    rfpType: "legal-tech-new",
     title: "Event Management Platform",
     company: "EventFlow Technologies",
     budget: "$40,000 - $60,000",
@@ -552,12 +552,12 @@ export const mockRFPs = [
   },
   {
     id: 14,
-    rfpType: "legal-tech",
+    rfpType: "lawfirm",
     title: "Legal Practice Management Software",
     company: "LegalTech Innovations",
     budget: "$85,000 - $125,000",
     deadline: "2025-12-15T23:59:59.000Z",
-    postedDate: "2025-09-21T10:45:00.000Z",
+    postedDate: "2025-10-16T10:45:00.000Z",
     status: "reviewed",
     location: "Hybrid - New York",
     description: "Build a comprehensive practice management system for law firms. The platform should include case management, document automation, time tracking, billing, client communication, and calendar management. Compliance with legal industry standards is mandatory.",
@@ -577,11 +577,11 @@ export const mockRFPs = [
       "Client portal",
       "Security audit and training"
     ],
-    questions: defaultRFPQuestions
+    questions: legalServicesQuestions
   },
   {
     id: 15,
-    rfpType: "legal-tech",
+    rfpType: "legal-tech-new",
     title: "Fitness Center Management System",
     company: "FitTech Solutions",
     budget: "$35,000 - $55,000",
@@ -610,12 +610,12 @@ export const mockRFPs = [
   },
   {
     id: 16,
-    rfpType: "legal-tech",
+    rfpType: "alsp",
     title: "Supply Chain Optimization Platform",
     company: "LogisticsPro Systems",
     budget: "$120,000 - $180,000",
     deadline: "2026-02-28T23:59:59.000Z",
-    postedDate: "2025-09-18T13:30:00.000Z",
+    postedDate: "2025-10-15T13:30:00.000Z",
     status: "reviewed",
     location: "Hybrid - Seattle",
     description: "Create an advanced supply chain management platform with AI-powered optimization. The system should handle procurement, supplier management, demand forecasting, inventory optimization, and logistics coordination. Integration with ERP systems is essential.",
@@ -635,11 +635,11 @@ export const mockRFPs = [
       "ERP integration modules",
       "Training and implementation support"
     ],
-    questions: defaultRFPQuestions
+    questions: alspQuestions
   },
   {
     id: 17,
-    rfpType: "legal-tech",
+    rfpType: "legal-tech-new",
     title: "HR Management and Payroll System",
     company: "HRTech Innovations",
     budget: "$65,000 - $95,000",
@@ -668,12 +668,12 @@ export const mockRFPs = [
   },
   {
     id: 18,
-    rfpType: "legal-tech",
+    rfpType: "lawfirm",
     title: "Insurance Claims Processing System",
     company: "InsurTech Solutions",
     budget: "$95,000 - $140,000",
     deadline: "2026-01-10T23:59:59.000Z",
-    postedDate: "2025-09-20T09:45:00.000Z",
+    postedDate: "2025-10-14T09:45:00.000Z",
     status: "reviewed",
     location: "On-site - Hartford",
     description: "Develop an automated insurance claims processing platform with AI-powered fraud detection. The system should handle claim intake, processing workflows, adjuster assignment, and settlement processing. Integration with existing policy management systems is required.",
@@ -693,11 +693,11 @@ export const mockRFPs = [
       "Policy system integration",
       "Compliance documentation and training"
     ],
-    questions: defaultRFPQuestions
+    questions: legalServicesQuestions
   },
   {
     id: 19,
-    rfpType: "legal-tech",
+    rfpType: "legal-tech-new",
     title: "Manufacturing Execution System",
     company: "IndustryTech Corp",
     budget: "$110,000 - $160,000",
@@ -726,7 +726,7 @@ export const mockRFPs = [
   },
   {
     id: 20,
-    rfpType: "legal-tech",
+    rfpType: "legal-tech-new",
     title: "Nonprofit Donor Management Platform",
     company: "CharityTech Solutions",
     budget: "$25,000 - $40,000",
@@ -755,12 +755,12 @@ export const mockRFPs = [
   },
   {
     id: 21,
-    rfpType: "legal-services",
+    rfpType: "lawfirm",
     title: "Corporate M&A Transaction Legal Support",
     company: "TechVentures Capital",
     budget: "$150,000 - $250,000",
     deadline: "2025-10-20T23:59:59.000Z",
-    postedDate: "2025-10-01T09:00:00.000Z",
+    postedDate: "2025-10-21T09:00:00.000Z",
     status: "new",
     location: "New York, NY",
     description: "We are seeking experienced legal counsel to support a complex merger and acquisition transaction. The deal involves a multi-state technology company acquisition with significant IP assets, regulatory considerations, and cross-border elements. We need a firm with deep M&A expertise and the ability to move quickly through due diligence, negotiation, and closing.",
@@ -779,16 +779,16 @@ export const mockRFPs = [
       "Availability for evening/weekend calls during critical negotiation periods",
       "Experience with regulatory filings in technology sector required"
     ],
-    questions: defaultRFPQuestions
+    questions: legalServicesQuestions
   },
   {
     id: 22,
-    rfpType: "legal-services",
+    rfpType: "lawfirm",
     title: "Employment Law Defense - Class Action",
     company: "Retail Solutions Inc.",
     budget: "$75,000 - $125,000",
     deadline: "2025-10-15T23:59:59.000Z",
-    postedDate: "2025-10-03T14:30:00.000Z",
+    postedDate: "2025-10-21T14:30:00.000Z",
     status: "reviewed",
     location: "Los Angeles, CA",
     description: "Our company is facing a potential class action lawsuit related to wage and hour practices across our California retail locations. We need immediate legal representation with extensive experience defending employment class actions, particularly in the retail sector. The matter involves allegations of missed meal breaks, unpaid overtime, and employee misclassification.",
@@ -806,16 +806,16 @@ export const mockRFPs = [
       "Immediate availability for court appearances",
       "Prior experience with Plaintiff's counsel firm involved is highly preferred"
     ],
-    questions: defaultRFPQuestions
+    questions: legalServicesQuestions
   },
   {
     id: 23,
-    rfpType: "legal-services",
+    rfpType: "alsp",
     title: "Intellectual Property Portfolio Management",
     company: "BioInnovate Labs",
     budget: "$60,000 - $90,000",
     deadline: "2025-11-01T23:59:59.000Z",
-    postedDate: "2025-10-05T10:00:00.000Z",
+    postedDate: "2025-10-21T10:00:00.000Z",
     status: "new",
     location: "Boston, MA",
     description: "We are a biotech startup seeking ongoing legal counsel for comprehensive IP portfolio management. This includes patent prosecution for multiple pending applications, trademark protection, trade secret strategy, and IP due diligence for upcoming fundraising. We need a firm that understands the biotech industry and can work within startup budget constraints while delivering high-quality work.",
@@ -833,16 +833,16 @@ export const mockRFPs = [
       "Willingness to attend board meetings 2x per year (travel costs separate)",
       "Experience with patent landscape analysis and freedom-to-operate opinions"
     ],
-    questions: defaultRFPQuestions
+    questions: alspQuestions
   },
   {
     id: 24,
-    rfpType: "legal-services",
+    rfpType: "alsp",
     title: "Real Estate Transaction - Commercial Lease Negotiation",
     company: "Metro Office Spaces LLC",
     budget: "$15,000 - $25,000",
     deadline: "2025-10-12T23:59:59.000Z",
-    postedDate: "2025-10-06T11:00:00.000Z",
+    postedDate: "2025-10-21T11:00:00.000Z",
     status: "new",
     location: "Chicago, IL",
     description: "We need legal representation for negotiating and finalizing a commercial office lease for our new headquarters (approximately 25,000 sq ft). The lease involves complex tenant improvement allowances, expansion options, and specific technology infrastructure requirements. We need counsel experienced in representing tenants in commercial real estate transactions.",
@@ -860,6 +860,6 @@ export const mockRFPs = [
       "Provide standard lease checklist and negotiation strategy memo",
       "Final lease must be reviewed and approved by our in-house counsel"
     ],
-    questions: defaultRFPQuestions
+    questions: alspQuestions
   }
 ];
