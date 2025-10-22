@@ -696,8 +696,23 @@ export default function IntakePreviewPanel({ formData, isOpen, onClose, currentS
               </Box>
             )}
 
-            {/* Legal Services - Step 4: Pricing */}
-            {formData.rfpType !== 'legal-tech-new' && (formData.deliveryModel === 'alsp' || formData.deliveryModel === 'lawfirm') && shouldShowSection(4) && (
+            {/* Lawfirm Only - Step 4: Technology Stack */}
+            {formData.deliveryModel === 'lawfirm' && shouldShowSection(4) && (
+              <Box>
+                <Box py="xs" px="lg" style={{ backgroundColor: 'var(--mantine-color-gray-0)', borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <Title order={4} size="md" c="gray.9">Technology Compatibility</Title>
+                </Box>
+                <Box px="lg" pt="sm" style={{ borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
+                  <QuestionAnswer
+                    question="Required Technology Compatibility"
+                    answer={formatProductNames(formData.lawfirmTechStack)}
+                  />
+                </Box>
+              </Box>
+            )}
+
+            {/* Legal Services - Step 5: Pricing */}
+            {formData.rfpType !== 'legal-tech-new' && (formData.deliveryModel === 'alsp' || formData.deliveryModel === 'lawfirm') && shouldShowSection(5) && (
               <Box>
                 <Box py="xs" px="lg" style={{ backgroundColor: 'var(--mantine-color-gray-0)', borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
                   <Title order={4} size="md" c="gray.9">Pricing</Title>
@@ -725,8 +740,8 @@ export default function IntakePreviewPanel({ formData, isOpen, onClose, currentS
               </Box>
             )}
 
-            {/* Legal Services - Step 5: Who to request bids from */}
-            {formData.rfpType !== 'legal-tech-new' && (formData.deliveryModel === 'alsp' || formData.deliveryModel === 'lawfirm') && shouldShowSection(5) && (
+            {/* Legal Services - Step 6: Who to request bids from */}
+            {formData.rfpType !== 'legal-tech-new' && (formData.deliveryModel === 'alsp' || formData.deliveryModel === 'lawfirm') && shouldShowSection(6) && (
               <Box>
                 <Box py="xs" px="lg" style={{ backgroundColor: 'var(--mantine-color-gray-0)', borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
                   <Title order={4} size="md" c="gray.9">Bid Recipients</Title>
@@ -746,8 +761,8 @@ export default function IntakePreviewPanel({ formData, isOpen, onClose, currentS
               </Box>
             )}
 
-            {/* Legal Services - Step 6: Finishing Touches */}
-            {formData.rfpType !== 'legal-tech-new' && (formData.deliveryModel === 'alsp' || formData.deliveryModel === 'lawfirm') && shouldShowSection(6) && (
+            {/* Legal Services - Step 7: Finishing Touches */}
+            {formData.rfpType !== 'legal-tech-new' && (formData.deliveryModel === 'alsp' || formData.deliveryModel === 'lawfirm') && shouldShowSection(7) && (
               <Box>
                 <Box py="xs" px="lg" style={{ backgroundColor: 'var(--mantine-color-gray-0)', borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
                   <Title order={4} size="md" c="gray.9">Project Details</Title>
@@ -782,8 +797,8 @@ export default function IntakePreviewPanel({ formData, isOpen, onClose, currentS
               </Box>
             )}
 
-            {/* Legal Services - Step 7: Contact */}
-            {formData.rfpType !== 'legal-tech-new' && (formData.deliveryModel === 'alsp' || formData.deliveryModel === 'lawfirm') && shouldShowSection(7) && (
+            {/* Legal Services - Step 8: Contact */}
+            {formData.rfpType !== 'legal-tech-new' && (formData.deliveryModel === 'alsp' || formData.deliveryModel === 'lawfirm') && shouldShowSection(8) && (
               <Box>
                 <Box py="xs" px="lg" style={{ backgroundColor: 'var(--mantine-color-gray-0)', borderBottom: '1px solid var(--mantine-color-gray-2)' }}>
                   <Title order={4} size="md" c="gray.9">Contact Information</Title>

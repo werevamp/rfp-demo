@@ -35,6 +35,12 @@ export const lawfirmIntakeSchema = yup.object().shape({
     })),
 
   // Step 4
+  lawfirmTechStack: yup
+    .array()
+    .of(yup.number())
+    .notRequired(),
+
+  // Step 5
   preferredPricingModel: yup
     .array()
     .of(yup.string())
@@ -117,24 +123,27 @@ export const stepSchemas = {
     barLicenses: lawfirmIntakeSchema.fields.barLicenses,
   }),
   4: yup.object().shape({
+    lawfirmTechStack: lawfirmIntakeSchema.fields.lawfirmTechStack,
+  }),
+  5: yup.object().shape({
     preferredPricingModel: lawfirmIntakeSchema.fields.preferredPricingModel,
     budgetFrom: lawfirmIntakeSchema.fields.budgetFrom,
     budgetTo: lawfirmIntakeSchema.fields.budgetTo,
     additionalBudgetInfo: lawfirmIntakeSchema.fields.additionalBudgetInfo,
   }),
-  5: yup.object().shape({
+  6: yup.object().shape({
     selectYourFirms: lawfirmIntakeSchema.fields.selectYourFirms,
     useTheoremMarketplace: lawfirmIntakeSchema.fields.useTheoremMarketplace,
     serviceProviders: lawfirmIntakeSchema.fields.serviceProviders,
     maxResponses: lawfirmIntakeSchema.fields.maxResponses,
   }),
-  6: yup.object().shape({
+  7: yup.object().shape({
     deadline: lawfirmIntakeSchema.fields.deadline,
     projectStartDate: lawfirmIntakeSchema.fields.projectStartDate,
     projectEndDate: lawfirmIntakeSchema.fields.projectEndDate,
     customQuestions: lawfirmIntakeSchema.fields.customQuestions,
   }),
-  7: yup.object().shape({
+  8: yup.object().shape({
     email: lawfirmIntakeSchema.fields.email,
     acceptedTerms: lawfirmIntakeSchema.fields.acceptedTerms,
   }),

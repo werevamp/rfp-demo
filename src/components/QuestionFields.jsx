@@ -61,7 +61,13 @@ export default function QuestionFields({ question, value, onChange }) {
       return (
         <Stack gap="xs">
           {question.options?.map((option, idx) => (
-            <Paper key={idx} p="sm" withBorder style={{ cursor: 'pointer' }}>
+            <Paper
+              key={idx}
+              p="sm"
+              withBorder
+              style={{ cursor: 'pointer' }}
+              onClick={() => handleMultiSelectChange(option)}
+            >
               <Checkbox
                 label={option}
                 checked={selectedValues.includes(option)}
@@ -86,7 +92,13 @@ export default function QuestionFields({ question, value, onChange }) {
           <Radio.Group value={value || ''} onChange={handleSingleSelectChange}>
             <Stack gap="xs">
               {question.options?.map((option, idx) => (
-                <Paper key={idx} p="sm" withBorder style={{ cursor: 'pointer' }}>
+                <Paper
+                  key={idx}
+                  p="sm"
+                  withBorder
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => handleSingleSelectChange(option)}
+                >
                   <Radio value={option} label={option} />
                 </Paper>
               ))}

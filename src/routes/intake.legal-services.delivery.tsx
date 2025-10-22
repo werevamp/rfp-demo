@@ -12,12 +12,18 @@ function LegalServicesDelivery() {
   const navigate = useNavigate()
 
   const handleSelection = (deliveryModel) => {
-    // Save the selection to draft
-    const draft = getDraft() || {}
+    // Determine form type based on delivery model
+    const formType = deliveryModel === 'alsp' ? 'alsp' : 'lawfirm'
+
+    // Get form-specific draft
+    const draft = getDraft(formType) || {}
+
+    // Save the selection to form-specific draft
     saveDraft({
       ...draft,
-      deliveryModel
-    })
+      deliveryModel,
+      rfpType: deliveryModel // Set rfpType to match deliveryModel (lawfirm or alsp)
+    }, formType)
 
     // Navigate to the appropriate intake form
     if (deliveryModel === 'alsp') {

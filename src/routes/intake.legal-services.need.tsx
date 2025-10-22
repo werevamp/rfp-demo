@@ -12,20 +12,24 @@ function LegalServicesNeed() {
   const navigate = useNavigate()
 
   const handleSelection = (legalNeed) => {
-    // Save the selection to draft
-    const draft = getDraft() || {}
-    saveDraft({
-      ...draft,
-      serviceType: 'legal-services',
-      legalNeed,
-      deliveryModel: legalNeed === 'people' ? 'lawfirm' : draft.deliveryModel
-    })
-
-    // If "People" is selected, skip delivery model and go directly to lawfirm intake
+    // If "People" is selected, set deliveryModel and rfpType to lawfirm
     if (legalNeed === 'people') {
+      // Get lawfirm-specific draft
+      const draft = getDraft('lawfirm') || {}
+
+      // Save to lawfirm-specific draft
+      saveDraft({
+        ...draft,
+        serviceType: 'legal-services',
+        legalNeed,
+        deliveryModel: 'lawfirm',
+        rfpType: 'lawfirm'
+      }, 'lawfirm')
+
       navigate({ to: '/intake/lawfirm', search: { step: 1 } })
     } else {
-      // Navigate to delivery model selection for "Project"
+      // For "Project", navigate to delivery model selection
+      // Don't save to any specific draft yet since we don't know if it's lawfirm or alsp
       navigate({ to: '/intake/legal-services/delivery' })
     }
   }

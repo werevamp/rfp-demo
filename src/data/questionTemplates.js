@@ -1396,8 +1396,34 @@ export const generateBuyerSpecificQuestions = (rfp) => {
     })
 
     // Q2: Jurisdictions/regions
-    const jurisdictions = rfp.barLicenses || ['the required jurisdictions']
-    const jurisdictionText = Array.isArray(jurisdictions) ? jurisdictions.join(', ') : jurisdictions
+    // For law firm RFPs, extract state only from location. If no state, use country.
+    const getLocationDisplay = () => {
+      if (rfp.barLicenses && Array.isArray(rfp.barLicenses) && rfp.barLicenses.length > 0) {
+        return rfp.barLicenses.join(', ')
+      }
+
+      if (rfp.location) {
+        // If location is an object with state/country properties
+        if (typeof rfp.location === 'object') {
+          return rfp.location.state || rfp.location.country || 'the required jurisdiction'
+        }
+
+        // If location is a string like "New York, NY" or "City, State"
+        if (typeof rfp.location === 'string') {
+          const parts = rfp.location.split(',').map(p => p.trim())
+          // If there are two parts, assume the second is the state
+          if (parts.length >= 2) {
+            return parts[parts.length - 1] // Return the last part (state/country)
+          }
+          // Otherwise return the whole location string
+          return rfp.location
+        }
+      }
+
+      return 'the required jurisdiction'
+    }
+
+    const jurisdictionText = getLocationDisplay()
 
     buyerQuestions.push({
       id: 'buyer-lawfirm-2',
@@ -1414,7 +1440,7 @@ export const generateBuyerSpecificQuestions = (rfp) => {
     })
 
     // Q3: Experience with buyer's size/segment/industry
-    const companySize = rfp.companySize || 'our organization'
+    const companySize = rfp.companySize || '250+ employees'
     const industry = rfp.industry || 'our industry'
 
     buyerQuestions.push({
@@ -1450,17 +1476,38 @@ export const generateBuyerSpecificQuestions = (rfp) => {
     })
 
     // Q5: Integration with legal ops/billing systems
+    // Get product names from lawfirmTechStack
+    let techStackText = 'any of these products'
+    let techStackProducts = []
+
+    if (rfp.lawfirmTechStack && Array.isArray(rfp.lawfirmTechStack) && rfp.lawfirmTechStack.length > 0) {
+      // Import products data to map IDs to names
+      // Note: This will be loaded from products.json
+      try {
+        // Dynamic import of products - will be handled by the component using this
+        techStackProducts = rfp.lawfirmTechStack
+
+        // Get product names if available (will be populated from products.json in the component)
+        if (rfp.lawfirmTechStackNames && rfp.lawfirmTechStackNames.length > 0) {
+          techStackText = rfp.lawfirmTechStackNames.join(', ')
+        }
+      } catch (e) {
+        // Fallback to generic text
+        techStackText = 'the legal tech products in our stack'
+      }
+    }
+
     buyerQuestions.push({
       id: 'buyer-lawfirm-5',
       section: 'Buyer-Specific Requirements',
-      text: 'Do you integrate with our legal ops or billing systems (e.g., CounselLink, TyMetrix, SimpleLegal)?',
+      text: `Do you use or integrate with ${techStackText}?`,
       fieldType: 'singleselect',
       priority: 'normal',
       options: ['Yes', 'No', 'Partially'],
       conditionalText: 'Yes',
       required: true,
       supportingDocs: false,
-      helpText: 'If yes or partially, please specify which systems you integrate with in the text field',
+      helpText: 'If yes or partially, please specify which products you use or integrate with in the text field',
       buyerSpecific: true
     })
 

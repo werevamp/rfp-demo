@@ -38,6 +38,9 @@ function RFPInbox() {
     return [...transformedIntakes, ...mockRFPs]
   }, [cacheRefresh]) // Re-compute when cache is cleared
 
+  // Console log all RFPs
+  console.log('All RFPs:', allRFPs)
+
   const buyerIntakeCount = getAllBuyerIntakesArray().length
 
   const handleClearCache = () => {

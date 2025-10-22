@@ -1,5 +1,6 @@
 // Utility to transform buyer intake form data into RFP format for display
 import { defaultRFPQuestions, legalServicesQuestions, alspQuestions } from '../data/questionTemplates'
+import productsData from '../data/products.json'
 
 /**
  * Transform buyer intake data into RFP format
@@ -132,6 +133,38 @@ const transformLegalServicesIntake = (intake, baseRFP, serviceType) => {
     questions.push(...customQuestions)
   }
 
+  // Format bar licenses/jurisdictions into array of strings
+  // Lawfirm intake uses barLicenses as array of {state, country} objects
+  // ALSP intake uses locationJurisdiction as array
+  // We need to convert both to simple array of strings for question generation
+  let formattedBarLicenses = null
+
+  if (serviceType === 'lawfirm' && intake.barLicenses && Array.isArray(intake.barLicenses)) {
+    // For law firm RFPs: show state only. If no state, show country.
+    formattedBarLicenses = intake.barLicenses
+      .map(license => {
+        if (typeof license === 'string') return license // Already a string
+        if (license.state) return license.state // State only
+        if (license.country) return license.country // Country if no state
+        return null
+      })
+      .filter(Boolean) // Remove any null values
+  } else if (serviceType === 'alsp' && intake.locationJurisdiction && Array.isArray(intake.locationJurisdiction)) {
+    // For ALSP, use locationJurisdiction field
+    formattedBarLicenses = intake.locationJurisdiction
+  }
+
+  // Convert lawfirmTechStack product IDs to product names for question generation
+  let lawfirmTechStackNames = null
+  if (intake.lawfirmTechStack && Array.isArray(intake.lawfirmTechStack) && intake.lawfirmTechStack.length > 0) {
+    lawfirmTechStackNames = intake.lawfirmTechStack
+      .map(productId => {
+        const product = productsData.find(p => p.id === productId)
+        return product ? product.name : null
+      })
+      .filter(Boolean) // Remove any null values
+  }
+
   return {
     ...baseRFP,
     rfpType: intake.rfpType, // Preserve specific type: lawfirm or alsp
@@ -140,11 +173,16 @@ const transformLegalServicesIntake = (intake, baseRFP, serviceType) => {
 
     // Legal services specific fields
     deliveryModel: intake.deliveryModel, // 'lawfirm' or 'alsp'
-    practiceAreas: intake.practiceAreas || null,
+    practiceGroups: intake.practiceAreas || null, // Map practiceAreas to practiceGroups for consistency with mock data
+    practiceAreas: intake.practiceAreas || null, // Keep original for backward compatibility
     experienceLevel: intake.experienceLevel || null,
-    barLicenses: intake.barLicenses || null,
+    barLicenses: formattedBarLicenses, // Use formatted bar licenses
     pricingModel: intake.preferredPricingModel || null,
     additionalBudgetInfo: intake.additionalBudgetInfo,
+
+    // Tech stack (for lawfirm RFPs)
+    lawfirmTechStack: intake.lawfirmTechStack || null, // Array of product IDs
+    lawfirmTechStackNames: lawfirmTechStackNames, // Array of product names for question generation
 
     // ALSP specific
     clientIndustryExperience: intake.clientIndustryExperience || null,

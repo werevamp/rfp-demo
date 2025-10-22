@@ -30,7 +30,9 @@ import { saveDraft, getDraft, saveBuyerIntake } from '../utils/buyerIntakeStorag
 import { lawfirmIntakeSchema, stepSchemas } from '../schemas/lawfirmIntakeSchema'
 import { practiceAreas, experienceLevels, pricingModels } from '../data/intakeOptions'
 import LawfirmAutocomplete from '../components/LawfirmAutocomplete'
+import TechStackAutocomplete from '../components/TechStackAutocomplete'
 import lawfirmsData from '../data/lawfirms.json'
+import productsData from '../data/products.json'
 
 export const Route = createFileRoute('/intake/lawfirm')({
   component: LawfirmIntake,
@@ -64,6 +66,7 @@ function LawfirmIntake() {
     practiceAreas: [],
     experienceLevel: '',
     barLicenses: [],
+    lawfirmTechStack: [],
     preferredPricingModel: [],
     budgetFrom: '',
     budgetTo: '',
@@ -106,7 +109,7 @@ function LawfirmIntake() {
 
   // Reset acceptedTerms when reaching final step to prevent auto-submission
   useEffect(() => {
-    if (step === 7) {
+    if (step === 8) {
       setValue('acceptedTerms', false)
     }
   }, [step, setValue])
@@ -126,7 +129,7 @@ function LawfirmIntake() {
       currentStepFields: Object.keys(currentStepSchema.fields),
     })
 
-    if (isStepValid && step < 7) {
+    if (isStepValid && step < 8) {
       window.scrollTo(0, 0)
       goToStep(step + 1)
     } else {
@@ -146,7 +149,7 @@ function LawfirmIntake() {
     console.log('handleSubmit called on step:', step)
 
     // Only submit if on final step
-    if (step !== 7) {
+    if (step !== 8) {
       console.log('Attempted submission on step', step, '- blocking')
       return
     }
@@ -194,7 +197,7 @@ function LawfirmIntake() {
           <Group align="flex-start" gap="xl" py="lg" style={{ minHeight: '100vh' }}>
             {/* Left Sidebar - Step Indicator */}
             <Box style={{ width: 64, flexShrink: 0, position: 'sticky', top: 32, paddingTop: 8 }}>
-              <StepIndicator currentStep={step} totalSteps={7} />
+              <StepIndicator currentStep={step} totalSteps={8} />
             </Box>
 
             {/* Main Content */}
@@ -206,11 +209,12 @@ function LawfirmIntake() {
               {step === 5 && <Step5 errors={errors} />}
               {step === 6 && <Step6 errors={errors} />}
               {step === 7 && <Step7 errors={errors} />}
+              {step === 8 && <Step8 errors={errors} />}
 
               {/* Navigation Buttons */}
               <Group gap="md" mt="xl">
                 <BackButton onClick={handleBack} />
-                {step < 7 ? (
+                {step < 8 ? (
                   <NextButton onClick={handleNext} type="button" />
                 ) : (
                   <NextButton type="submit" isSubmit={true} disabled={!formValues.acceptedTerms} />
@@ -454,8 +458,145 @@ function Step3({ errors }) {
   )
 }
 
-// Step 4: Pricing
+// Step 4: Technology Stack
 function Step4({ errors }) {
+  const { watch, setValue } = useFormContext()
+  const [stackModalOpen, setStackModalOpen] = useState(false)
+  const lawfirmTechStack = watch('lawfirmTechStack') || []
+
+  // Helper function to get product initials
+  const getInitials = (name) => {
+    return name
+      .split(' ')
+      .slice(0, 2)
+      .map(word => word[0])
+      .join('')
+      .toUpperCase()
+  }
+
+  // Helper function to generate consistent color based on name
+  const getColorFromName = (name) => {
+    const colors = [
+      'blue', 'cyan', 'teal', 'green', 'lime',
+      'yellow', 'orange', 'red', 'pink', 'grape',
+      'violet', 'indigo'
+    ]
+    const charSum = name.split('').reduce((sum, char) => sum + char.charCodeAt(0), 0)
+    return colors[charSum % colors.length]
+  }
+
+  // Helper function to get logo URL
+  const getLogoUrl = (product) => {
+    return product.details?.squareLogoUrl || product.details?.logoUrl || ''
+  }
+
+  // Get selected products data
+  const selectedProducts = lawfirmTechStack
+    .map(productId => productsData.find(p => p.id === productId))
+    .filter(Boolean)
+
+  const handleProductSelect = (product) => {
+    if (!lawfirmTechStack.includes(product.id)) {
+      setValue('lawfirmTechStack', [...lawfirmTechStack, product.id])
+    }
+    setStackModalOpen(false)
+  }
+
+  const handleRemoveProduct = (productId) => {
+    setValue('lawfirmTechStack', lawfirmTechStack.filter(id => id !== productId))
+  }
+
+  return (
+    <Stack gap="xl">
+      <Box>
+        <Title order={1} size="2rem" c="gray.9" mb="sm">
+          Which technology products should the lawfirm be compatible with?
+        </Title>
+        <Text c="gray.6" size="md">
+          Select the legal technology tools that the selected lawfirm will need to work with or integrate with during this engagement.
+        </Text>
+      </Box>
+
+      {selectedProducts.length === 0 ? (
+        <Paper p="lg" withBorder>
+          <Text c="gray.5" ta="center">
+            No technology compatibility requirements added
+          </Text>
+        </Paper>
+      ) : (
+        <Stack gap="sm">
+          {selectedProducts.map((product) => {
+            const logoUrl = getLogoUrl(product)
+            return (
+              <Paper key={product.id} p="md" withBorder>
+                <Group justify="space-between" wrap="nowrap">
+                  <Group gap="sm" wrap="nowrap">
+                    {logoUrl ? (
+                      <Avatar
+                        src={logoUrl}
+                        size={32}
+                        radius="sm"
+                        alt={product.name}
+                      />
+                    ) : (
+                      <Avatar
+                        size={32}
+                        radius="sm"
+                        color={getColorFromName(product.name)}
+                      >
+                        {getInitials(product.name)}
+                      </Avatar>
+                    )}
+                    <Text fw={500}>{product.name}</Text>
+                  </Group>
+                  <ActionIcon
+                    onClick={() => handleRemoveProduct(product.id)}
+                    color="red"
+                    variant="subtle"
+                    size="lg"
+                  >
+                    <X size={18} />
+                  </ActionIcon>
+                </Group>
+              </Paper>
+            )
+          })}
+        </Stack>
+      )}
+
+      <Button
+        variant="outline"
+        color="blue"
+        size="md"
+        onClick={() => setStackModalOpen(true)}
+      >
+        + ADD TECHNOLOGY REQUIREMENT
+      </Button>
+
+      {/* Tech Stack Modal */}
+      <Modal
+        opened={stackModalOpen}
+        onClose={() => setStackModalOpen(false)}
+        title="Add Technology Compatibility Requirement"
+        size="lg"
+      >
+        <Stack gap="md">
+          <TechStackAutocomplete
+            onSelect={handleProductSelect}
+            placeholder="Search for a product..."
+            excludeIds={lawfirmTechStack}
+          />
+          <Text size="sm" c="dimmed" mt="md">
+            Select products that the lawfirm should be able to work with
+          </Text>
+        </Stack>
+      </Modal>
+    </Stack>
+  )
+}
+
+// Step 5: Pricing
+function Step5({ errors }) {
   const { register, control } = useFormContext()
 
   return (
@@ -558,8 +699,8 @@ function Step4({ errors }) {
   )
 }
 
-// Step 5: Who should we request bids from?
-function Step5({ errors }) {
+// Step 6: Who should we request bids from?
+function Step6({ errors }) {
   const { register, watch, setValue, control } = useFormContext()
   const [searchModalOpen, setSearchModalOpen] = useState(false)
   const selectYourFirms = watch('selectYourFirms')
@@ -791,8 +932,8 @@ function Step5({ errors }) {
   )
 }
 
-// Step 6: Finishing Touches
-function Step6({ errors }) {
+// Step 7: Finishing Touches
+function Step7({ errors }) {
   const { register, watch, setValue } = useFormContext()
   const customQuestions = watch('customQuestions') || ['']
 
@@ -958,8 +1099,8 @@ function Step6({ errors }) {
   )
 }
 
-// Step 7: Submit
-function Step7({ errors }) {
+// Step 8: Submit
+function Step8({ errors }) {
   const { register } = useFormContext()
 
   return (
