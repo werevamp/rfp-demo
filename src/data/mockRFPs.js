@@ -177,6 +177,371 @@ export const mockRFPs = [
 
     questions: alspQuestions
   },
+  {
+    id: 27,
+    rfpType: "lawfirm",
+    title: "Interim Commercial/Privacy Counsel (US/UK) — 0.6 FTE for 6 Months",
+    company: "Anonymous Global SaaS Company",
+    budget: "$140 - $190/hour",
+    deadline: "2026-04-30T23:59:59.000Z",
+    postedDate: "2025-10-22T10:00:00.000Z",
+    status: "new",
+    location: "Remote (US/UK Coverage)",
+    description: "Provide interim Commercial/Privacy counsel support for sales/procurement contracting, playbook-aligned redlines, and privacy reviews. Coverage needed across US East/West and UK time zones; collaborate with in-house Legal, Sales Ops, and Security.",
+
+    // Flex Talent Specific Fields
+    flexTalent: true, // Flag to indicate this is flex/interim counsel
+    companyOverview: "Global B2B SaaS (~1,500 employees); accelerating EU/UK expansion.",
+    companySize: "1000-1500 employees",
+    industry: "Technology & SaaS",
+
+    practiceGroups: [
+      "Commercial Contracts",
+      "Technology Transactions",
+      "Data Privacy (GDPR/CCPA)"
+    ],
+    experienceLevel: "5+ years",
+    barLicenses: ["California", "New York", "England & Wales"],
+
+    lawfirmTechStack: [],
+    lawfirmTechStackNames: [],
+
+    // Flex Talent Pricing (hourly, not total)
+    pricingModel: "Hourly Rate",
+    hourlyRateRange: "$140 - $190/hour",
+    fteRequirement: "0.6 FTE (24-28 hours/week)",
+    duration: "6 months",
+    additionalBudgetInfo: "Target 24–28 hrs/week (0.6 FTE) for 6 months; request blended rate inclusive of supervision/QA. Overtime pre-approval required.",
+
+    // Flex Talent Providers
+    invitedVendors: [
+      "Axiom",
+      "Paragon Legal",
+      "Priori Legal",
+      "Lawtrades",
+      "Hire an Esquire"
+    ],
+    expandToNetwork: true,
+    maxResponses: 7,
+
+    // Project Timeline
+    projectDateRange: "November 2025 - April 2026",
+
+    // Time Zone Coverage
+    timezones: ["US ET/PT", "UK"],
+    coverageRequirement: "US East/West Coast and UK time zone coverage required",
+
+    demoRequirements: "Submit 2-3 candidate profiles with relevant experience, confirm time zone coverage, describe supervision model, and provide conflict check timeline.",
+
+    requirements: [
+      "Interim/contract attorney with 5+ years experience",
+      "Commercial contracts and privacy expertise",
+      "GDPR/CCPA compliance knowledge",
+      "US and UK time zone coverage (ET/PT and UK)",
+      "Playbook-aligned contract review and redlining",
+      "Sales/procurement contracting experience",
+      "Collaboration with in-house Legal, Sales Ops, and Security teams"
+    ],
+
+    deliverables: [
+      "Candidate profiles with bios and relevant matter summaries",
+      "Time zone coverage plan (US ET/PT, UK)",
+      "Supervision and QA model for flex talent",
+      "Conflict check and onboarding timeline",
+      "GDPR/DPA review expertise demonstration",
+      "Client references for similar interim engagements"
+    ],
+
+    // Attachments
+    attachments: {
+      rfp_template_url: "file:flex-talent-intake-template.docx",
+      supporting_docs: [
+        "file:contracting-playbook-v3.pdf",
+        "file:volume-forecast-q1-q2.csv",
+        "file:security-access-matrix.xlsx"
+      ]
+    },
+
+    // Metadata
+    notes: "Show multiple flex-network toggles first, then add named providers; emphasize hours/week, rate band, and multi-time-zone coverage.",
+
+    questions: legalServicesQuestions
+  },
+  {
+    id: 28,
+    rfpType: "legal-tech-replace",
+    title: "CLM Replacement for Global Fintech – 2026 Renewal",
+    company: "Anonymous Global Fintech",
+    budget: "$85,000 - $150,000", // Estimated based on 150 users
+    deadline: "2025-12-01T23:59:59.000Z",
+    postedDate: "2025-10-22T10:00:00.000Z",
+    status: "new",
+    location: "North America & Europe",
+    description: "We manage ~5,500 contracts/year (sales, procurement, NDAs). We need clause library/playbooks, workflow automation, and robust search/reporting for SOX audits. Current system struggles with Salesforce-initiated intake and large redline files.",
+
+    // Legal Tech Replace Specific Fields
+    companyOverview: "Global fintech (~2,100 employees); in-house legal supports sales, procurement, and compliance across NA/EU.",
+    companySize: "2,000-3,000 employees",
+    industry: "Financial Services",
+    region: "North America & Europe",
+    legalTeamSize: "32 FTE",
+
+    // Incumbent/Replacement Context
+    replacing: "ContractWorks (Onit)",
+    currentSolution: "ContractWorks",
+    currentVendor: "Onit",
+    currentVersion: "2022.x",
+    replacingReason: "Feature gaps, support quality, pricing concerns",
+    replacementStatus: "Intend to leave (not yet cancelled)",
+
+    // Replacement Drivers
+    replacementDrivers: ["features", "support", "price"],
+
+    // Pain Points
+    painPoints: [
+      "No native Salesforce intake; manual reentry creates delays",
+      "Search precision is poor; difficult to find executed agreements",
+      "Playbook and clause management are limited",
+      "Support response times exceed 2 business days"
+    ],
+
+    // Purchase Context
+    purchaseFactors: ["features", "support", "price"],
+    purchaseStatus: "Budget Allocated",
+
+    // Contract Volume & Users
+    contractVolume: "~5,500 contracts/year",
+    userSeats: 150,
+    requiredLicenses: 150,
+
+    // Core Requirements (Must-Have Features)
+    coreRequirements: [
+      "Clause library with approvals",
+      "Playbooks & guidance during review",
+      "Advanced search (OCR + metadata)",
+      "Salesforce-initiated intake & status sync",
+      "Bulk import & migration utilities"
+    ],
+
+    // Nice-to-Have Features
+    niceToHaveFeatures: [
+      "Vendor portal/external collaboration",
+      "AI extraction for legacy contracts"
+    ],
+
+    requirements: [
+      "Clause library with approval workflows",
+      "Playbook guidance during contract review",
+      "Advanced search with OCR and metadata filtering",
+      "Native Salesforce intake and 2-way status sync",
+      "Bulk import and migration utilities for ~25k legacy contracts",
+      "Vendor portal for external collaboration",
+      "AI-powered extraction for legacy contract data",
+      "SOX audit reporting capabilities"
+    ],
+
+    deliverables: [
+      "Salesforce intake and status sync architecture",
+      "Migration plan for ~25k legacy contracts with timeline",
+      "Search capabilities demonstration (OCR, filters, semantic options)",
+      "Playbook/clause maintenance effort estimates",
+      "Support SLAs (response/resolve times) and escalation paths",
+      "Implementation timeline and training plan"
+    ],
+
+    // Tech Stack & Integrations
+    techStack: [
+      { name: "Okta SSO", category: "Identity", status: "Active" },
+      { name: "SCIM (User Provisioning)", category: "Identity", status: "Active" },
+      { name: "Salesforce", category: "CRM", status: "Active" },
+      { name: "DocuSign", category: "eSignature", status: "Active" },
+      { name: "NetSuite", category: "ERP", status: "Active" },
+      { name: "Google Drive", category: "Storage", status: "Active" },
+      { name: "Slack", category: "Communication", status: "Active" }
+    ],
+    techStackIntegration: "Must integrate with Salesforce for intake/status sync, DocuSign for signatures, NetSuite for financial data, and support SSO via Okta.",
+
+    // Invited Vendors
+    invitedVendors: [
+      "Ironclad",
+      "Agiloft",
+      "Icertis",
+      "Evisort",
+      "LinkSquares",
+      "Sirion"
+    ],
+    maxResponses: 5,
+
+    // Timeline
+    signTimeline: "90 days",
+    desiredStartDate: "2026-02-01",
+    targetDecisionDate: "2025-12-01",
+    projectDateRange: "December 2025 - February 2026",
+
+    // Business Terms
+    contractTerm: "Multi-year",
+    contractTermDetails: "36 months preferred",
+    billingInterval: "Annual",
+    paymentTerms: "Net 30",
+
+    // Demo Requirements
+    demoRequirements: "Demonstrate Salesforce intake architecture, migration approach for 25k contracts, search capabilities with benchmarks, playbook maintenance workflow, and support SLA structure.",
+    demoStrategy: [
+      "Show native Salesforce integration with 2-way status sync",
+      "Demo advanced search with OCR and semantic options",
+      "Present migration plan and timeline for legacy contracts",
+      "Demonstrate clause library and playbook management",
+      "Outline support SLAs and escalation procedures"
+    ],
+
+    // Attachments
+    attachments: {
+      rfp_template_url: null,
+      supporting_docs: [
+        "file:business-case-v1.pdf",
+        "file:current-process-map.png"
+      ]
+    },
+
+    // Metadata
+    notes: "Use to show replacement storyline: feature gaps, support expectations, and tighter SFDC integration. Emphasize migration volume and timeline.",
+
+    questions: defaultRFPQuestions
+  },
+  {
+    id: 29,
+    rfpType: "legal-tech-new",
+    title: "Corporate Legal DMS – New Purchase FY26",
+    company: "Anonymous US MedTech Company",
+    budget: "$75,000 - $120,000", // Estimated based on 120 users
+    deadline: "2025-11-30T23:59:59.000Z",
+    postedDate: "2025-10-22T10:00:00.000Z",
+    status: "new",
+    location: "North America & Europe",
+    description: "We need a centralized document repository for matters and contracts with strong search, email filing from Outlook, and ethical walls. Today content is spread across shared drives and SharePoint sites, which creates versioning issues and audit risk.",
+
+    // Legal Tech New Purchase Specific Fields
+    companyOverview: "US medtech (~1,400 employees); Legal supports R&D/IP, commercial, and compliance across NA/EU.",
+    companySize: "1,000-1,500 employees",
+    industry: "Medical Devices",
+    region: "North America & Europe",
+    legalTeamSize: "24 FTE",
+
+    // New Purchase Context (not replacing)
+    solutionType: "Document Management System (DMS)",
+    solutionCategory: "DMS",
+    buyingStage: "Evaluating Solutions",
+
+    // Pain Points (current state issues)
+    painPoints: [
+      "Scattered repositories (drives/SharePoint) lead to duplicate and outdated files",
+      "Limited search; no consistent metadata or OCR",
+      "Email filing is manual and inconsistent",
+      "Access controls and ethical walls are difficult to manage"
+    ],
+
+    // Purchase Context
+    purchaseFactors: ["features", "support", "price"],
+    purchaseStatus: "Budget Allocated",
+
+    // User & Volume
+    userSeats: 120,
+    requiredLicenses: 120,
+
+    // Core Requirements (Must-Have Features)
+    coreRequirements: [
+      "Matter workspaces & metadata profiles",
+      "Advanced search with OCR and facets",
+      "Outlook add-in for email filing",
+      "Version control & compare",
+      "Ethical walls and granular permissions"
+    ],
+
+    // Nice-to-Have Features
+    niceToHaveFeatures: [
+      "External sharing with audit trail",
+      "Retention policies & legal hold",
+      "Mobile access with offline sync"
+    ],
+
+    requirements: [
+      "Matter-centric workspaces with customizable metadata profiles",
+      "Advanced search with OCR, facets, and full-text indexing",
+      "Native Outlook add-in for seamless email filing",
+      "Comprehensive version control with document comparison",
+      "Ethical walls and granular permission controls",
+      "External sharing capabilities with full audit trail",
+      "Retention policies and legal hold functionality",
+      "Mobile access with offline document sync",
+      "Migration support from shared drives and SharePoint"
+    ],
+
+    deliverables: [
+      "Outlook email filing add-in demonstration and setup guide",
+      "Search/OCR capabilities overview with PDF/scan indexing",
+      "Ethical walls and permissioning architecture explanation",
+      "Migration plan from shared drives/SharePoint with timeline",
+      "Support SLAs (response/resolution times) and escalation paths",
+      "Implementation timeline and training plan"
+    ],
+
+    // Tech Stack & Integrations
+    techStack: [
+      { name: "Okta SSO", category: "Identity", status: "Active" },
+      { name: "SCIM (User Provisioning)", category: "Identity", status: "Active" },
+      { name: "Microsoft 365", category: "Productivity", status: "Active" },
+      { name: "DocuSign", category: "eSignature", status: "Active" },
+      { name: "Adobe Acrobat/Sign", category: "Document Tools", status: "Active" },
+      { name: "Slack", category: "Communication", status: "Active" }
+    ],
+    techStackIntegration: "Must integrate with Microsoft 365 (Outlook add-in, Word), DocuSign for signatures, Adobe for PDF workflows, and support SSO via Okta.",
+
+    // Invited Vendors
+    invitedVendors: [
+      "NetDocuments",
+      "iManage",
+      "OpenText eDOCS",
+      "Egnyte",
+      "ShareFile"
+    ],
+    maxResponses: 5,
+
+    // Timeline
+    signTimeline: "90 days",
+    desiredStartDate: "2026-01-15",
+    targetDecisionDate: "2025-11-30",
+    projectDateRange: "November 2025 - January 2026",
+
+    // Business Terms
+    contractTerm: "Multi-year",
+    contractTermDetails: "36 months preferred",
+    billingInterval: "Annual",
+    paymentTerms: "Net 30",
+
+    // Demo Requirements
+    demoRequirements: "Demonstrate Outlook email filing add-in, search/OCR capabilities on PDFs and scanned documents, ethical walls and permissioning architecture, and migration approach from shared drives/SharePoint.",
+    demoStrategy: [
+      "Show Outlook add-in email filing workflow and server-side capture options",
+      "Demo advanced search with OCR, facets, and full-text indexing",
+      "Present ethical walls implementation at workspace/folder/document levels",
+      "Outline migration strategy from shared drives and SharePoint",
+      "Review support SLAs and typical response/resolution times"
+    ],
+
+    // Attachments
+    attachments: {
+      rfp_template_url: null,
+      supporting_docs: [
+        "file:current-repo-inventory.xlsx",
+        "file:security-baseline.pdf"
+      ]
+    },
+
+    // Metadata
+    notes: "Use to showcase new-purchase flow focused on DMS search, email filing, and ethical walls; emphasize migration and support SLAs.",
+
+    questions: defaultRFPQuestions
+  },
   /*{
     id: 1,
     rfpType: "legal-tech-replace",
