@@ -49,14 +49,23 @@ function BuyerInbox() {
   if (buyerRFPs.length === 0) {
     return (
       <Container size="xl" py="xl">
-        <Stack gap="xl" align="center" py="xl">
-          <FileText size={64} style={{ color: 'var(--mantine-color-gray-4)' }} />
-          <Stack gap="sm" align="center">
+        <Stack gap="xl" align="center" py={80}>
+          <FileText size={80} style={{ color: 'var(--mantine-color-gray-4)' }} />
+          <Stack gap="md" align="center" maw={500}>
             <Title order={2}>No RFPs Created Yet</Title>
-            <Text size="lg" c="dimmed">
-              Create your first RFP using the intake form to start receiving vendor responses
+            <Text size="lg" c="dimmed" ta="center">
+              Create your first RFP to start receiving proposals from qualified vendors. Our guided intake process makes it easy to define your requirements.
             </Text>
           </Stack>
+          <Button
+            component={Link}
+            to="/intake"
+            leftSection={<Plus size={20} />}
+            size="lg"
+            mt="md"
+          >
+            Create Your First RFP
+          </Button>
         </Stack>
       </Container>
     )
