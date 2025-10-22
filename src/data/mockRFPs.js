@@ -2,6 +2,182 @@ import { defaultRFPQuestions, legalServicesQuestions, alspQuestions } from './qu
 
 export const mockRFPs = [
   {
+    id: 25,
+    rfpType: "lawfirm",
+    title: "Outside Counsel for Commercial SaaS Agreements (US/UK) — FY26",
+    company: "Anonymous SaaS Company",
+    budget: "$85,000 - $120,000",
+    deadline: "2026-03-31T23:59:59.000Z",
+    postedDate: "2025-10-22T10:00:00.000Z",
+    status: "new",
+    location: "United States / United Kingdom",
+    description: "Standardize and negotiate commercial SaaS agreements (MSAs, DPAs, SOWs) during EMEA rollout; align playbooks, manage redlines, and second-chair escalations. Mix of US and UK law advice; occasional vendor paper.",
+
+    // Legal Services Specific Fields
+    companyOverview: "US/EU SaaS company (~1,200 employees); rapid EMEA expansion.",
+    companySize: "1000-1500 employees",
+    industry: "Technology & SaaS",
+
+    practiceGroups: [
+      "Commercial Contracts",
+      "Technology Transactions",
+      "Data Privacy (GDPR/CCPA)"
+    ],
+    experienceLevel: "5+ years",
+    barLicenses: ["California", "New York", "England & Wales"],
+
+    lawfirmTechStack: [681, 790, 934],
+    lawfirmTechStackNames: ["Clio Manage", "DocuSign", "iManage Work"],
+
+    pricingModel: "Fixed Fee / Capped Hourly",
+    additionalBudgetInfo: "Phase 1 (playbook + templates) fixed fee; Phase 2 (negotiations) capped hourly. Excludes filing/translation fees.",
+
+    // Bidders
+    invitedVendors: [
+      "Orrick, Herrington & Sutcliffe LLP",
+      "Cooley LLP",
+      "Wilson Sonsini Goodrich & Rosati",
+      "Bird & Bird LLP",
+      "Baker McKenzie"
+    ],
+    expandToNetwork: true,
+    maxResponses: 8,
+
+    // Project Timeline
+    projectDateRange: "November 2025 - March 2026",
+
+    // Demo/Requirements
+    demoRequirements: "Demonstrate team composition, pricing structure, relevant case experience in B2B SaaS negotiations (US/UK), data security controls, and conflict check processes.",
+
+    requirements: [
+      "Experience with commercial SaaS agreements (MSAs, DPAs, SOWs)",
+      "Expertise in US and UK law",
+      "EMEA expansion experience",
+      "Playbook development and contract standardization",
+      "Data security and confidentiality controls including generative AI policies"
+    ],
+
+    deliverables: [
+      "Contract playbooks and templates",
+      "Negotiation support for commercial agreements",
+      "Redline management",
+      "Legal advisory on US and UK law matters",
+      "Conflict check and turnaround SLA commitments"
+    ],
+
+    // Attachments
+    attachments: {
+      rfp_template_url: "file:law-firm-rfp-template.docx",
+      supporting_docs: [
+        "file:contracting-volumes-2024.xlsx",
+        "file:outside-counsel-guidelines.pdf"
+      ]
+    },
+
+    // Metadata
+    notes: "Toggle Theorem Network to show panel + marketplace routing; emphasize fixed-fee + capped hourly hybrid.",
+
+    questions: legalServicesQuestions
+  },
+  {
+    id: 26,
+    rfpType: "alsp",
+    title: "ALSP for High-Volume Contract Review & Abstraction (Global) — FY26",
+    company: "Anonymous Global SaaS Company",
+    budget: "$85,000 - $120,000",
+    deadline: "2026-10-31T23:59:59.000Z",
+    postedDate: "2025-10-22T10:00:00.000Z",
+    status: "new",
+    location: "Global (AMER/EMEA/APAC)",
+    description: "Playbook-driven review and abstraction of buy-side and sell-side agreements (NDAs, MSAs, order forms, DPAs), including metadata capture, routing, and QA reporting. Vendor to provide managed team, tooling, and process governance.",
+
+    // ALSP Specific Fields
+    companyOverview: "Global B2B SaaS (~1,800 employees); scaling procurement & sales ops across AMER/EMEA/APAC.",
+    companySize: "1500-2000 employees",
+    industry: "Software/SaaS",
+
+    // Client Industry Experience
+    clientIndustryExperience: [
+      "Software/SaaS",
+      "Financial Services (B2B)",
+      "Telecommunications"
+    ],
+
+    // Jurisdictions & Languages
+    jurisdictions: ["AMER", "EMEA", "APAC"],
+    languages: ["English", "Spanish", "German", "Japanese"],
+
+    // Practice Areas (from metadata)
+    practiceGroups: [
+      "Commercial Contracts",
+      "Technology Transactions",
+      "Data Privacy",
+      "Corporate"
+    ],
+
+    // Volume Scale
+    volumeScale: "High Volume Ongoing",
+    volumeContext: "~12,000 agreements/year; 1,000/month average; peak seasonal spikes to 1,600/month",
+
+    // Pricing
+    pricingModel: "Monthly Managed Service Fee",
+    additionalBudgetInfo: "Monthly managed service fee inclusive of PM, QA, reporting; unit-rate card for overflow and specialty languages; volume-based discounts after 1,200 docs/month.",
+
+    // Bidders
+    invitedVendors: [
+      "UnitedLex",
+      "Elevate",
+      "Integreon",
+      "QuisLex",
+      "Consilio",
+      "Morae"
+    ],
+    expandToNetwork: true,
+    maxResponses: 8,
+
+    // Project Timeline
+    projectDateRange: "November 2025 - October 2026",
+
+    // Requirements & Deliverables
+    requirements: [
+      "Playbook-driven contract review and abstraction",
+      "Buy-side and sell-side agreement handling (NDAs, MSAs, order forms, DPAs)",
+      "Metadata capture and routing",
+      "QA reporting and accuracy tracking",
+      "Multi-region coverage (AMER/EMEA/APAC)",
+      "Multi-language support (English, Spanish, German, Japanese)",
+      "High-volume capacity (~12,000 agreements/year)"
+    ],
+
+    deliverables: [
+      "Managed team with regional/time zone coverage",
+      "Playbook-driven review process",
+      "Metadata extraction and abstraction",
+      "QA methodology and reporting",
+      "Technology stack integration (DMS/CLM)",
+      "SLA commitments with escalation paths",
+      "Data security and confidentiality controls",
+      "Governance with KPIs and continuous improvement"
+    ],
+
+    demoRequirements: "Demonstrate staffing model, throughput assumptions, QA methodology, technology stack (intake/workflow/OCR/AI), SLAs, data security controls, and governance framework with KPIs.",
+
+    // Attachments
+    attachments: {
+      rfp_template_url: "file:alsp-rfp-template.docx",
+      supporting_docs: [
+        "file:volume-by-month-fy24-fy25.csv",
+        "file:playbook-v2-redlines.pdf",
+        "file:metadata-schema.json"
+      ]
+    },
+
+    // Metadata
+    notes: "Demonstrate toggle to Theorem Network first, then add named ALSPs; highlight monthly managed service + unit-rate overflow and multilingual coverage.",
+
+    questions: alspQuestions
+  },
+  /*{
     id: 1,
     rfpType: "legal-tech-replace",
     title: "E-commerce Website Redesign",
@@ -885,5 +1061,5 @@ export const mockRFPs = [
       "Final lease must be reviewed and approved by our in-house counsel"
     ],
     questions: alspQuestions
-  }
+  }*/
 ];
