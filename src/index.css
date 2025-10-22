@@ -13,6 +13,7 @@
   :root {
     --mantine-color-dimmed: rgba(0, 0, 0, 0.7) !important;
     --mantine-color-text: #1a1a1a !important;
+    --modal-size-xl: 1000px !important;
   }
 }
 

@@ -25,7 +25,7 @@ function ResponsesTab() {
 
   // Determine which questions to use based on RFP type
   const getQuestionsForRFPType = (rfpType) => {
-    if (rfpType === 'legal-services') {
+    if (rfpType === 'legal-services' || rfpType === 'lawfirm') {
       return legalServicesQuestions
     } else if (rfpType === 'alsp') {
       return alspQuestions

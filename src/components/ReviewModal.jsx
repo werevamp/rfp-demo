@@ -16,10 +16,9 @@ export default function ReviewModal({ isOpen, onClose, vendor, questions }) {
     return response || 'No response provided'
   }
 
-  // Filter to show only key questions with responses (same logic as compare tab)
+  // Filter to show all questions with responses
   const displayQuestions = questions
     .filter(q => vendor.responses[q.id] !== undefined)
-    .slice(0, 4) // Show first 4 questions that have responses
 
   const handleSave = () => {
     console.log('Saving evaluation:', { reviewer, notes, responseStage })
@@ -40,10 +39,28 @@ export default function ReviewModal({ isOpen, onClose, vendor, questions }) {
       size="xl"
       radius="md"
       centered
+      styles={{
+        body: {
+          maxWidth: '1000px'
+        },
+        content: {
+          maxWidth: '1000px !important'
+        },
+        inner: {
+          padding: 0
+        }
+      }}
     >
-      <Group align="flex-start" gap="lg" style={{ minHeight: 400 }}>
-        {/* Left Column - Responses */}
-        <Box style={{ flex: 1 }}>
+      <Box style={{ position: 'relative', minHeight: 600 }}>
+        {/* Left Column - Responses (Scrollable) */}
+        <Box
+          style={{
+            width: 'calc(50% - 16px)',
+            maxHeight: 600,
+            overflowY: 'auto',
+            paddingRight: 16
+          }}
+        >
           <Title order={4} size="h5" mb="xs">
             Responses
           </Title>
@@ -65,8 +82,16 @@ export default function ReviewModal({ isOpen, onClose, vendor, questions }) {
           </Stack>
         </Box>
 
-        {/* Right Column - Evaluation */}
-        <Box style={{ flex: 1 }}>
+        {/* Right Column - Evaluation (Fixed Position) */}
+        <Box
+          style={{
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            width: 'calc(50% - 16px)',
+            paddingLeft: 16
+          }}
+        >
           <Title order={4} size="h5" mb="xs">
             Evaluation
           </Title>
@@ -121,7 +146,7 @@ export default function ReviewModal({ isOpen, onClose, vendor, questions }) {
             </Button>
           </Stack>
         </Box>
-      </Group>
+      </Box>
     </Modal>
   )
 }
